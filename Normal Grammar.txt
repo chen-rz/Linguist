@@ -1,0 +1,243 @@
+# Copyright © 陈润泽 919103860612
+##################################################
+# 本文件以正规文法的形式表示词法规则，请使用正规文法（3型文法）产生式
+# 注释行以 # 开头，仅支持整行注释
+# 非终结符请以 <  > 修饰，未被 <  > 修饰的文法符号均会被认为是终结符
+# 不可将非终结符命名为 <FINISH> ，也不可在非终结符名称中包含 < 、 > ，否则可能导致难以预料的错误
+# 产生式箭头表示为 ==>
+# 产生式右部支持以 $ 分隔多个选项
+# 空产生式（ε）以空字符串表示，请不要输入任何字符
+# 空格、空行会被忽略
+# 文法开始符号必须命名为 <START>
+# 空格作为终结符时，以__space__表示
+##################################################
+
+# 第64页，第3题：
+#<START> ==> 0<V> $ 1<U> $ 0<Q> $ 1<Q>
+#<V> ==> 0
+#<Q> ==> 0<V> $ 1<Q> $ 1<U>
+#<U> ==> 1
+## 此题给定了NFA，其终态节点存在出弧，但是由正规文法生成的NFA的终态节点不可能有出弧
+#<FINISH> ==> 0 $ 1
+
+# 第50页：
+#<START> ==> <1> $ <7>
+#<1> ==> <2> $ <4>
+#<2> ==> a<3>
+#<3> ==> <6>
+#<4> ==> b<5>
+#<5> ==> <6>
+#<6> ==> <1> $ <7>
+#<7> ==> a<8>
+#<8> ==> b<9>
+#<9> ==> b
+
+##################################################
+
+# 开始
+<START> ==> <K_I_START> $ <C_START> $ <D_START> $ <O_START>
+
+
+# 关键字和标识符以字母、下划线开头，后接字母、数字、下划线
+<K_I_START> ==> a<F_K_I> $ b<F_K_I> $ c<F_K_I> $ d<F_K_I> $ e<F_K_I> $ f<F_K_I> $ g<F_K_I>
+<K_I_START> ==> h<F_K_I> $ i<F_K_I> $ j<F_K_I> $ k<F_K_I> $ l<F_K_I> $ m<F_K_I> $ n<F_K_I>
+<K_I_START> ==> o<F_K_I> $ p<F_K_I> $ q<F_K_I> $ r<F_K_I> $ s<F_K_I> $ t<F_K_I>
+<K_I_START> ==> u<F_K_I> $ v<F_K_I> $ w<F_K_I> $ x<F_K_I> $ y<F_K_I> $ z<F_K_I>
+<K_I_START> ==> A<F_K_I> $ B<F_K_I> $ C<F_K_I> $ D<F_K_I> $ E<F_K_I> $ F<F_K_I> $ G<F_K_I>
+<K_I_START> ==> H<F_K_I> $ I<F_K_I> $ J<F_K_I> $ K<F_K_I> $ L<F_K_I> $ M<F_K_I> $ N<F_K_I>
+<K_I_START> ==> O<F_K_I> $ P<F_K_I> $ Q<F_K_I> $ R<F_K_I> $ S<F_K_I> $ T<F_K_I>
+<K_I_START> ==> U<F_K_I> $ V<F_K_I> $ W<F_K_I> $ X<F_K_I> $ Y<F_K_I> $ Z<F_K_I>
+<K_I_START> ==> _<F_K_I>
+# 字母、数字、下划线
+<F_K_I> ==> a<F_K_I> $ b<F_K_I> $ c<F_K_I> $ d<F_K_I> $ e<F_K_I> $ f<F_K_I> $ g<F_K_I>
+<F_K_I> ==> h<F_K_I> $ i<F_K_I> $ j<F_K_I> $ k<F_K_I> $ l<F_K_I> $ m<F_K_I> $ n<F_K_I>
+<F_K_I> ==> o<F_K_I> $ p<F_K_I> $ q<F_K_I> $ r<F_K_I> $ s<F_K_I> $ t<F_K_I>
+<F_K_I> ==> u<F_K_I> $ v<F_K_I> $ w<F_K_I> $ x<F_K_I> $ y<F_K_I> $ z<F_K_I>
+<F_K_I> ==> A<F_K_I> $ B<F_K_I> $ C<F_K_I> $ D<F_K_I> $ E<F_K_I> $ F<F_K_I> $ G<F_K_I>
+<F_K_I> ==> H<F_K_I> $ I<F_K_I> $ J<F_K_I> $ K<F_K_I> $ L<F_K_I> $ M<F_K_I> $ N<F_K_I>
+<F_K_I> ==> O<F_K_I> $ P<F_K_I> $ Q<F_K_I> $ R<F_K_I> $ S<F_K_I> $ T<F_K_I>
+<F_K_I> ==> U<F_K_I> $ V<F_K_I> $ W<F_K_I> $ X<F_K_I> $ Y<F_K_I> $ Z<F_K_I>
+<F_K_I> ==> 0<F_K_I> $ 1<F_K_I> $ 2<F_K_I> $ 3<F_K_I> $ 4<F_K_I>
+<F_K_I> ==> 5<F_K_I> $ 6<F_K_I> $ 7<F_K_I> $ 8<F_K_I> $ 9<F_K_I>
+<F_K_I> ==> _<F_K_I>
+# 结束
+<F_K_I> ==>
+
+
+# 常量
+<C_START> ==> <Integer> $ <Float> $ <Scientific> $ <Complex_Expression> $ <String>
+<Integer> ==> <Decimal> $ <Hexadecimal>
+
+# 十进制整数
+# 以0~9开头
+<Decimal> ==> 0<F_DEC_1> $ 1<F_DEC_1> $ 2<F_DEC_1> $ 3<F_DEC_1> $ 4<F_DEC_1>
+<Decimal> ==> 5<F_DEC_1> $ 6<F_DEC_1> $ 7<F_DEC_1> $ 8<F_DEC_1> $ 9<F_DEC_1>
+# 中间0~9
+<F_DEC_1> ==> 0<F_DEC_1> $ 1<F_DEC_1> $ 2<F_DEC_1> $ 3<F_DEC_1> $ 4<F_DEC_1>
+<F_DEC_1> ==> 5<F_DEC_1> $ 6<F_DEC_1> $ 7<F_DEC_1> $ 8<F_DEC_1> $ 9<F_DEC_1>
+# 以u、U、l、L或ε结尾
+<F_DEC_1> ==> u<F_DEC_2> $ U<F_DEC_2> $ l<F_DEC_3> $ L<F_DEC_3> $
+<F_DEC_2> ==> l $ L $
+<F_DEC_3> ==> u $ U $
+
+# 十六进制整数
+# 以0x、0X开头
+<Hexadecimal> ==> 0<HEX_1>
+<HEX_1> ==> x<F_HEX_2> $ X<F_HEX_2>
+# 中间0~F
+<F_HEX_2> ==> 0<F_HEX_2> $ 1<F_HEX_2> $ 2<F_HEX_2> $ 3<F_HEX_2> $ 4<F_HEX_2>
+<F_HEX_2> ==> 5<F_HEX_2> $ 6<F_HEX_2> $ 7<F_HEX_2> $ 8<F_HEX_2> $ 9<F_HEX_2>
+<F_HEX_2> ==> a<F_HEX_2> $ b<F_HEX_2> $ c<F_HEX_2> $ d<F_HEX_2> $ e<F_HEX_2> $ f<F_HEX_2>
+<F_HEX_2> ==> A<F_HEX_2> $ B<F_HEX_2> $ C<F_HEX_2> $ D<F_HEX_2> $ E<F_HEX_2> $ F<F_HEX_2>
+# 以u、U、l、L或ε结尾
+<F_HEX_2> ==> u<F_HEX_3> $ U<F_HEX_3> $ l<F_HEX_4> $ L<F_HEX_4> $
+<F_HEX_3> ==> l $ L $
+<F_HEX_4> ==> u $ U $
+
+# 浮点数（小数形式）
+# 以0~9开头
+<Float> ==> 0<FLO_1> $ 1<FLO_1> $ 2<FLO_1> $ 3<FLO_1> $ 4<FLO_1>
+<Float> ==> 5<FLO_1> $ 6<FLO_1> $ 7<FLO_1> $ 8<FLO_1> $ 9<FLO_1>
+# 直到小数点
+<FLO_1> ==> 0<FLO_1> $ 1<FLO_1> $ 2<FLO_1> $ 3<FLO_1> $ 4<FLO_1>
+<FLO_1> ==> 5<FLO_1> $ 6<FLO_1> $ 7<FLO_1> $ 8<FLO_1> $ 9<FLO_1>
+<FLO_1> ==> .<FLO_2>
+# 小数点之后
+<FLO_2> ==> 0<F_FLO_3> $ 1<F_FLO_3> $ 2<F_FLO_3> $ 3<F_FLO_3> $ 4<F_FLO_3>
+<FLO_2> ==> 5<F_FLO_3> $ 6<F_FLO_3> $ 7<F_FLO_3> $ 8<F_FLO_3> $ 9<F_FLO_3>
+# 结束
+<F_FLO_3> ==> 0<F_FLO_3> $ 1<F_FLO_3> $ 2<F_FLO_3> $ 3<F_FLO_3> $ 4<F_FLO_3>
+<F_FLO_3> ==> 5<F_FLO_3> $ 6<F_FLO_3> $ 7<F_FLO_3> $ 8<F_FLO_3> $ 9<F_FLO_3>
+<F_FLO_3> ==>
+
+# 科学记数法
+# 小数部分
+# 以0~9开头
+<Scientific> ==> 0<SCI_1> $ 1<SCI_1> $ 2<SCI_1> $ 3<SCI_1> $ 4<SCI_1>
+<Scientific> ==> 5<SCI_1> $ 6<SCI_1> $ 7<SCI_1> $ 8<SCI_1> $ 9<SCI_1>
+# 直到小数点
+<SCI_1> ==> 0<SCI_1> $ 1<SCI_1> $ 2<SCI_1> $ 3<SCI_1> $ 4<SCI_1>
+<SCI_1> ==> 5<SCI_1> $ 6<SCI_1> $ 7<SCI_1> $ 8<SCI_1> $ 9<SCI_1>
+<SCI_1> ==> .<SCI_2>
+# 小数点之后
+<SCI_2> ==> 0<SCI_3> $ 1<SCI_3> $ 2<SCI_3> $ 3<SCI_3> $ 4<SCI_3>
+<SCI_2> ==> 5<SCI_3> $ 6<SCI_3> $ 7<SCI_3> $ 8<SCI_3> $ 9<SCI_3>
+# 小数部分结束，E、e
+<SCI_3> ==> 0<SCI_3> $ 1<SCI_3> $ 2<SCI_3> $ 3<SCI_3> $ 4<SCI_3>
+<SCI_3> ==> 5<SCI_3> $ 6<SCI_3> $ 7<SCI_3> $ 8<SCI_3> $ 9<SCI_3>
+<SCI_3> ==> e<SCI_4> $ E<SCI_4>
+# 指数部分
+<SCI_4> ==> +<SCI_5> $ -<SCI_5> $ <SCI_5>
+<SCI_5> ==> 0<F_SCI_6> $ 1<F_SCI_6> $ 2<F_SCI_6> $ 3<F_SCI_6> $ 4<F_SCI_6>
+<SCI_5> ==> 5<F_SCI_6> $ 6<F_SCI_6> $ 7<F_SCI_6> $ 8<F_SCI_6> $ 9<F_SCI_6>
+# 结束
+<F_SCI_6> ==> 0<F_SCI_6> $ 1<F_SCI_6> $ 2<F_SCI_6> $ 3<F_SCI_6> $ 4<F_SCI_6>
+<F_SCI_6> ==> 5<F_SCI_6> $ 6<F_SCI_6> $ 7<F_SCI_6> $ 8<F_SCI_6> $ 9<F_SCI_6>
+<F_SCI_6> ==>
+
+# 复数或加减表达式
+# 实部
+# 以0~9开头
+<Complex_Expression> ==> 0<C_E_1> $ 1<C_E_1> $ 2<C_E_1> $ 3<C_E_1> $ 4<C_E_1>
+<Complex_Expression> ==> 5<C_E_1> $ 6<C_E_1> $ 7<C_E_1> $ 8<C_E_1> $ 9<C_E_1>
+# 直到小数点
+<C_E_1> ==> 0<C_E_1> $ 1<C_E_1> $ 2<C_E_1> $ 3<C_E_1> $ 4<C_E_1>
+<C_E_1> ==> 5<C_E_1> $ 6<C_E_1> $ 7<C_E_1> $ 8<C_E_1> $ 9<C_E_1>
+<C_E_1> ==> .<C_E_2>
+# 也有可能没有小数点
+<C_E_1> ==> +<C_E_4> $ -<C_E_4>
+# 小数点之后
+<C_E_2> ==> 0<C_E_3> $ 1<C_E_3> $ 2<C_E_3> $ 3<C_E_3> $ 4<C_E_3>
+<C_E_2> ==> 5<C_E_3> $ 6<C_E_3> $ 7<C_E_3> $ 8<C_E_3> $ 9<C_E_3>
+# 小数部分结束，+、-
+<C_E_3> ==> 0<C_E_3> $ 1<C_E_3> $ 2<C_E_3> $ 3<C_E_3> $ 4<C_E_3>
+<C_E_3> ==> 5<C_E_3> $ 6<C_E_3> $ 7<C_E_3> $ 8<C_E_3> $ 9<C_E_3>
+<C_E_3> ==> +<C_E_4> $ -<C_E_4>
+# 虚部
+# 以0~9开头
+<C_E_4> ==> 0<F_C_E_5> $ 1<F_C_E_5> $ 2<F_C_E_5> $ 3<F_C_E_5> $ 4<F_C_E_5>
+<C_E_4> ==> 5<F_C_E_5> $ 6<F_C_E_5> $ 7<F_C_E_5> $ 8<F_C_E_5> $ 9<F_C_E_5>
+# 直到小数点
+<F_C_E_5> ==> 0<F_C_E_5> $ 1<F_C_E_5> $ 2<F_C_E_5> $ 3<F_C_E_5> $ 4<F_C_E_5>
+<F_C_E_5> ==> 5<F_C_E_5> $ 6<F_C_E_5> $ 7<F_C_E_5> $ 8<F_C_E_5> $ 9<F_C_E_5>
+<F_C_E_5> ==> .<C_E_6>
+# 也有可能没有小数点
+<F_C_E_5> ==> i $
+# 小数点之后
+<C_E_6> ==> 0<F_C_E_7> $ 1<F_C_E_7> $ 2<F_C_E_7> $ 3<F_C_E_7> $ 4<F_C_E_7>
+<C_E_6> ==> 5<F_C_E_7> $ 6<F_C_E_7> $ 7<F_C_E_7> $ 8<F_C_E_7> $ 9<F_C_E_7>
+# 小数部分结束，i或ε
+<F_C_E_7> ==> 0<F_C_E_7> $ 1<F_C_E_7> $ 2<F_C_E_7> $ 3<F_C_E_7> $ 4<F_C_E_7>
+<F_C_E_7> ==> 5<F_C_E_7> $ 6<F_C_E_7> $ 7<F_C_E_7> $ 8<F_C_E_7> $ 9<F_C_E_7>
+<F_C_E_7> ==> i $
+
+# 字符串
+<String> ==> "<F_STR_1>
+# 空串
+<F_STR_1> ==> "
+# 字母
+<F_STR_1> ==> a<F_STR_2> $ b<F_STR_2> $ c<F_STR_2> $ d<F_STR_2> $ e<F_STR_2> $ f<F_STR_2> $ g<F_STR_2>
+<F_STR_1> ==> h<F_STR_2> $ i<F_STR_2> $ j<F_STR_2> $ k<F_STR_2> $ l<F_STR_2> $ m<F_STR_2> $ n<F_STR_2>
+<F_STR_1> ==> o<F_STR_2> $ p<F_STR_2> $ q<F_STR_2> $ r<F_STR_2> $ s<F_STR_2> $ t<F_STR_2>
+<F_STR_1> ==> u<F_STR_2> $ v<F_STR_2> $ w<F_STR_2> $ x<F_STR_2> $ y<F_STR_2> $ z<F_STR_2>
+<F_STR_1> ==> A<F_STR_2> $ B<F_STR_2> $ C<F_STR_2> $ D<F_STR_2> $ E<F_STR_2> $ F<F_STR_2> $ G<F_STR_2>
+<F_STR_1> ==> H<F_STR_2> $ I<F_STR_2> $ J<F_STR_2> $ K<F_STR_2> $ L<F_STR_2> $ M<F_STR_2> $ N<F_STR_2>
+<F_STR_1> ==> O<F_STR_2> $ P<F_STR_2> $ Q<F_STR_2> $ R<F_STR_2> $ S<F_STR_2> $ T<F_STR_2>
+<F_STR_1> ==> U<F_STR_2> $ V<F_STR_2> $ W<F_STR_2> $ X<F_STR_2> $ Y<F_STR_2> $ Z<F_STR_2>
+# 数字
+<F_STR_1> ==> 0<F_STR_2> $ 1<F_STR_2> $ 2<F_STR_2> $ 3<F_STR_2> $ 4<F_STR_2>
+<F_STR_1> ==> 5<F_STR_2> $ 6<F_STR_2> $ 7<F_STR_2> $ 8<F_STR_2> $ 9<F_STR_2>
+# 符号
+<F_STR_1> ==> ~<F_STR_2> $ `<F_STR_2> $ !<F_STR_2> $ @<F_STR_2> $ #<F_STR_2> $ %<F_STR_2> $ ^<F_STR_2>
+<F_STR_1> ==> &<F_STR_2> $ *<F_STR_2> $ (<F_STR_2> $ )<F_STR_2> $ _<F_STR_2> $ -<F_STR_2> $ +<F_STR_2>
+<F_STR_1> ==> =<F_STR_2> $ {<F_STR_2> $ }<F_STR_2> $ [<F_STR_2> $ ]<F_STR_2> $ |<F_STR_2> $ \<F_STR_2>
+<F_STR_1> ==> :<F_STR_2> $ ;<F_STR_2> $ '<F_STR_2> $ <<F_STR_2> $ ><F_STR_2> $ ,<F_STR_2>
+<F_STR_1> ==> .<F_STR_2> $ ?<F_STR_2> $ /<F_STR_2>
+# 空格
+<F_STR_1> ==> __space__<F_STR_2>
+# 自循环
+# 字母
+<F_STR_2> ==> a<F_STR_2> $ b<F_STR_2> $ c<F_STR_2> $ d<F_STR_2> $ e<F_STR_2> $ f<F_STR_2> $ g<F_STR_2>
+<F_STR_2> ==> h<F_STR_2> $ i<F_STR_2> $ j<F_STR_2> $ k<F_STR_2> $ l<F_STR_2> $ m<F_STR_2> $ n<F_STR_2>
+<F_STR_2> ==> o<F_STR_2> $ p<F_STR_2> $ q<F_STR_2> $ r<F_STR_2> $ s<F_STR_2> $ t<F_STR_2>
+<F_STR_2> ==> u<F_STR_2> $ v<F_STR_2> $ w<F_STR_2> $ x<F_STR_2> $ y<F_STR_2> $ z<F_STR_2>
+<F_STR_2> ==> A<F_STR_2> $ B<F_STR_2> $ C<F_STR_2> $ D<F_STR_2> $ E<F_STR_2> $ F<F_STR_2> $ G<F_STR_2>
+<F_STR_2> ==> H<F_STR_2> $ I<F_STR_2> $ J<F_STR_2> $ K<F_STR_2> $ L<F_STR_2> $ M<F_STR_2> $ N<F_STR_2>
+<F_STR_2> ==> O<F_STR_2> $ P<F_STR_2> $ Q<F_STR_2> $ R<F_STR_2> $ S<F_STR_2> $ T<F_STR_2>
+<F_STR_2> ==> U<F_STR_2> $ V<F_STR_2> $ W<F_STR_2> $ X<F_STR_2> $ Y<F_STR_2> $ Z<F_STR_2>
+# 数字
+<F_STR_2> ==> 0<F_STR_2> $ 1<F_STR_2> $ 2<F_STR_2> $ 3<F_STR_2> $ 4<F_STR_2>
+<F_STR_2> ==> 5<F_STR_2> $ 6<F_STR_2> $ 7<F_STR_2> $ 8<F_STR_2> $ 9<F_STR_2>
+# 符号
+<F_STR_2> ==> ~<F_STR_2> $ `<F_STR_2> $ !<F_STR_2> $ @<F_STR_2> $ #<F_STR_2> $ %<F_STR_2> $ ^<F_STR_2>
+<F_STR_2> ==> &<F_STR_2> $ *<F_STR_2> $ (<F_STR_2> $ )<F_STR_2> $ _<F_STR_2> $ -<F_STR_2> $ +<F_STR_2>
+<F_STR_2> ==> =<F_STR_2> $ {<F_STR_2> $ }<F_STR_2> $ [<F_STR_2> $ ]<F_STR_2> $ |<F_STR_2> $ \<F_STR_2>
+<F_STR_2> ==> :<F_STR_2> $ ;<F_STR_2> $ '<F_STR_2> $ <<F_STR_2> $ ><F_STR_2> $ ,<F_STR_2>
+<F_STR_2> ==> .<F_STR_2> $ ?<F_STR_2> $ /<F_STR_2>
+# 空格
+<F_STR_2> ==> __space__<F_STR_2>
+# 结束
+<F_STR_2> ==> "
+
+
+# 限定符
+<D_START> ==> (<F_DEL> $ )<F_DEL> $ {<F_DEL> $ }<F_DEL> $ [<F_DEL> $ ]<F_DEL>
+<D_START> ==> :<F_DEL> $ ;<F_DEL> $ ,<F_DEL> $ .<F_DEL> $ ?<F_DEL> $ #<F_DEL>
+<F_DEL> ==>
+
+
+# 运算符
+# +=、-=、*=、/=、==、+、-、*、/、=
+<O_START> ==> + <F_OPE_1> $ - <F_OPE_1> $ * <F_OPE_1> $ / <F_OPE_1> $ = <F_OPE_1>
+<F_OPE_1> ==> = $
+
+# ~、!、%、^
+<O_START> ==> ~ <F_OPE_2> $ ! <F_OPE_2> $ % <F_OPE_2> $ ^ <F_OPE_2>
+<F_OPE_2> ==>
+
+# &&、||、<<、>>、<=、>=、&、|、<、>
+<O_START> ==> & <F_OPE_3> $ | <F_OPE_4> $ < <F_OPE_5> $ > <F_OPE_6>
+<F_OPE_3> ==> & $
+<F_OPE_4> ==> | $
+<F_OPE_5> ==> < $ = $
+<F_OPE_6> ==> > $ = $

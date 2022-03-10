@@ -1,0 +1,636 @@
+Process of Lexical Analysis
+====================================================================================================
+Alphabet:
+            !    "    #    %    &    '    (    )  
+  *    +    ,    -    .    /    0    1    2    3  
+  4    5    6    7    8    9    :    ;    <    =  
+  >    ?    @    A    B    C    D    E    F    G  
+  H    I    J    K    L    M    N    O    P    Q  
+  R    S    T    U    V    W    X    Y    Z    [  
+  \    ]    ^    _    `    a    b    c    d    e  
+  f    g    h    i    j    k    l    m    n    o  
+  p    q    r    s    t    u    v    w    x    y  
+  z    {    |    }    ~  
+====================================================================================================
+NFA Statuses:
+     C_E_1          C_E_2          C_E_3          C_E_4          C_E_6     
+    C_START    Complex_Expression    D_START        Decimal         FINISH    
+     FLO_1          FLO_2         F_C_E_5        F_C_E_7        F_DEC_1    
+    F_DEC_2        F_DEC_3         F_DEL         F_FLO_3        F_HEX_2    
+    F_HEX_3        F_HEX_4         F_K_I         F_OPE_1        F_OPE_2    
+    F_OPE_3        F_OPE_4        F_OPE_5        F_OPE_6        F_SCI_6    
+    F_STR_1        F_STR_2         Float          HEX_1       Hexadecimal  
+    Integer       K_I_START       O_START         SCI_1          SCI_2     
+     SCI_3          SCI_4          SCI_5          START        Scientific  
+     String    
+====================================================================================================
+NFA Transition Functions:
+         START ==  => K_I_START                   START ==  => C_START          
+          START ==  => D_START                    START ==  => O_START          
+        K_I_START == a => F_K_I                 K_I_START == b => F_K_I         
+        K_I_START == c => F_K_I                 K_I_START == d => F_K_I         
+        K_I_START == e => F_K_I                 K_I_START == f => F_K_I         
+        K_I_START == g => F_K_I                 K_I_START == h => F_K_I         
+        K_I_START == i => F_K_I                 K_I_START == j => F_K_I         
+        K_I_START == k => F_K_I                 K_I_START == l => F_K_I         
+        K_I_START == m => F_K_I                 K_I_START == n => F_K_I         
+        K_I_START == o => F_K_I                 K_I_START == p => F_K_I         
+        K_I_START == q => F_K_I                 K_I_START == r => F_K_I         
+        K_I_START == s => F_K_I                 K_I_START == t => F_K_I         
+        K_I_START == u => F_K_I                 K_I_START == v => F_K_I         
+        K_I_START == w => F_K_I                 K_I_START == x => F_K_I         
+        K_I_START == y => F_K_I                 K_I_START == z => F_K_I         
+        K_I_START == A => F_K_I                 K_I_START == B => F_K_I         
+        K_I_START == C => F_K_I                 K_I_START == D => F_K_I         
+        K_I_START == E => F_K_I                 K_I_START == F => F_K_I         
+        K_I_START == G => F_K_I                 K_I_START == H => F_K_I         
+        K_I_START == I => F_K_I                 K_I_START == J => F_K_I         
+        K_I_START == K => F_K_I                 K_I_START == L => F_K_I         
+        K_I_START == M => F_K_I                 K_I_START == N => F_K_I         
+        K_I_START == O => F_K_I                 K_I_START == P => F_K_I         
+        K_I_START == Q => F_K_I                 K_I_START == R => F_K_I         
+        K_I_START == S => F_K_I                 K_I_START == T => F_K_I         
+        K_I_START == U => F_K_I                 K_I_START == V => F_K_I         
+        K_I_START == W => F_K_I                 K_I_START == X => F_K_I         
+        K_I_START == Y => F_K_I                 K_I_START == Z => F_K_I         
+        K_I_START == _ => F_K_I                   F_K_I == a => F_K_I           
+          F_K_I == b => F_K_I                     F_K_I == c => F_K_I           
+          F_K_I == d => F_K_I                     F_K_I == e => F_K_I           
+          F_K_I == f => F_K_I                     F_K_I == g => F_K_I           
+          F_K_I == h => F_K_I                     F_K_I == i => F_K_I           
+          F_K_I == j => F_K_I                     F_K_I == k => F_K_I           
+          F_K_I == l => F_K_I                     F_K_I == m => F_K_I           
+          F_K_I == n => F_K_I                     F_K_I == o => F_K_I           
+          F_K_I == p => F_K_I                     F_K_I == q => F_K_I           
+          F_K_I == r => F_K_I                     F_K_I == s => F_K_I           
+          F_K_I == t => F_K_I                     F_K_I == u => F_K_I           
+          F_K_I == v => F_K_I                     F_K_I == w => F_K_I           
+          F_K_I == x => F_K_I                     F_K_I == y => F_K_I           
+          F_K_I == z => F_K_I                     F_K_I == A => F_K_I           
+          F_K_I == B => F_K_I                     F_K_I == C => F_K_I           
+          F_K_I == D => F_K_I                     F_K_I == E => F_K_I           
+          F_K_I == F => F_K_I                     F_K_I == G => F_K_I           
+          F_K_I == H => F_K_I                     F_K_I == I => F_K_I           
+          F_K_I == J => F_K_I                     F_K_I == K => F_K_I           
+          F_K_I == L => F_K_I                     F_K_I == M => F_K_I           
+          F_K_I == N => F_K_I                     F_K_I == O => F_K_I           
+          F_K_I == P => F_K_I                     F_K_I == Q => F_K_I           
+          F_K_I == R => F_K_I                     F_K_I == S => F_K_I           
+          F_K_I == T => F_K_I                     F_K_I == U => F_K_I           
+          F_K_I == V => F_K_I                     F_K_I == W => F_K_I           
+          F_K_I == X => F_K_I                     F_K_I == Y => F_K_I           
+          F_K_I == Z => F_K_I                     F_K_I == 0 => F_K_I           
+          F_K_I == 1 => F_K_I                     F_K_I == 2 => F_K_I           
+          F_K_I == 3 => F_K_I                     F_K_I == 4 => F_K_I           
+          F_K_I == 5 => F_K_I                     F_K_I == 6 => F_K_I           
+          F_K_I == 7 => F_K_I                     F_K_I == 8 => F_K_I           
+          F_K_I == 9 => F_K_I                     F_K_I == _ => F_K_I           
+          F_K_I ==  => FINISH                    C_START ==  => Integer         
+          C_START ==  => Float                 C_START ==  => Scientific        
+   C_START ==  => Complex_Expression             C_START ==  => String          
+         Integer ==  => Decimal                Integer ==  => Hexadecimal       
+        Decimal == 0 => F_DEC_1                 Decimal == 1 => F_DEC_1         
+        Decimal == 2 => F_DEC_1                 Decimal == 3 => F_DEC_1         
+        Decimal == 4 => F_DEC_1                 Decimal == 5 => F_DEC_1         
+        Decimal == 6 => F_DEC_1                 Decimal == 7 => F_DEC_1         
+        Decimal == 8 => F_DEC_1                 Decimal == 9 => F_DEC_1         
+        F_DEC_1 == 0 => F_DEC_1                 F_DEC_1 == 1 => F_DEC_1         
+        F_DEC_1 == 2 => F_DEC_1                 F_DEC_1 == 3 => F_DEC_1         
+        F_DEC_1 == 4 => F_DEC_1                 F_DEC_1 == 5 => F_DEC_1         
+        F_DEC_1 == 6 => F_DEC_1                 F_DEC_1 == 7 => F_DEC_1         
+        F_DEC_1 == 8 => F_DEC_1                 F_DEC_1 == 9 => F_DEC_1         
+        F_DEC_1 == u => F_DEC_2                 F_DEC_1 == U => F_DEC_2         
+        F_DEC_1 == l => F_DEC_3                 F_DEC_1 == L => F_DEC_3         
+         F_DEC_1 ==  => FINISH                   F_DEC_2 == l => FINISH         
+         F_DEC_2 == L => FINISH                  F_DEC_2 ==  => FINISH          
+         F_DEC_3 == u => FINISH                  F_DEC_3 == U => FINISH         
+         F_DEC_3 ==  => FINISH                 Hexadecimal == 0 => HEX_1        
+         HEX_1 == x => F_HEX_2                   HEX_1 == X => F_HEX_2          
+        F_HEX_2 == 0 => F_HEX_2                 F_HEX_2 == 1 => F_HEX_2         
+        F_HEX_2 == 2 => F_HEX_2                 F_HEX_2 == 3 => F_HEX_2         
+        F_HEX_2 == 4 => F_HEX_2                 F_HEX_2 == 5 => F_HEX_2         
+        F_HEX_2 == 6 => F_HEX_2                 F_HEX_2 == 7 => F_HEX_2         
+        F_HEX_2 == 8 => F_HEX_2                 F_HEX_2 == 9 => F_HEX_2         
+        F_HEX_2 == a => F_HEX_2                 F_HEX_2 == b => F_HEX_2         
+        F_HEX_2 == c => F_HEX_2                 F_HEX_2 == d => F_HEX_2         
+        F_HEX_2 == e => F_HEX_2                 F_HEX_2 == f => F_HEX_2         
+        F_HEX_2 == A => F_HEX_2                 F_HEX_2 == B => F_HEX_2         
+        F_HEX_2 == C => F_HEX_2                 F_HEX_2 == D => F_HEX_2         
+        F_HEX_2 == E => F_HEX_2                 F_HEX_2 == F => F_HEX_2         
+        F_HEX_2 == u => F_HEX_3                 F_HEX_2 == U => F_HEX_3         
+        F_HEX_2 == l => F_HEX_4                 F_HEX_2 == L => F_HEX_4         
+         F_HEX_2 ==  => FINISH                   F_HEX_3 == l => FINISH         
+         F_HEX_3 == L => FINISH                  F_HEX_3 ==  => FINISH          
+         F_HEX_4 == u => FINISH                  F_HEX_4 == U => FINISH         
+         F_HEX_4 ==  => FINISH                    Float == 0 => FLO_1           
+          Float == 1 => FLO_1                     Float == 2 => FLO_1           
+          Float == 3 => FLO_1                     Float == 4 => FLO_1           
+          Float == 5 => FLO_1                     Float == 6 => FLO_1           
+          Float == 7 => FLO_1                     Float == 8 => FLO_1           
+          Float == 9 => FLO_1                     FLO_1 == 0 => FLO_1           
+          FLO_1 == 1 => FLO_1                     FLO_1 == 2 => FLO_1           
+          FLO_1 == 3 => FLO_1                     FLO_1 == 4 => FLO_1           
+          FLO_1 == 5 => FLO_1                     FLO_1 == 6 => FLO_1           
+          FLO_1 == 7 => FLO_1                     FLO_1 == 8 => FLO_1           
+          FLO_1 == 9 => FLO_1                     FLO_1 == . => FLO_2           
+         FLO_2 == 0 => F_FLO_3                   FLO_2 == 1 => F_FLO_3          
+         FLO_2 == 2 => F_FLO_3                   FLO_2 == 3 => F_FLO_3          
+         FLO_2 == 4 => F_FLO_3                   FLO_2 == 5 => F_FLO_3          
+         FLO_2 == 6 => F_FLO_3                   FLO_2 == 7 => F_FLO_3          
+         FLO_2 == 8 => F_FLO_3                   FLO_2 == 9 => F_FLO_3          
+        F_FLO_3 == 0 => F_FLO_3                 F_FLO_3 == 1 => F_FLO_3         
+        F_FLO_3 == 2 => F_FLO_3                 F_FLO_3 == 3 => F_FLO_3         
+        F_FLO_3 == 4 => F_FLO_3                 F_FLO_3 == 5 => F_FLO_3         
+        F_FLO_3 == 6 => F_FLO_3                 F_FLO_3 == 7 => F_FLO_3         
+        F_FLO_3 == 8 => F_FLO_3                 F_FLO_3 == 9 => F_FLO_3         
+         F_FLO_3 ==  => FINISH                  Scientific == 0 => SCI_1        
+        Scientific == 1 => SCI_1                Scientific == 2 => SCI_1        
+        Scientific == 3 => SCI_1                Scientific == 4 => SCI_1        
+        Scientific == 5 => SCI_1                Scientific == 6 => SCI_1        
+        Scientific == 7 => SCI_1                Scientific == 8 => SCI_1        
+        Scientific == 9 => SCI_1                  SCI_1 == 0 => SCI_1           
+          SCI_1 == 1 => SCI_1                     SCI_1 == 2 => SCI_1           
+          SCI_1 == 3 => SCI_1                     SCI_1 == 4 => SCI_1           
+          SCI_1 == 5 => SCI_1                     SCI_1 == 6 => SCI_1           
+          SCI_1 == 7 => SCI_1                     SCI_1 == 8 => SCI_1           
+          SCI_1 == 9 => SCI_1                     SCI_1 == . => SCI_2           
+          SCI_2 == 0 => SCI_3                     SCI_2 == 1 => SCI_3           
+          SCI_2 == 2 => SCI_3                     SCI_2 == 3 => SCI_3           
+          SCI_2 == 4 => SCI_3                     SCI_2 == 5 => SCI_3           
+          SCI_2 == 6 => SCI_3                     SCI_2 == 7 => SCI_3           
+          SCI_2 == 8 => SCI_3                     SCI_2 == 9 => SCI_3           
+          SCI_3 == 0 => SCI_3                     SCI_3 == 1 => SCI_3           
+          SCI_3 == 2 => SCI_3                     SCI_3 == 3 => SCI_3           
+          SCI_3 == 4 => SCI_3                     SCI_3 == 5 => SCI_3           
+          SCI_3 == 6 => SCI_3                     SCI_3 == 7 => SCI_3           
+          SCI_3 == 8 => SCI_3                     SCI_3 == 9 => SCI_3           
+          SCI_3 == e => SCI_4                     SCI_3 == E => SCI_4           
+          SCI_4 == + => SCI_5                     SCI_4 == - => SCI_5           
+           SCI_4 ==  => SCI_5                    SCI_5 == 0 => F_SCI_6          
+         SCI_5 == 1 => F_SCI_6                   SCI_5 == 2 => F_SCI_6          
+         SCI_5 == 3 => F_SCI_6                   SCI_5 == 4 => F_SCI_6          
+         SCI_5 == 5 => F_SCI_6                   SCI_5 == 6 => F_SCI_6          
+         SCI_5 == 7 => F_SCI_6                   SCI_5 == 8 => F_SCI_6          
+         SCI_5 == 9 => F_SCI_6                  F_SCI_6 == 0 => F_SCI_6         
+        F_SCI_6 == 1 => F_SCI_6                 F_SCI_6 == 2 => F_SCI_6         
+        F_SCI_6 == 3 => F_SCI_6                 F_SCI_6 == 4 => F_SCI_6         
+        F_SCI_6 == 5 => F_SCI_6                 F_SCI_6 == 6 => F_SCI_6         
+        F_SCI_6 == 7 => F_SCI_6                 F_SCI_6 == 8 => F_SCI_6         
+        F_SCI_6 == 9 => F_SCI_6                  F_SCI_6 ==  => FINISH          
+    Complex_Expression == 0 => C_E_1        Complex_Expression == 1 => C_E_1    
+    Complex_Expression == 2 => C_E_1        Complex_Expression == 3 => C_E_1    
+    Complex_Expression == 4 => C_E_1        Complex_Expression == 5 => C_E_1    
+    Complex_Expression == 6 => C_E_1        Complex_Expression == 7 => C_E_1    
+    Complex_Expression == 8 => C_E_1        Complex_Expression == 9 => C_E_1    
+          C_E_1 == 0 => C_E_1                     C_E_1 == 1 => C_E_1           
+          C_E_1 == 2 => C_E_1                     C_E_1 == 3 => C_E_1           
+          C_E_1 == 4 => C_E_1                     C_E_1 == 5 => C_E_1           
+          C_E_1 == 6 => C_E_1                     C_E_1 == 7 => C_E_1           
+          C_E_1 == 8 => C_E_1                     C_E_1 == 9 => C_E_1           
+          C_E_1 == . => C_E_2                     C_E_1 == + => C_E_4           
+          C_E_1 == - => C_E_4                     C_E_2 == 0 => C_E_3           
+          C_E_2 == 1 => C_E_3                     C_E_2 == 2 => C_E_3           
+          C_E_2 == 3 => C_E_3                     C_E_2 == 4 => C_E_3           
+          C_E_2 == 5 => C_E_3                     C_E_2 == 6 => C_E_3           
+          C_E_2 == 7 => C_E_3                     C_E_2 == 8 => C_E_3           
+          C_E_2 == 9 => C_E_3                     C_E_3 == 0 => C_E_3           
+          C_E_3 == 1 => C_E_3                     C_E_3 == 2 => C_E_3           
+          C_E_3 == 3 => C_E_3                     C_E_3 == 4 => C_E_3           
+          C_E_3 == 5 => C_E_3                     C_E_3 == 6 => C_E_3           
+          C_E_3 == 7 => C_E_3                     C_E_3 == 8 => C_E_3           
+          C_E_3 == 9 => C_E_3                     C_E_3 == + => C_E_4           
+          C_E_3 == - => C_E_4                    C_E_4 == 0 => F_C_E_5          
+         C_E_4 == 1 => F_C_E_5                   C_E_4 == 2 => F_C_E_5          
+         C_E_4 == 3 => F_C_E_5                   C_E_4 == 4 => F_C_E_5          
+         C_E_4 == 5 => F_C_E_5                   C_E_4 == 6 => F_C_E_5          
+         C_E_4 == 7 => F_C_E_5                   C_E_4 == 8 => F_C_E_5          
+         C_E_4 == 9 => F_C_E_5                  F_C_E_5 == 0 => F_C_E_5         
+        F_C_E_5 == 1 => F_C_E_5                 F_C_E_5 == 2 => F_C_E_5         
+        F_C_E_5 == 3 => F_C_E_5                 F_C_E_5 == 4 => F_C_E_5         
+        F_C_E_5 == 5 => F_C_E_5                 F_C_E_5 == 6 => F_C_E_5         
+        F_C_E_5 == 7 => F_C_E_5                 F_C_E_5 == 8 => F_C_E_5         
+        F_C_E_5 == 9 => F_C_E_5                  F_C_E_5 == . => C_E_6          
+         F_C_E_5 == i => FINISH                  F_C_E_5 ==  => FINISH          
+         C_E_6 == 0 => F_C_E_7                   C_E_6 == 1 => F_C_E_7          
+         C_E_6 == 2 => F_C_E_7                   C_E_6 == 3 => F_C_E_7          
+         C_E_6 == 4 => F_C_E_7                   C_E_6 == 5 => F_C_E_7          
+         C_E_6 == 6 => F_C_E_7                   C_E_6 == 7 => F_C_E_7          
+         C_E_6 == 8 => F_C_E_7                   C_E_6 == 9 => F_C_E_7          
+        F_C_E_7 == 0 => F_C_E_7                 F_C_E_7 == 1 => F_C_E_7         
+        F_C_E_7 == 2 => F_C_E_7                 F_C_E_7 == 3 => F_C_E_7         
+        F_C_E_7 == 4 => F_C_E_7                 F_C_E_7 == 5 => F_C_E_7         
+        F_C_E_7 == 6 => F_C_E_7                 F_C_E_7 == 7 => F_C_E_7         
+        F_C_E_7 == 8 => F_C_E_7                 F_C_E_7 == 9 => F_C_E_7         
+         F_C_E_7 == i => FINISH                  F_C_E_7 ==  => FINISH          
+         String == " => F_STR_1                  F_STR_1 == " => FINISH         
+        F_STR_1 == a => F_STR_2                 F_STR_1 == b => F_STR_2         
+        F_STR_1 == c => F_STR_2                 F_STR_1 == d => F_STR_2         
+        F_STR_1 == e => F_STR_2                 F_STR_1 == f => F_STR_2         
+        F_STR_1 == g => F_STR_2                 F_STR_1 == h => F_STR_2         
+        F_STR_1 == i => F_STR_2                 F_STR_1 == j => F_STR_2         
+        F_STR_1 == k => F_STR_2                 F_STR_1 == l => F_STR_2         
+        F_STR_1 == m => F_STR_2                 F_STR_1 == n => F_STR_2         
+        F_STR_1 == o => F_STR_2                 F_STR_1 == p => F_STR_2         
+        F_STR_1 == q => F_STR_2                 F_STR_1 == r => F_STR_2         
+        F_STR_1 == s => F_STR_2                 F_STR_1 == t => F_STR_2         
+        F_STR_1 == u => F_STR_2                 F_STR_1 == v => F_STR_2         
+        F_STR_1 == w => F_STR_2                 F_STR_1 == x => F_STR_2         
+        F_STR_1 == y => F_STR_2                 F_STR_1 == z => F_STR_2         
+        F_STR_1 == A => F_STR_2                 F_STR_1 == B => F_STR_2         
+        F_STR_1 == C => F_STR_2                 F_STR_1 == D => F_STR_2         
+        F_STR_1 == E => F_STR_2                 F_STR_1 == F => F_STR_2         
+        F_STR_1 == G => F_STR_2                 F_STR_1 == H => F_STR_2         
+        F_STR_1 == I => F_STR_2                 F_STR_1 == J => F_STR_2         
+        F_STR_1 == K => F_STR_2                 F_STR_1 == L => F_STR_2         
+        F_STR_1 == M => F_STR_2                 F_STR_1 == N => F_STR_2         
+        F_STR_1 == O => F_STR_2                 F_STR_1 == P => F_STR_2         
+        F_STR_1 == Q => F_STR_2                 F_STR_1 == R => F_STR_2         
+        F_STR_1 == S => F_STR_2                 F_STR_1 == T => F_STR_2         
+        F_STR_1 == U => F_STR_2                 F_STR_1 == V => F_STR_2         
+        F_STR_1 == W => F_STR_2                 F_STR_1 == X => F_STR_2         
+        F_STR_1 == Y => F_STR_2                 F_STR_1 == Z => F_STR_2         
+        F_STR_1 == 0 => F_STR_2                 F_STR_1 == 1 => F_STR_2         
+        F_STR_1 == 2 => F_STR_2                 F_STR_1 == 3 => F_STR_2         
+        F_STR_1 == 4 => F_STR_2                 F_STR_1 == 5 => F_STR_2         
+        F_STR_1 == 6 => F_STR_2                 F_STR_1 == 7 => F_STR_2         
+        F_STR_1 == 8 => F_STR_2                 F_STR_1 == 9 => F_STR_2         
+        F_STR_1 == ~ => F_STR_2                 F_STR_1 == ` => F_STR_2         
+        F_STR_1 == ! => F_STR_2                 F_STR_1 == @ => F_STR_2         
+        F_STR_1 == # => F_STR_2                 F_STR_1 == % => F_STR_2         
+        F_STR_1 == ^ => F_STR_2                 F_STR_1 == & => F_STR_2         
+        F_STR_1 == * => F_STR_2                 F_STR_1 == ( => F_STR_2         
+        F_STR_1 == ) => F_STR_2                 F_STR_1 == _ => F_STR_2         
+        F_STR_1 == - => F_STR_2                 F_STR_1 == + => F_STR_2         
+        F_STR_1 == = => F_STR_2                 F_STR_1 == { => F_STR_2         
+        F_STR_1 == } => F_STR_2                 F_STR_1 == [ => F_STR_2         
+        F_STR_1 == ] => F_STR_2                 F_STR_1 == | => F_STR_2         
+        F_STR_1 == \ => F_STR_2                 F_STR_1 == : => F_STR_2         
+        F_STR_1 == ; => F_STR_2                 F_STR_1 == ' => F_STR_2         
+        F_STR_1 == < => F_STR_2                 F_STR_1 == > => F_STR_2         
+        F_STR_1 == , => F_STR_2                 F_STR_1 == . => F_STR_2         
+        F_STR_1 == ? => F_STR_2                 F_STR_1 == / => F_STR_2         
+        F_STR_1 ==   => F_STR_2                 F_STR_2 == a => F_STR_2         
+        F_STR_2 == b => F_STR_2                 F_STR_2 == c => F_STR_2         
+        F_STR_2 == d => F_STR_2                 F_STR_2 == e => F_STR_2         
+        F_STR_2 == f => F_STR_2                 F_STR_2 == g => F_STR_2         
+        F_STR_2 == h => F_STR_2                 F_STR_2 == i => F_STR_2         
+        F_STR_2 == j => F_STR_2                 F_STR_2 == k => F_STR_2         
+        F_STR_2 == l => F_STR_2                 F_STR_2 == m => F_STR_2         
+        F_STR_2 == n => F_STR_2                 F_STR_2 == o => F_STR_2         
+        F_STR_2 == p => F_STR_2                 F_STR_2 == q => F_STR_2         
+        F_STR_2 == r => F_STR_2                 F_STR_2 == s => F_STR_2         
+        F_STR_2 == t => F_STR_2                 F_STR_2 == u => F_STR_2         
+        F_STR_2 == v => F_STR_2                 F_STR_2 == w => F_STR_2         
+        F_STR_2 == x => F_STR_2                 F_STR_2 == y => F_STR_2         
+        F_STR_2 == z => F_STR_2                 F_STR_2 == A => F_STR_2         
+        F_STR_2 == B => F_STR_2                 F_STR_2 == C => F_STR_2         
+        F_STR_2 == D => F_STR_2                 F_STR_2 == E => F_STR_2         
+        F_STR_2 == F => F_STR_2                 F_STR_2 == G => F_STR_2         
+        F_STR_2 == H => F_STR_2                 F_STR_2 == I => F_STR_2         
+        F_STR_2 == J => F_STR_2                 F_STR_2 == K => F_STR_2         
+        F_STR_2 == L => F_STR_2                 F_STR_2 == M => F_STR_2         
+        F_STR_2 == N => F_STR_2                 F_STR_2 == O => F_STR_2         
+        F_STR_2 == P => F_STR_2                 F_STR_2 == Q => F_STR_2         
+        F_STR_2 == R => F_STR_2                 F_STR_2 == S => F_STR_2         
+        F_STR_2 == T => F_STR_2                 F_STR_2 == U => F_STR_2         
+        F_STR_2 == V => F_STR_2                 F_STR_2 == W => F_STR_2         
+        F_STR_2 == X => F_STR_2                 F_STR_2 == Y => F_STR_2         
+        F_STR_2 == Z => F_STR_2                 F_STR_2 == 0 => F_STR_2         
+        F_STR_2 == 1 => F_STR_2                 F_STR_2 == 2 => F_STR_2         
+        F_STR_2 == 3 => F_STR_2                 F_STR_2 == 4 => F_STR_2         
+        F_STR_2 == 5 => F_STR_2                 F_STR_2 == 6 => F_STR_2         
+        F_STR_2 == 7 => F_STR_2                 F_STR_2 == 8 => F_STR_2         
+        F_STR_2 == 9 => F_STR_2                 F_STR_2 == ~ => F_STR_2         
+        F_STR_2 == ` => F_STR_2                 F_STR_2 == ! => F_STR_2         
+        F_STR_2 == @ => F_STR_2                 F_STR_2 == # => F_STR_2         
+        F_STR_2 == % => F_STR_2                 F_STR_2 == ^ => F_STR_2         
+        F_STR_2 == & => F_STR_2                 F_STR_2 == * => F_STR_2         
+        F_STR_2 == ( => F_STR_2                 F_STR_2 == ) => F_STR_2         
+        F_STR_2 == _ => F_STR_2                 F_STR_2 == - => F_STR_2         
+        F_STR_2 == + => F_STR_2                 F_STR_2 == = => F_STR_2         
+        F_STR_2 == { => F_STR_2                 F_STR_2 == } => F_STR_2         
+        F_STR_2 == [ => F_STR_2                 F_STR_2 == ] => F_STR_2         
+        F_STR_2 == | => F_STR_2                 F_STR_2 == \ => F_STR_2         
+        F_STR_2 == : => F_STR_2                 F_STR_2 == ; => F_STR_2         
+        F_STR_2 == ' => F_STR_2                 F_STR_2 == < => F_STR_2         
+        F_STR_2 == > => F_STR_2                 F_STR_2 == , => F_STR_2         
+        F_STR_2 == . => F_STR_2                 F_STR_2 == ? => F_STR_2         
+        F_STR_2 == / => F_STR_2                 F_STR_2 ==   => F_STR_2         
+         F_STR_2 == " => FINISH                  D_START == ( => F_DEL          
+         D_START == ) => F_DEL                   D_START == { => F_DEL          
+         D_START == } => F_DEL                   D_START == [ => F_DEL          
+         D_START == ] => F_DEL                   D_START == : => F_DEL          
+         D_START == ; => F_DEL                   D_START == , => F_DEL          
+         D_START == . => F_DEL                   D_START == ? => F_DEL          
+         D_START == # => F_DEL                    F_DEL ==  => FINISH           
+        O_START == + => F_OPE_1                 O_START == - => F_OPE_1         
+        O_START == * => F_OPE_1                 O_START == / => F_OPE_1         
+        O_START == = => F_OPE_1                  F_OPE_1 == = => FINISH         
+         F_OPE_1 ==  => FINISH                  O_START == ~ => F_OPE_2         
+        O_START == ! => F_OPE_2                 O_START == % => F_OPE_2         
+        O_START == ^ => F_OPE_2                  F_OPE_2 ==  => FINISH          
+        O_START == & => F_OPE_3                 O_START == | => F_OPE_4         
+        O_START == < => F_OPE_5                 O_START == > => F_OPE_6         
+         F_OPE_3 == & => FINISH                  F_OPE_3 ==  => FINISH          
+         F_OPE_4 == | => FINISH                  F_OPE_4 ==  => FINISH          
+         F_OPE_5 == < => FINISH                  F_OPE_5 == = => FINISH         
+         F_OPE_5 ==  => FINISH                   F_OPE_6 == > => FINISH         
+         F_OPE_6 == = => FINISH                  F_OPE_6 ==  => FINISH          
+
+====================================================================================================
+DFA Statuses:
+ DS01 (T)      FINISH         F_K_I     
+ DS02 (T)      C_E_1          FINISH         FLO_1         F_DEC_1    
+               SCI_1     
+ DS03 (T)      FINISH         F_DEL     
+ DS04 (T)      FINISH        F_OPE_2    
+ DS05 (T)      FINISH        F_OPE_3    
+ DS06 (T)      FINISH        F_OPE_4    
+ DS07 (T)      FINISH        F_OPE_1    
+ DS08         F_STR_1    
+ DS09 (T)      FINISH        F_OPE_6    
+ DS10 (T)      C_E_1          FINISH         FLO_1         F_DEC_1    
+               HEX_1          SCI_1     
+ DS11 (T)      FINISH        F_OPE_5    
+ DS12 (T)      FINISH    
+ DS13 (T)      FINISH        F_HEX_2    
+ DS14 (T)      FINISH        F_DEC_2    
+ DS15          C_E_2          FLO_2          SCI_2     
+ DS16 (T)      FINISH        F_DEC_3    
+ DS17          C_E_4     
+ DS18 (T)      FINISH        F_C_E_5    
+ DS19          C_E_6     
+ DS20 (T)      FINISH        F_C_E_7    
+ DS21 (T)      C_E_3          FINISH        F_FLO_3         SCI_3     
+ DS22          SCI_4          SCI_5     
+ DS23 (T)      FINISH        F_SCI_6    
+ DS24          SCI_5     
+ DS25 (T)      FINISH        F_HEX_3    
+ DS26 (T)      FINISH        F_HEX_4    
+ DS27         F_STR_2    
+START         C_START    Complex_Expression    D_START        Decimal    
+               Float       Hexadecimal      Integer       K_I_START       O_START    
+               START        Scientific       String    
+
+====================================================================================================
+DFA Transition Functions:
+
+      START == m => DS01            START == 9 => DS02      
+      START == { => DS03            START == F => DS01      
+      START == Q => DS01            START == h => DS01      
+      START == , => DS03            START == j => DS01      
+      START == ^ => DS04            START == n => DS01      
+      START == p => DS01            START == K => DS01      
+      START == D => DS01            START == X => DS01      
+      START == o => DS01            START == 4 => DS02      
+      START == I => DS01            START == t => DS01      
+      START == C => DS01            START == & => DS05      
+      START == J => DS01            START == 7 => DS02      
+      START == q => DS01            START == i => DS01      
+      START == v => DS01            START == a => DS01      
+      START == R => DS01            START == s => DS01      
+      START == B => DS01            START == V => DS01      
+      START == M => DS01            START == ! => DS04      
+      START == u => DS01            START == _ => DS01      
+      START == . => DS03            START == 5 => DS02      
+      START == O => DS01            START == S => DS01      
+      START == f => DS01            START == d => DS01      
+      START == k => DS01            START == ? => DS03      
+      START == | => DS06            START == U => DS01      
+      START == L => DS01            START == A => DS01      
+      START == } => DS03            START == w => DS01      
+      START == # => DS03            START == W => DS01      
+      START == % => DS04            START == z => DS01      
+      START == ] => DS03            START == + => DS07      
+      START == l => DS01            START == P => DS01      
+      START == ; => DS03            START == E => DS01      
+      START == - => DS07            START == / => DS07      
+      START == " => DS08            START == g => DS01      
+      START == * => DS07            START == 3 => DS02      
+      START == 8 => DS02            START == ~ => DS04      
+      START == ( => DS03            START == y => DS01      
+      START == G => DS01            START == Z => DS01      
+      START == T => DS01            START == = => DS07      
+      START == H => DS01            START == Y => DS01      
+      START == [ => DS03            START == 1 => DS02      
+      START == r => DS01            START == 2 => DS02      
+      START == : => DS03            START == ) => DS03      
+      START == > => DS09            START == b => DS01      
+      START == 6 => DS02            START == 0 => DS10      
+      START == e => DS01            START == < => DS11      
+      START == N => DS01            START == c => DS01      
+      START == x => DS01            DS11 == = => DS12       
+      DS11 == < => DS12             DS10 == 9 => DS02       
+      DS10 == X => DS13             DS10 == 4 => DS02       
+      DS10 == 7 => DS02             DS10 == u => DS14       
+      DS10 == . => DS15             DS10 == 5 => DS02       
+      DS10 == U => DS14             DS10 == L => DS16       
+      DS10 == + => DS17             DS10 == l => DS16       
+      DS10 == - => DS17             DS10 == 3 => DS02       
+      DS10 == 8 => DS02             DS10 == 1 => DS02       
+      DS10 == 2 => DS02             DS10 == 6 => DS02       
+      DS10 == 0 => DS02             DS10 == x => DS13       
+      DS17 == 9 => DS18             DS17 == 4 => DS18       
+      DS17 == 7 => DS18             DS17 == 5 => DS18       
+      DS17 == 3 => DS18             DS17 == 8 => DS18       
+      DS17 == 1 => DS18             DS17 == 2 => DS18       
+      DS17 == 6 => DS18             DS17 == 0 => DS18       
+      DS18 == 9 => DS18             DS18 == 4 => DS18       
+      DS18 == 7 => DS18             DS18 == i => DS12       
+      DS18 == . => DS19             DS18 == 5 => DS18       
+      DS18 == 3 => DS18             DS18 == 8 => DS18       
+      DS18 == 1 => DS18             DS18 == 2 => DS18       
+      DS18 == 6 => DS18             DS18 == 0 => DS18       
+      DS19 == 9 => DS20             DS19 == 4 => DS20       
+      DS19 == 7 => DS20             DS19 == 5 => DS20       
+      DS19 == 3 => DS20             DS19 == 8 => DS20       
+      DS19 == 1 => DS20             DS19 == 2 => DS20       
+      DS19 == 6 => DS20             DS19 == 0 => DS20       
+      DS20 == 9 => DS20             DS20 == 4 => DS20       
+      DS20 == 7 => DS20             DS20 == i => DS12       
+      DS20 == 5 => DS20             DS20 == 3 => DS20       
+      DS20 == 8 => DS20             DS20 == 1 => DS20       
+      DS20 == 2 => DS20             DS20 == 6 => DS20       
+      DS20 == 0 => DS20             DS16 == u => DS12       
+      DS16 == U => DS12             DS15 == 9 => DS21       
+      DS15 == 4 => DS21             DS15 == 7 => DS21       
+      DS15 == 5 => DS21             DS15 == 3 => DS21       
+      DS15 == 8 => DS21             DS15 == 1 => DS21       
+      DS15 == 2 => DS21             DS15 == 6 => DS21       
+      DS15 == 0 => DS21             DS21 == 9 => DS21       
+      DS21 == 4 => DS21             DS21 == 7 => DS21       
+      DS21 == 5 => DS21             DS21 == + => DS17       
+      DS21 == E => DS22             DS21 == - => DS17       
+      DS21 == 3 => DS21             DS21 == 8 => DS21       
+      DS21 == 1 => DS21             DS21 == 2 => DS21       
+      DS21 == 6 => DS21             DS21 == 0 => DS21       
+      DS21 == e => DS22             DS22 == 9 => DS23       
+      DS22 == 4 => DS23             DS22 == 7 => DS23       
+      DS22 == 5 => DS23             DS22 == + => DS24       
+      DS22 == - => DS24             DS22 == 3 => DS23       
+      DS22 == 8 => DS23             DS22 == 1 => DS23       
+      DS22 == 2 => DS23             DS22 == 6 => DS23       
+      DS22 == 0 => DS23             DS24 == 9 => DS23       
+      DS24 == 4 => DS23             DS24 == 7 => DS23       
+      DS24 == 5 => DS23             DS24 == 3 => DS23       
+      DS24 == 8 => DS23             DS24 == 1 => DS23       
+      DS24 == 2 => DS23             DS24 == 6 => DS23       
+      DS24 == 0 => DS23             DS23 == 9 => DS23       
+      DS23 == 4 => DS23             DS23 == 7 => DS23       
+      DS23 == 5 => DS23             DS23 == 3 => DS23       
+      DS23 == 8 => DS23             DS23 == 1 => DS23       
+      DS23 == 2 => DS23             DS23 == 6 => DS23       
+      DS23 == 0 => DS23             DS14 == L => DS12       
+      DS14 == l => DS12             DS13 == 9 => DS13       
+      DS13 == F => DS13             DS13 == D => DS13       
+      DS13 == 4 => DS13             DS13 == C => DS13       
+      DS13 == 7 => DS13             DS13 == a => DS13       
+      DS13 == B => DS13             DS13 == u => DS25       
+      DS13 == 5 => DS13             DS13 == f => DS13       
+      DS13 == d => DS13             DS13 == U => DS25       
+      DS13 == L => DS26             DS13 == A => DS13       
+      DS13 == l => DS26             DS13 == E => DS13       
+      DS13 == 3 => DS13             DS13 == 8 => DS13       
+      DS13 == 1 => DS13             DS13 == 2 => DS13       
+      DS13 == b => DS13             DS13 == 6 => DS13       
+      DS13 == 0 => DS13             DS13 == e => DS13       
+      DS13 == c => DS13             DS26 == u => DS12       
+      DS26 == U => DS12             DS25 == L => DS12       
+      DS25 == l => DS12             DS09 == = => DS12       
+      DS09 == > => DS12             DS08 == m => DS27       
+      DS08 == 9 => DS27             DS08 == { => DS27       
+      DS08 == F => DS27             DS08 == Q => DS27       
+      DS08 == h => DS27             DS08 == , => DS27       
+      DS08 == j => DS27             DS08 == ^ => DS27       
+      DS08 == n => DS27             DS08 == @ => DS27       
+      DS08 == p => DS27             DS08 == K => DS27       
+      DS08 == D => DS27             DS08 == X => DS27       
+      DS08 == o => DS27             DS08 == 4 => DS27       
+      DS08 == I => DS27             DS08 == t => DS27       
+      DS08 == C => DS27             DS08 == & => DS27       
+      DS08 == J => DS27             DS08 == 7 => DS27       
+      DS08 == q => DS27             DS08 == i => DS27       
+      DS08 == v => DS27             DS08 ==   => DS27       
+      DS08 == a => DS27             DS08 == R => DS27       
+      DS08 == s => DS27             DS08 == B => DS27       
+      DS08 == ' => DS27             DS08 == V => DS27       
+      DS08 == \ => DS27             DS08 == M => DS27       
+      DS08 == ! => DS27             DS08 == u => DS27       
+      DS08 == _ => DS27             DS08 == . => DS27       
+      DS08 == 5 => DS27             DS08 == O => DS27       
+      DS08 == S => DS27             DS08 == f => DS27       
+      DS08 == d => DS27             DS08 == k => DS27       
+      DS08 == ? => DS27             DS08 == | => DS27       
+      DS08 == U => DS27             DS08 == L => DS27       
+      DS08 == A => DS27             DS08 == } => DS27       
+      DS08 == w => DS27             DS08 == # => DS27       
+      DS08 == W => DS27             DS08 == % => DS27       
+      DS08 == z => DS27             DS08 == ] => DS27       
+      DS08 == + => DS27             DS08 == l => DS27       
+      DS08 == P => DS27             DS08 == ; => DS27       
+      DS08 == E => DS27             DS08 == - => DS27       
+      DS08 == / => DS27             DS08 == " => DS12       
+      DS08 == g => DS27             DS08 == * => DS27       
+      DS08 == 3 => DS27             DS08 == 8 => DS27       
+      DS08 == ~ => DS27             DS08 == ( => DS27       
+      DS08 == y => DS27             DS08 == G => DS27       
+      DS08 == Z => DS27             DS08 == T => DS27       
+      DS08 == = => DS27             DS08 == H => DS27       
+      DS08 == Y => DS27             DS08 == [ => DS27       
+      DS08 == 1 => DS27             DS08 == ` => DS27       
+      DS08 == r => DS27             DS08 == 2 => DS27       
+      DS08 == : => DS27             DS08 == ) => DS27       
+      DS08 == > => DS27             DS08 == b => DS27       
+      DS08 == 6 => DS27             DS08 == 0 => DS27       
+      DS08 == e => DS27             DS08 == < => DS27       
+      DS08 == N => DS27             DS08 == c => DS27       
+      DS08 == x => DS27             DS27 == m => DS27       
+      DS27 == 9 => DS27             DS27 == { => DS27       
+      DS27 == F => DS27             DS27 == Q => DS27       
+      DS27 == h => DS27             DS27 == , => DS27       
+      DS27 == j => DS27             DS27 == ^ => DS27       
+      DS27 == n => DS27             DS27 == @ => DS27       
+      DS27 == p => DS27             DS27 == K => DS27       
+      DS27 == D => DS27             DS27 == X => DS27       
+      DS27 == o => DS27             DS27 == 4 => DS27       
+      DS27 == I => DS27             DS27 == t => DS27       
+      DS27 == C => DS27             DS27 == & => DS27       
+      DS27 == J => DS27             DS27 == 7 => DS27       
+      DS27 == q => DS27             DS27 == i => DS27       
+      DS27 == v => DS27             DS27 ==   => DS27       
+      DS27 == a => DS27             DS27 == R => DS27       
+      DS27 == s => DS27             DS27 == B => DS27       
+      DS27 == ' => DS27             DS27 == V => DS27       
+      DS27 == \ => DS27             DS27 == M => DS27       
+      DS27 == ! => DS27             DS27 == u => DS27       
+      DS27 == _ => DS27             DS27 == . => DS27       
+      DS27 == 5 => DS27             DS27 == O => DS27       
+      DS27 == S => DS27             DS27 == f => DS27       
+      DS27 == d => DS27             DS27 == k => DS27       
+      DS27 == ? => DS27             DS27 == | => DS27       
+      DS27 == U => DS27             DS27 == L => DS27       
+      DS27 == A => DS27             DS27 == } => DS27       
+      DS27 == w => DS27             DS27 == # => DS27       
+      DS27 == W => DS27             DS27 == % => DS27       
+      DS27 == z => DS27             DS27 == ] => DS27       
+      DS27 == + => DS27             DS27 == l => DS27       
+      DS27 == P => DS27             DS27 == ; => DS27       
+      DS27 == E => DS27             DS27 == - => DS27       
+      DS27 == / => DS27             DS27 == " => DS12       
+      DS27 == g => DS27             DS27 == * => DS27       
+      DS27 == 3 => DS27             DS27 == 8 => DS27       
+      DS27 == ~ => DS27             DS27 == ( => DS27       
+      DS27 == y => DS27             DS27 == G => DS27       
+      DS27 == Z => DS27             DS27 == T => DS27       
+      DS27 == = => DS27             DS27 == H => DS27       
+      DS27 == Y => DS27             DS27 == [ => DS27       
+      DS27 == 1 => DS27             DS27 == ` => DS27       
+      DS27 == r => DS27             DS27 == 2 => DS27       
+      DS27 == : => DS27             DS27 == ) => DS27       
+      DS27 == > => DS27             DS27 == b => DS27       
+      DS27 == 6 => DS27             DS27 == 0 => DS27       
+      DS27 == e => DS27             DS27 == < => DS27       
+      DS27 == N => DS27             DS27 == c => DS27       
+      DS27 == x => DS27             DS07 == = => DS12       
+      DS06 == | => DS12             DS05 == & => DS12       
+      DS02 == 9 => DS02             DS02 == 4 => DS02       
+      DS02 == 7 => DS02             DS02 == u => DS14       
+      DS02 == . => DS15             DS02 == 5 => DS02       
+      DS02 == U => DS14             DS02 == L => DS16       
+      DS02 == + => DS17             DS02 == l => DS16       
+      DS02 == - => DS17             DS02 == 3 => DS02       
+      DS02 == 8 => DS02             DS02 == 1 => DS02       
+      DS02 == 2 => DS02             DS02 == 6 => DS02       
+      DS02 == 0 => DS02             DS01 == m => DS01       
+      DS01 == 9 => DS01             DS01 == F => DS01       
+      DS01 == Q => DS01             DS01 == h => DS01       
+      DS01 == j => DS01             DS01 == n => DS01       
+      DS01 == p => DS01             DS01 == K => DS01       
+      DS01 == D => DS01             DS01 == X => DS01       
+      DS01 == o => DS01             DS01 == 4 => DS01       
+      DS01 == I => DS01             DS01 == t => DS01       
+      DS01 == C => DS01             DS01 == J => DS01       
+      DS01 == 7 => DS01             DS01 == q => DS01       
+      DS01 == i => DS01             DS01 == v => DS01       
+      DS01 == a => DS01             DS01 == R => DS01       
+      DS01 == s => DS01             DS01 == B => DS01       
+      DS01 == V => DS01             DS01 == M => DS01       
+      DS01 == u => DS01             DS01 == _ => DS01       
+      DS01 == 5 => DS01             DS01 == O => DS01       
+      DS01 == S => DS01             DS01 == f => DS01       
+      DS01 == d => DS01             DS01 == k => DS01       
+      DS01 == U => DS01             DS01 == L => DS01       
+      DS01 == A => DS01             DS01 == w => DS01       
+      DS01 == W => DS01             DS01 == z => DS01       
+      DS01 == l => DS01             DS01 == P => DS01       
+      DS01 == E => DS01             DS01 == g => DS01       
+      DS01 == 3 => DS01             DS01 == 8 => DS01       
+      DS01 == y => DS01             DS01 == G => DS01       
+      DS01 == Z => DS01             DS01 == T => DS01       
+      DS01 == H => DS01             DS01 == Y => DS01       
+      DS01 == 1 => DS01             DS01 == r => DS01       
+      DS01 == 2 => DS01             DS01 == b => DS01       
+      DS01 == 6 => DS01             DS01 == 0 => DS01       
+      DS01 == e => DS01             DS01 == N => DS01       
+      DS01 == c => DS01             DS01 == x => DS01       
+====================================================================================================

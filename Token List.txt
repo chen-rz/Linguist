@@ -1,0 +1,194 @@
+Line Word                Token          Value
+==================================================
+1    1.0010              CONSTANT       FLOAT
+1    +                   OPERATOR       301
+1    2.86E-12            CONSTANT       SCIENTIFIC
+1    -                   OPERATOR       302
+1    2.3+2.45i           CONSTANT       COMPLEX
+1    +                   OPERATOR       301
+1    1+21                CONSTANT       EXPRESSION
+1    +                   OPERATOR       301
+1    2.54e99             CONSTANT       SCIENTIFIC
+1    -                   OPERATOR       302
+1    1523l               CONSTANT       DECIMAL
+1    +                   OPERATOR       301
+1    0x83Ul              CONSTANT       HEXADECIMAL
+2    1.2+3.4i            CONSTANT       COMPLEX
+2    +                   OPERATOR       301
+2    4.56+7.823          CONSTANT       EXPRESSION
+3    1.2                 CONSTANT       FLOAT
+3    +                   OPERATOR       301
+3    0XFG                ERROR          SYNTAX_ERROR
+4    "This is a demo!"   CONSTANT       STRING
+5    #                   DELIMITER      211
+5    include             IDENTIFIER     
+5    <                   OPERATOR       308
+5    iostream            IDENTIFIER     
+5    >                   OPERATOR       307
+6    #                   DELIMITER      211
+6    include             IDENTIFIER     
+6    <                   OPERATOR       308
+6    algorithm           IDENTIFIER     
+6    >                   OPERATOR       307
+7    using               IDENTIFIER     
+7    namespace           IDENTIFIER     
+7    std                 IDENTIFIER     
+7    ;                   DELIMITER      207
+8    int                 KEYWORD        101
+8    a                   IDENTIFIER     
+8    =                   OPERATOR       305
+8    2.                  ERROR          SYNTAX_ERROR
+9    float               KEYWORD        102
+9    2b                  ERROR          SYNTAX_ERROR
+10   inline              IDENTIFIER     
+10   int                 KEYWORD        101
+10   desc_cmp            IDENTIFIER     
+10   (                   DELIMITER      201
+10   int                 KEYWORD        101
+10   a                   IDENTIFIER     
+10   ,                   DELIMITER      209
+10   int                 KEYWORD        101
+10   b                   IDENTIFIER     
+10   )                   DELIMITER      202
+10   {                   DELIMITER      205
+11   return              IDENTIFIER     
+11   a                   IDENTIFIER     
+11   >                   OPERATOR       307
+11   b                   IDENTIFIER     
+11   ;                   DELIMITER      207
+12   }                   DELIMITER      206
+14   int                 KEYWORD        101
+14   main                IDENTIFIER     
+14   (                   DELIMITER      201
+14   )                   DELIMITER      202
+14   {                   DELIMITER      205
+15   int                 KEYWORD        101
+15   n                   IDENTIFIER     
+15   ,                   DELIMITER      209
+15   m                   IDENTIFIER     
+15   ;                   DELIMITER      207
+16   cin                 IDENTIFIER     
+16   >>                  OPERATOR       316
+16   n                   IDENTIFIER     
+16   >>                  OPERATOR       316
+16   m                   IDENTIFIER     
+16   ;                   DELIMITER      207
+17   int                 KEYWORD        101
+17   arr                 IDENTIFIER     
+17   [                   DELIMITER      203
+17   n                   IDENTIFIER     
+17   ]                   DELIMITER      204
+17   ;                   DELIMITER      207
+18   for                 KEYWORD        108
+18   (                   DELIMITER      201
+18   int                 KEYWORD        101
+18   i                   IDENTIFIER     
+18   =                   OPERATOR       305
+18   0                   CONSTANT       DECIMAL
+18   ;                   DELIMITER      207
+18   i                   IDENTIFIER     
+18   <                   OPERATOR       308
+18   n                   IDENTIFIER     
+18   ;                   DELIMITER      207
+18   i                   IDENTIFIER     
+18   +                   OPERATOR       301
+18   +                   OPERATOR       301
+18   )                   DELIMITER      202
+19   arr                 IDENTIFIER     
+19   [                   DELIMITER      203
+19   i                   IDENTIFIER     
+19   ]                   DELIMITER      204
+19   =                   OPERATOR       305
+19   i                   IDENTIFIER     
+19   +                   OPERATOR       301
+19   1                   CONSTANT       DECIMAL
+19   ;                   DELIMITER      207
+20   for                 KEYWORD        108
+20   (                   DELIMITER      201
+20   int                 KEYWORD        101
+20   epo                 IDENTIFIER     
+20   =                   OPERATOR       305
+20   0                   CONSTANT       DECIMAL
+20   ;                   DELIMITER      207
+20   epo                 IDENTIFIER     
+20   <                   OPERATOR       308
+20   m                   IDENTIFIER     
+20   ;                   DELIMITER      207
+20   epo                 IDENTIFIER     
+20   +                   OPERATOR       301
+20   +                   OPERATOR       301
+20   )                   DELIMITER      202
+20   {                   DELIMITER      205
+21   int                 KEYWORD        101
+21   p                   IDENTIFIER     
+21   ,                   DELIMITER      209
+21   q                   IDENTIFIER     
+21   ;                   DELIMITER      207
+22   cin                 IDENTIFIER     
+22   >>                  OPERATOR       316
+22   p                   IDENTIFIER     
+22   >>                  OPERATOR       316
+22   q                   IDENTIFIER     
+22   ;                   DELIMITER      207
+23   if                  KEYWORD        104
+23   (                   DELIMITER      201
+23   p                   IDENTIFIER     
+23   )                   DELIMITER      202
+23   {                   DELIMITER      205
+24   sort                IDENTIFIER     
+24   (                   DELIMITER      201
+24   arr                 IDENTIFIER     
+24   +                   OPERATOR       301
+24   q                   IDENTIFIER     
+24   -                   OPERATOR       302
+24   1                   CONSTANT       DECIMAL
+24   ,                   DELIMITER      209
+24   arr                 IDENTIFIER     
+24   +                   OPERATOR       301
+24   n                   IDENTIFIER     
+24   )                   DELIMITER      202
+24   ;                   DELIMITER      207
+25   }                   DELIMITER      206
+25   else                KEYWORD        105
+25   {                   DELIMITER      205
+26   sort                IDENTIFIER     
+26   (                   DELIMITER      201
+26   arr                 IDENTIFIER     
+26   ,                   DELIMITER      209
+26   arr                 IDENTIFIER     
+26   +                   OPERATOR       301
+26   q                   IDENTIFIER     
+26   ,                   DELIMITER      209
+26   desc_cmp            IDENTIFIER     
+26   )                   DELIMITER      202
+26   ;                   DELIMITER      207
+27   }                   DELIMITER      206
+28   }                   DELIMITER      206
+29   for                 KEYWORD        108
+29   (                   DELIMITER      201
+29   int                 KEYWORD        101
+29   i                   IDENTIFIER     
+29   =                   OPERATOR       305
+29   0                   CONSTANT       DECIMAL
+29   ;                   DELIMITER      207
+29   i                   IDENTIFIER     
+29   <                   OPERATOR       308
+29   n                   IDENTIFIER     
+29   ;                   DELIMITER      207
+29   i                   IDENTIFIER     
+29   +                   OPERATOR       301
+29   +                   OPERATOR       301
+29   )                   DELIMITER      202
+30   cout                IDENTIFIER     
+30   <<                  OPERATOR       317
+30   arr                 IDENTIFIER     
+30   [                   DELIMITER      203
+30   i                   IDENTIFIER     
+30   ]                   DELIMITER      204
+30   <<                  OPERATOR       317
+30   " "                 CONSTANT       STRING
+30   ;                   DELIMITER      207
+31   return              IDENTIFIER     
+31   0                   CONSTANT       DECIMAL
+31   ;                   DELIMITER      207
+32   }                   DELIMITER      206

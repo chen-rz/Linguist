@@ -1,21 +1,6 @@
 Line Word                Token          Value
 ==================================================
-1    1.0010              CONSTANT       FLOAT
-1    +                   OPERATOR       301
 1    2.86E-12            CONSTANT       SCIENTIFIC
-1    -                   OPERATOR       302
-1    2.3+2.45i           CONSTANT       COMPLEX
-1    +                   OPERATOR       301
-1    1+21                CONSTANT       EXPRESSION
-1    +                   OPERATOR       301
-1    2.54e99             CONSTANT       SCIENTIFIC
-1    -                   OPERATOR       302
-1    1523l               CONSTANT       DECIMAL
-1    +                   OPERATOR       301
-1    0x83Ul              CONSTANT       HEXADECIMAL
-2    1.2+3.4i            CONSTANT       COMPLEX
-2    +                   OPERATOR       301
-2    4.56+7.823          CONSTANT       EXPRESSION
 3    1.2                 CONSTANT       FLOAT
 3    +                   OPERATOR       301
 3    0XFG                ERROR          SYNTAX_ERROR
@@ -34,12 +19,6 @@ Line Word                Token          Value
 7    namespace           IDENTIFIER     
 7    std                 IDENTIFIER     
 7    ;                   DELIMITER      207
-8    int                 KEYWORD        101
-8    a                   IDENTIFIER     
-8    =                   OPERATOR       305
-8    2.                  ERROR          SYNTAX_ERROR
-9    float               KEYWORD        102
-9    2b                  ERROR          SYNTAX_ERROR
 10   inline              IDENTIFIER     
 10   int                 KEYWORD        101
 10   desc_cmp            IDENTIFIER     

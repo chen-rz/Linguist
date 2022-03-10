@@ -44,11 +44,47 @@ file.close()
 token_tuples = []
 # DFA初态
 DFA_start_status = GetDFAStartSubset(DFA_statuses)
+# 是否处于多行注释中
+inCommentBlock = False
 # 取一行
 for line_index in range(len(source_code)):
-    # TODO 处理注释
+    line = source_code[line_index]
+
+    # 去除多行注释
+    # 若处于多行注释中，且本行没有结束符号，则跳过本行
+    if inCommentBlock and COMMENT_BLOCK_END not in line:
+        continue
+    # 记录所有注释开始和结束的位置
+    cmt_start, cmt_end = [], []
+    for i in range(len(line) - len(COMMENT_BLOCK_START) + 1):
+        if line[i:i + len(COMMENT_BLOCK_START)] == COMMENT_BLOCK_START:
+            cmt_start.append(i)
+    for i in range(len(line) - len(COMMENT_BLOCK_END) + 1):
+        if line[i:i + len(COMMENT_BLOCK_END)] == COMMENT_BLOCK_END:
+            cmt_end.append(i)
+    # 上一个多行注释块结束
+    if len(cmt_end) == len(cmt_start) + 1:
+        inCommentBlock = False
+        line = line[cmt_end[0] + len(COMMENT_BLOCK_END):]
+        cmt_end.pop(0)
+    # 队列操作，去除行内的注释块
+    while cmt_start and cmt_end:
+        line = line[:cmt_start[0]] + line[cmt_end[0] + len(COMMENT_BLOCK_END):]
+        cmt_start.pop(0)
+        cmt_end.pop(0)
+    # 下一个多行注释块开始
+    if len(cmt_start) == len(cmt_end) + 1:
+        inCommentBlock = True
+        line = line[:cmt_start[0]]
+        cmt_start.pop(-1)
+
+    # 去除单行注释
+    cmt_line = line.find(COMMENT_LINE)
+    if cmt_line != -1:
+        line = line[:cmt_line]
+
     # 字符列表
-    chars = list(source_code[line_index])
+    chars = list(line)
     # 字符列表下标
     i = 0
     # DFA当前状态

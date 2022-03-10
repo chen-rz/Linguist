@@ -1,3 +1,11 @@
+# 注释符
+COMMENT_LINE = "//"
+COMMENT_BLOCK_START = "/*"
+COMMENT_BLOCK_END = "*/"
+
+# 空白字符
+BLANK_CHARACTER = [' ', '\t', '\n', '\r', '\f', '\v']
+
 # DFA终态，对应判断分支
 # 1
 FIN_KW_ID = "F_K_I"
@@ -159,10 +167,6 @@ def GetToken(status_stack: list, word: str):
                 break
 
     return tok, val
-
-
-# 空白字符
-BLANK_CHARACTER = [' ', '\t', '\n', '\r', '\f', '\v']
 
 
 # 判断词法是否错误

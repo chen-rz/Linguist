@@ -1,12 +1,12 @@
-1.0010 + 2.86E-12 -2.3+2.45i+1+21+ 2.54e99 -1523l+0x83Ul
-1.2+3.4i+4.56+7.823
+/*1.0010 + */2.86E-12 //-2.3+2.45i+1+21+ 2.54e99 -1523l+0x83Ul
+// 1.2+3.4i+4.56+7.823
 1.2 + 0XFG
 "This is a demo!"
 #include <iostream>
 #include <algorithm>
 using namespace std;
-int a = 2..3;
-float 2bcd =  3.23;
+/*int a = 2..3;
+float 2bcd =  3.23; */
 inline int desc_cmp(int a,int b) {
 	return a>b;
 }

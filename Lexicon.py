@@ -43,6 +43,16 @@ CON_EXPRESSION = "EXPRESSION"
 CON_COMPLEX = "COMPLEX"
 CON_STRING = "STRING"
 
+# Error
+# 1 标识符错误（数字后面跟字母）
+ERR_IDENTIFIER = "ILLEGAL_IDENTIFIER"
+# 2 十六进制错误
+ERR_HEX = "ILLEGAL_HEXADECIMAL"
+# 3 不支持的字符
+ERR_ILLEGAL_CHAR = "UNSUPPORTED_CHARACTER"
+# 4 未完成的单词
+ERR_UNFINISHED_WORD = "UNFINISHED_WORD"
+
 # 关键字
 KEYWORD = {}
 KWD_INT, KWD_FLOAT, KWD_STRING, KWD_IF, KWD_ELSE, \
@@ -169,12 +179,17 @@ def GetToken(status_stack: list, word: str):
     return tok, val
 
 
-# 判断词法是否错误
-def IsSyntaxError(word: str, ch: str):
-    # 空白字符、界符或运算符结束，不是错误
-    if word[-1] in BLANK_CHARACTER or OPERATOR.get(word[-1]) or DELIMITER.get(word[-1]):
-        return False
-    # 遇到空白字符、界符或运算符，不是错误
-    if ch in BLANK_CHARACTER or OPERATOR.get(ch) or DELIMITER.get(ch):
-        return False
-    return True
+def IsSyntaxError(word: str, ch: str, alphabet: set):
+    if word and ("0x" in word or "0X" in word) and ("G" <= ch <= "Z" or "g" <= ch <= "z") \
+            and (word[-1].isdigit() or "A" <= word[-1] <= "F" or "a" <= word[-1] <= "f"):
+        # 2 十六进制错误
+        return ERR_HEX
+    if word and word[-1].isdigit() and ch.isalpha():
+        # 1 标识符错误
+        return ERR_IDENTIFIER
+    elif ch not in alphabet:
+        # 3 不支持的字符
+        return ERR_ILLEGAL_CHAR
+    # 4 未完成的单词，由词法分析程序判断
+    # 其他情况不是错误
+    return None

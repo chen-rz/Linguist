@@ -34,7 +34,18 @@ source_code = []
 file = open("Source Code.txt", encoding="UTF-8")
 line = file.readline()
 while line:
+    # 去除首尾空白字符
     line = line.strip()
+    # 将连续空格统一为一个空格，增加分析器的鲁棒性
+    lsp = line.split(" ")
+    i = 0
+    while i in range(len(lsp)):
+        if lsp[i] == "":
+            lsp.pop(i)
+        else:
+            i += 1
+    line = " ".join(lsp)
+    # 按行存储
     source_code.append(line)
     line = file.readline()
 file.close()
@@ -117,10 +128,11 @@ for line_index in range(len(source_code)):
                 needProcessing = True
         # 不存在转换
         else:
-            # 若不是界符、运算符或空白字符所导致，则为词法错误
-            if IsSyntaxError(word, ch):
-                # TODO 报错
-                token_tuples.append((line_index + 1, word + ch, TOK_ERROR, "SYNTAX_ERROR"))
+            # 判断是否错误
+            isErr = IsSyntaxError(word, ch, alphabet)
+            if isErr:
+                # 报错
+                token_tuples.append((line_index + 1, word + ch, TOK_ERROR, isErr))
                 # 取下一行
                 break
             # 若不是空白字符，则回退至上一个已读取的字符，需要处理
@@ -138,9 +150,8 @@ for line_index in range(len(source_code)):
                 token_tuples.append((line_index + 1, word, tok, val))
             # DFA处于不可接受状态
             else:
-                # 报错
-                # TODO 完善报错信息
-                token_tuples.append((line_index + 1, word, TOK_ERROR, "SYNTAX_ERROR"))
+                # 报错：未完成的单词
+                token_tuples.append((line_index + 1, word, TOK_ERROR, ERR_UNFINISHED_WORD))
                 # 取下一行
                 break
             # 初始化

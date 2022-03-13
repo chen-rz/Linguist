@@ -57,6 +57,10 @@ token_tuples = []
 DFA_start_status = GetDFAStartSubset(DFA_statuses)
 # 是否处于多行注释中
 inCommentBlock = False
+# 报错输出信息
+# (行号, 整行, 错误所在下标, 错误类型)
+errorInfo = []
+
 # 取一行
 for line_index in range(len(source_code)):
     line = source_code[line_index]
@@ -133,6 +137,8 @@ for line_index in range(len(source_code)):
             if isErr:
                 # 报错
                 token_tuples.append((line_index + 1, word + ch, TOK_ERROR, isErr))
+                # 添加报错信息
+                errorInfo.append((line_index + 1, line, i, isErr))
                 # 取下一行
                 break
             # 若不是空白字符，则回退至上一个已读取的字符，需要处理
@@ -152,6 +158,8 @@ for line_index in range(len(source_code)):
             else:
                 # 报错：未完成的单词
                 token_tuples.append((line_index + 1, word, TOK_ERROR, ERR_UNFINISHED_WORD))
+                # 添加报错信息
+                errorInfo.append((line_index + 1, line, i, ERR_UNFINISHED_WORD))
                 # 取下一行
                 break
             # 初始化
@@ -170,6 +178,34 @@ for tt in token_tuples:
     file.write(str(tt[0]).ljust(5, ' ') + str(tt[1]).ljust(20, ' ')
                + str(tt[2]).ljust(15, ' ') + str(tt[3]) + "\n")
 file.close()
+
+# 控制台输出报错信息
+if errorInfo:
+    print("\033[1;35;40m", end="")
+    print(str(len(errorInfo)) + " error(s)")
+    print("\033[0m", end="")
+    for ei in errorInfo:
+        line_info = "In Line " + str(ei[0]) + ": "
+        print(line_info + ei[1])
+        print(" " * len(line_info) + " " * ei[2] + "^")
+        if ei[3] == ERR_HEX:
+            print(" " * len(line_info) + "Error: Illegal hexadecimal")
+            print(" " * len(line_info) +
+                  "Hint: Hex digits should be numbers or letters in A-F (case insensitive)")
+        elif ei[3] == ERR_IDENTIFIER:
+            print(" " * len(line_info) + "Error: Illegal identifier, or incorrect decimal number")
+            print(" " * len(line_info) +
+                  "Hint: Identifiers should begin with a letter or an underline, " +
+                  "and should only consist of letters, digits and underline")
+        elif ei[3] == ERR_ILLEGAL_CHAR:
+            print(" " * len(line_info) + "Error: Unsupported character")
+            print(" " * len(line_info) +
+                  "Hint: Non-ascii characters are currently unacceptable")
+        elif ei[3] == ERR_UNFINISHED_WORD:
+            print(" " * len(line_info) + "Error: Unexpected ending")
+            print(" " * len(line_info) +
+                  "Hint: It looks like an unfinished word")
+    print("Analysis terminated.")
 
 # 词法分析过程展示
 file = open("Process of Lexical Analysis.txt", "w", encoding="UTF-8")

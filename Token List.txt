@@ -20,175 +20,1398 @@ Line Word                Token          Value
 3    +                   OPERATOR       301
 3    0XFG                ERROR          ILLEGAL_HEXADECIMAL
 4    "This is a demo!"   CONSTANT       STRING
-5    #                   DELIMITER      211
-5    include             IDENTIFIER     
-5    <                   OPERATOR       308
-5    iostream            IDENTIFIER     
-5    >                   OPERATOR       307
-6    #                   DELIMITER      211
-6    include             IDENTIFIER     
-6    <                   OPERATOR       308
-6    algorithm           IDENTIFIER     
-6    >                   OPERATOR       307
 7    using               IDENTIFIER     
 7    namespace           IDENTIFIER     
 7    std                 IDENTIFIER     
 7    ;                   DELIMITER      207
-8    int                 KEYWORD        101
+8    int                 IDENTIFIER     
 8    a                   IDENTIFIER     
 8    =                   OPERATOR       305
 8    2.                  ERROR          UNFINISHED_WORD
-9    float               KEYWORD        102
+9    float               IDENTIFIER     
 9    2b                  ERROR          ILLEGAL_IDENTIFIER
 10   inline              IDENTIFIER     
-10   int                 KEYWORD        101
+10   int                 IDENTIFIER     
 10   desc_cmp            IDENTIFIER     
 10   (                   DELIMITER      201
-10   int                 KEYWORD        101
+10   int                 IDENTIFIER     
 10   a                   IDENTIFIER     
 10   ,                   DELIMITER      209
-10   int                 KEYWORD        101
+10   int                 IDENTIFIER     
 10   b                   IDENTIFIER     
 10   )                   DELIMITER      202
 10   {                   DELIMITER      205
-11   return              IDENTIFIER     
+11   return              KEYWORD        108
 11   a                   IDENTIFIER     
 11   >                   OPERATOR       307
 11   b                   IDENTIFIER     
 11   ;                   DELIMITER      207
 12   }                   DELIMITER      206
-14   int                 KEYWORD        101
-14   main                IDENTIFIER     
-14   (                   DELIMITER      201
-14   )                   DELIMITER      202
-14   {                   DELIMITER      205
-15   int                 KEYWORD        101
-15   n                   IDENTIFIER     
-15   ,                   DELIMITER      209
-15   m                   IDENTIFIER     
-15   ;                   DELIMITER      207
-16   cin                 IDENTIFIER     
-16   >>                  OPERATOR       316
-16   n                   IDENTIFIER     
-16   >>                  OPERATOR       316
-16   m                   IDENTIFIER     
-16   ;                   DELIMITER      207
-17   int                 KEYWORD        101
-17   arr                 IDENTIFIER     
-17   [                   DELIMITER      203
-17   n                   IDENTIFIER     
-17   ]                   DELIMITER      204
-17   ;                   DELIMITER      207
-18   for                 KEYWORD        108
-18   (                   DELIMITER      201
-18   int                 KEYWORD        101
-18   i                   IDENTIFIER     
-18   =                   OPERATOR       305
-18   0                   CONSTANT       DECIMAL
-18   ;                   DELIMITER      207
-18   i                   IDENTIFIER     
-18   <                   OPERATOR       308
-18   n                   IDENTIFIER     
-18   ;                   DELIMITER      207
-18   i                   IDENTIFIER     
-18   +                   OPERATOR       301
-18   +                   OPERATOR       301
-18   )                   DELIMITER      202
-19   arr                 IDENTIFIER     
-19   [                   DELIMITER      203
-19   i                   IDENTIFIER     
-19   ]                   DELIMITER      204
-19   =                   OPERATOR       305
-19   i                   IDENTIFIER     
-19   +                   OPERATOR       301
-19   1                   CONSTANT       DECIMAL
-19   ;                   DELIMITER      207
-20   for                 KEYWORD        108
+14   from                KEYWORD        129
+14   math                IDENTIFIER     
+14   import              KEYWORD        109
+14   exp                 IDENTIFIER     
+15   from                KEYWORD        129
+15   random              IDENTIFIER     
+15   import              KEYWORD        109
+15   shuffle             IDENTIFIER     
+17   import              KEYWORD        109
+17   matplotlib          IDENTIFIER     
+17   .                   DELIMITER      210
+17   pyplot              IDENTIFIER     
+17   as                  KEYWORD        113
+17   ppl                 IDENTIFIER     
+20   def                 KEYWORD        124
+20   sigmoid             IDENTIFIER     
 20   (                   DELIMITER      201
-20   int                 KEYWORD        101
-20   epo                 IDENTIFIER     
-20   =                   OPERATOR       305
-20   0                   CONSTANT       DECIMAL
-20   ;                   DELIMITER      207
-20   epo                 IDENTIFIER     
-20   <                   OPERATOR       308
-20   m                   IDENTIFIER     
-20   ;                   DELIMITER      207
-20   epo                 IDENTIFIER     
-20   +                   OPERATOR       301
-20   +                   OPERATOR       301
+20   arg                 IDENTIFIER     
 20   )                   DELIMITER      202
-20   {                   DELIMITER      205
-21   int                 KEYWORD        101
-21   p                   IDENTIFIER     
-21   ,                   DELIMITER      209
-21   q                   IDENTIFIER     
-21   ;                   DELIMITER      207
-22   cin                 IDENTIFIER     
-22   >>                  OPERATOR       316
-22   p                   IDENTIFIER     
-22   >>                  OPERATOR       316
-22   q                   IDENTIFIER     
-22   ;                   DELIMITER      207
-23   if                  KEYWORD        104
-23   (                   DELIMITER      201
-23   p                   IDENTIFIER     
-23   )                   DELIMITER      202
-23   {                   DELIMITER      205
-24   sort                IDENTIFIER     
-24   (                   DELIMITER      201
-24   arr                 IDENTIFIER     
-24   +                   OPERATOR       301
-24   q                   IDENTIFIER     
-24   -                   OPERATOR       302
-24   1                   CONSTANT       DECIMAL
-24   ,                   DELIMITER      209
-24   arr                 IDENTIFIER     
-24   +                   OPERATOR       301
-24   n                   IDENTIFIER     
-24   )                   DELIMITER      202
-24   ;                   DELIMITER      207
-25   }                   DELIMITER      206
-25   else                KEYWORD        105
-25   {                   DELIMITER      205
-26   sort                IDENTIFIER     
+20   :                   DELIMITER      208
+21   return              KEYWORD        108
+21   1                   CONSTANT       DECIMAL
+21   /                   OPERATOR       304
+21   (                   DELIMITER      201
+21   1                   CONSTANT       DECIMAL
+21   +                   OPERATOR       301
+21   exp                 IDENTIFIER     
+21   (                   DELIMITER      201
+21   -                   OPERATOR       302
+21   arg                 IDENTIFIER     
+21   )                   DELIMITER      202
+21   )                   DELIMITER      202
+25   xSrc                IDENTIFIER     
+25   =                   OPERATOR       305
+25   [                   DELIMITER      203
+25   ]                   DELIMITER      204
+26   file                IDENTIFIER     
+26   =                   OPERATOR       305
+26   open                IDENTIFIER     
 26   (                   DELIMITER      201
-26   arr                 IDENTIFIER     
-26   ,                   DELIMITER      209
-26   arr                 IDENTIFIER     
-26   +                   OPERATOR       301
-26   q                   IDENTIFIER     
-26   ,                   DELIMITER      209
-26   desc_cmp            IDENTIFIER     
+26   "ex4x.dat"          CONSTANT       STRING
 26   )                   DELIMITER      202
-26   ;                   DELIMITER      207
-27   }                   DELIMITER      206
-28   }                   DELIMITER      206
-29   for                 KEYWORD        108
+27   line                IDENTIFIER     
+27   =                   OPERATOR       305
+27   file                IDENTIFIER     
+27   .                   DELIMITER      210
+27   readline            IDENTIFIER     
+27   (                   DELIMITER      201
+27   )                   DELIMITER      202
+28   while               KEYWORD        104
+28   line                IDENTIFIER     
+28   :                   DELIMITER      208
+29   xSrc                IDENTIFIER     
+29   .                   DELIMITER      210
+29   append              IDENTIFIER     
 29   (                   DELIMITER      201
-29   int                 KEYWORD        101
-29   i                   IDENTIFIER     
-29   =                   OPERATOR       305
-29   0                   CONSTANT       DECIMAL
-29   ;                   DELIMITER      207
-29   i                   IDENTIFIER     
-29   <                   OPERATOR       308
-29   n                   IDENTIFIER     
-29   ;                   DELIMITER      207
-29   i                   IDENTIFIER     
-29   +                   OPERATOR       301
-29   +                   OPERATOR       301
+29   [                   DELIMITER      203
+29   npy                 IDENTIFIER     
+29   .                   DELIMITER      210
+29   double              IDENTIFIER     
+29   (                   DELIMITER      201
+29   line                IDENTIFIER     
+29   .                   DELIMITER      210
+29   split               IDENTIFIER     
+29   (                   DELIMITER      201
 29   )                   DELIMITER      202
-30   cout                IDENTIFIER     
-30   <<                  OPERATOR       317
-30   arr                 IDENTIFIER     
-30   [                   DELIMITER      203
-30   i                   IDENTIFIER     
-30   ]                   DELIMITER      204
-30   <<                  OPERATOR       317
-30   " "                 CONSTANT       STRING
-30   ;                   DELIMITER      207
-31   return              IDENTIFIER     
-31   0                   CONSTANT       DECIMAL
-31   ;                   DELIMITER      207
-32   }                   DELIMITER      206
+29   [                   DELIMITER      203
+29   0                   CONSTANT       DECIMAL
+29   ]                   DELIMITER      204
+29   )                   DELIMITER      202
+29   ,                   DELIMITER      209
+29   npy                 IDENTIFIER     
+29   .                   DELIMITER      210
+29   double              IDENTIFIER     
+29   (                   DELIMITER      201
+29   line                IDENTIFIER     
+29   .                   DELIMITER      210
+29   split               IDENTIFIER     
+29   (                   DELIMITER      201
+29   )                   DELIMITER      202
+29   [                   DELIMITER      203
+29   1                   CONSTANT       DECIMAL
+29   ]                   DELIMITER      204
+29   )                   DELIMITER      202
+29   ]                   DELIMITER      204
+29   )                   DELIMITER      202
+30   line                IDENTIFIER     
+30   =                   OPERATOR       305
+30   file                IDENTIFIER     
+30   .                   DELIMITER      210
+30   readline            IDENTIFIER     
+30   (                   DELIMITER      201
+30   )                   DELIMITER      202
+31   file                IDENTIFIER     
+31   .                   DELIMITER      210
+31   close               IDENTIFIER     
+31   (                   DELIMITER      201
+31   )                   DELIMITER      202
+41   trainXSrc           IDENTIFIER     
+41   ,                   DELIMITER      209
+41   trainYSrc           IDENTIFIER     
+41   ,                   DELIMITER      209
+41   testXSrc            IDENTIFIER     
+41   ,                   DELIMITER      209
+41   testYSrc            IDENTIFIER     
+41   ,                   DELIMITER      209
+41   testYRst            IDENTIFIER     
+41   =                   OPERATOR       305
+41   [                   DELIMITER      203
+41   ]                   DELIMITER      204
+41   ,                   DELIMITER      209
+41   [                   DELIMITER      203
+41   ]                   DELIMITER      204
+41   ,                   DELIMITER      209
+41   [                   DELIMITER      203
+41   ]                   DELIMITER      204
+41   ,                   DELIMITER      209
+41   [                   DELIMITER      203
+41   ]                   DELIMITER      204
+41   ,                   DELIMITER      209
+41   [                   DELIMITER      203
+41   ]                   DELIMITER      204
+42   xyIndex             IDENTIFIER     
+42   =                   OPERATOR       305
+42   list                IDENTIFIER     
+42   (                   DELIMITER      201
+42   range               IDENTIFIER     
+42   (                   DELIMITER      201
+42   len                 IDENTIFIER     
+42   (                   DELIMITER      201
+42   xSrc                IDENTIFIER     
+42   )                   DELIMITER      202
+42   )                   DELIMITER      202
+42   )                   DELIMITER      202
+43   shuffle             IDENTIFIER     
+43   (                   DELIMITER      201
+43   xyIndex             IDENTIFIER     
+43   )                   DELIMITER      202
+45   for                 KEYWORD        103
+45   ind                 IDENTIFIER     
+45   in                  KEYWORD        116
+45   range               IDENTIFIER     
+45   (                   DELIMITER      201
+45   0                   CONSTANT       DECIMAL
+45   ,                   DELIMITER      209
+45   16                  CONSTANT       DECIMAL
+45   )                   DELIMITER      202
+45   :                   DELIMITER      208
+46   testXSrc            IDENTIFIER     
+46   .                   DELIMITER      210
+46   append              IDENTIFIER     
+46   (                   DELIMITER      201
+46   xSrc                IDENTIFIER     
+46   [                   DELIMITER      203
+46   xyIndex             IDENTIFIER     
+46   [                   DELIMITER      203
+46   ind                 IDENTIFIER     
+46   ]                   DELIMITER      204
+46   ]                   DELIMITER      204
+46   )                   DELIMITER      202
+47   testYSrc            IDENTIFIER     
+47   .                   DELIMITER      210
+47   append              IDENTIFIER     
+47   (                   DELIMITER      201
+47   ySrc                IDENTIFIER     
+47   [                   DELIMITER      203
+47   xyIndex             IDENTIFIER     
+47   [                   DELIMITER      203
+47   ind                 IDENTIFIER     
+47   ]                   DELIMITER      204
+47   ]                   DELIMITER      204
+47   )                   DELIMITER      202
+49   for                 KEYWORD        103
+49   ind                 IDENTIFIER     
+49   in                  KEYWORD        116
+49   range               IDENTIFIER     
+49   (                   DELIMITER      201
+49   16                  CONSTANT       DECIMAL
+49   ,                   DELIMITER      209
+49   len                 IDENTIFIER     
+49   (                   DELIMITER      201
+49   xyIndex             IDENTIFIER     
+49   )                   DELIMITER      202
+49   )                   DELIMITER      202
+49   :                   DELIMITER      208
+50   trainXSrc           IDENTIFIER     
+50   .                   DELIMITER      210
+50   append              IDENTIFIER     
+50   (                   DELIMITER      201
+50   xSrc                IDENTIFIER     
+50   [                   DELIMITER      203
+50   xyIndex             IDENTIFIER     
+50   [                   DELIMITER      203
+50   ind                 IDENTIFIER     
+50   ]                   DELIMITER      204
+50   ]                   DELIMITER      204
+50   )                   DELIMITER      202
+51   trainYSrc           IDENTIFIER     
+51   .                   DELIMITER      210
+51   append              IDENTIFIER     
+51   (                   DELIMITER      201
+51   ySrc                IDENTIFIER     
+51   [                   DELIMITER      203
+51   xyIndex             IDENTIFIER     
+51   [                   DELIMITER      203
+51   ind                 IDENTIFIER     
+51   ]                   DELIMITER      204
+51   ]                   DELIMITER      204
+51   )                   DELIMITER      202
+54   x                   IDENTIFIER     
+54   =                   OPERATOR       305
+54   npy                 IDENTIFIER     
+54   .                   DELIMITER      210
+54   mat                 IDENTIFIER     
+54   (                   DELIMITER      201
+54   trainXSrc           IDENTIFIER     
+54   )                   DELIMITER      202
+54   .                   DELIMITER      210
+54   T                   IDENTIFIER     
+55   y                   IDENTIFIER     
+55   =                   OPERATOR       305
+55   npy                 IDENTIFIER     
+55   .                   DELIMITER      210
+55   mat                 IDENTIFIER     
+55   (                   DELIMITER      201
+55   trainYSrc           IDENTIFIER     
+55   )                   DELIMITER      202
+56   trainSz             IDENTIFIER     
+56   =                   OPERATOR       305
+56   len                 IDENTIFIER     
+56   (                   DELIMITER      201
+56   trainXSrc           IDENTIFIER     
+56   )                   DELIMITER      202
+57   tx                  IDENTIFIER     
+57   =                   OPERATOR       305
+57   npy                 IDENTIFIER     
+57   .                   DELIMITER      210
+57   mat                 IDENTIFIER     
+57   (                   DELIMITER      201
+57   testXSrc            IDENTIFIER     
+57   )                   DELIMITER      202
+57   .                   DELIMITER      210
+57   T                   IDENTIFIER     
+58   ty                  IDENTIFIER     
+58   =                   OPERATOR       305
+58   npy                 IDENTIFIER     
+58   .                   DELIMITER      210
+58   mat                 IDENTIFIER     
+58   (                   DELIMITER      201
+58   testYSrc            IDENTIFIER     
+58   )                   DELIMITER      202
+59   testSz              IDENTIFIER     
+59   =                   OPERATOR       305
+59   len                 IDENTIFIER     
+59   (                   DELIMITER      201
+59   testXSrc            IDENTIFIER     
+59   )                   DELIMITER      202
+60   bSz                 IDENTIFIER     
+60   =                   OPERATOR       305
+60   5                   CONSTANT       DECIMAL
+61   b                   IDENTIFIER     
+61   =                   OPERATOR       305
+61   npy                 IDENTIFIER     
+61   .                   DELIMITER      210
+61   zeros               IDENTIFIER     
+61   (                   DELIMITER      201
+61   (                   DELIMITER      201
+61   1                   CONSTANT       DECIMAL
+61   ,                   DELIMITER      209
+61   bSz                 IDENTIFIER     
+61   )                   DELIMITER      202
+61   )                   DELIMITER      202
+62   w                   IDENTIFIER     
+62   =                   OPERATOR       305
+62   npy                 IDENTIFIER     
+62   .                   DELIMITER      210
+62   full                IDENTIFIER     
+62   (                   DELIMITER      201
+62   (                   DELIMITER      201
+62   1                   CONSTANT       DECIMAL
+62   ,                   DELIMITER      209
+62   bSz                 IDENTIFIER     
+62   )                   DELIMITER      202
+62   ,                   DELIMITER      209
+62   0.5                 CONSTANT       FLOAT
+62   )                   DELIMITER      202
+63   v                   IDENTIFIER     
+63   =                   OPERATOR       305
+63   npy                 IDENTIFIER     
+63   .                   DELIMITER      210
+63   full                IDENTIFIER     
+63   (                   DELIMITER      201
+63   (                   DELIMITER      201
+63   bSz                 IDENTIFIER     
+63   ,                   DELIMITER      209
+63   2                   CONSTANT       DECIMAL
+63   )                   DELIMITER      202
+63   ,                   DELIMITER      209
+63   0.5                 CONSTANT       FLOAT
+63   )                   DELIMITER      202
+64   gamma               IDENTIFIER     
+64   =                   OPERATOR       305
+64   npy                 IDENTIFIER     
+64   .                   DELIMITER      210
+64   full                IDENTIFIER     
+64   (                   DELIMITER      201
+64   (                   DELIMITER      201
+64   1                   CONSTANT       DECIMAL
+64   ,                   DELIMITER      209
+64   bSz                 IDENTIFIER     
+64   )                   DELIMITER      202
+64   ,                   DELIMITER      209
+64   0.5                 CONSTANT       FLOAT
+64   )                   DELIMITER      202
+65   theta               IDENTIFIER     
+65   =                   OPERATOR       305
+65   0.5                 CONSTANT       FLOAT
+66   alpha               IDENTIFIER     
+66   =                   OPERATOR       305
+66   0.009               CONSTANT       FLOAT
+69   xMax                IDENTIFIER     
+69   =                   OPERATOR       305
+69   npy                 IDENTIFIER     
+69   .                   DELIMITER      210
+69   max                 IDENTIFIER     
+69   (                   DELIMITER      201
+69   x                   IDENTIFIER     
+69   ,                   DELIMITER      209
+69   axis                IDENTIFIER     
+69   =                   OPERATOR       305
+69   1                   CONSTANT       DECIMAL
+69   )                   DELIMITER      202
+70   xMin                IDENTIFIER     
+70   =                   OPERATOR       305
+70   npy                 IDENTIFIER     
+70   .                   DELIMITER      210
+70   min                 IDENTIFIER     
+70   (                   DELIMITER      201
+70   x                   IDENTIFIER     
+70   ,                   DELIMITER      209
+70   axis                IDENTIFIER     
+70   =                   OPERATOR       305
+70   1                   CONSTANT       DECIMAL
+70   )                   DELIMITER      202
+71   xnm                 IDENTIFIER     
+71   =                   OPERATOR       305
+71   x                   IDENTIFIER     
+71   .                   DELIMITER      210
+71   copy                IDENTIFIER     
+71   (                   DELIMITER      201
+71   )                   DELIMITER      202
+72   for                 KEYWORD        103
+72   nn                  IDENTIFIER     
+72   in                  KEYWORD        116
+72   range               IDENTIFIER     
+72   (                   DELIMITER      201
+72   0                   CONSTANT       DECIMAL
+72   ,                   DELIMITER      209
+72   trainSz             IDENTIFIER     
+72   )                   DELIMITER      202
+72   :                   DELIMITER      208
+73   for                 KEYWORD        103
+73   mm                  IDENTIFIER     
+73   in                  KEYWORD        116
+73   range               IDENTIFIER     
+73   (                   DELIMITER      201
+73   0                   CONSTANT       DECIMAL
+73   ,                   DELIMITER      209
+73   2                   CONSTANT       DECIMAL
+73   )                   DELIMITER      202
+73   :                   DELIMITER      208
+74   xnm                 IDENTIFIER     
+74   [                   DELIMITER      203
+74   mm                  IDENTIFIER     
+74   ,                   DELIMITER      209
+74   nn                  IDENTIFIER     
+74   ]                   DELIMITER      204
+74   =                   OPERATOR       305
+74   (                   DELIMITER      201
+74   (                   DELIMITER      201
+74   xnm                 IDENTIFIER     
+74   [                   DELIMITER      203
+74   mm                  IDENTIFIER     
+74   ,                   DELIMITER      209
+74   nn                  IDENTIFIER     
+74   ]                   DELIMITER      204
+74   -                   OPERATOR       302
+74   xMin                IDENTIFIER     
+74   [                   DELIMITER      203
+74   mm                  IDENTIFIER     
+74   ,                   DELIMITER      209
+74   0                   CONSTANT       DECIMAL
+74   ]                   DELIMITER      204
+74   )                   DELIMITER      202
+74   /                   OPERATOR       304
+74   (                   DELIMITER      201
+74   xMax                IDENTIFIER     
+74   [                   DELIMITER      203
+74   mm                  IDENTIFIER     
+74   ,                   DELIMITER      209
+74   0                   CONSTANT       DECIMAL
+74   ]                   DELIMITER      204
+74   -                   OPERATOR       302
+74   xMin                IDENTIFIER     
+74   [                   DELIMITER      203
+74   mm                  IDENTIFIER     
+74   ,                   DELIMITER      209
+74   0                   CONSTANT       DECIMAL
+74   ]                   DELIMITER      204
+74   )                   DELIMITER      202
+74   -                   OPERATOR       302
+74   0.5                 CONSTANT       FLOAT
+74   )                   DELIMITER      202
+74   *                   OPERATOR       303
+74   10                  CONSTANT       DECIMAL
+75   txMax               IDENTIFIER     
+75   =                   OPERATOR       305
+75   npy                 IDENTIFIER     
+75   .                   DELIMITER      210
+75   max                 IDENTIFIER     
+75   (                   DELIMITER      201
+75   tx                  IDENTIFIER     
+75   ,                   DELIMITER      209
+75   axis                IDENTIFIER     
+75   =                   OPERATOR       305
+75   1                   CONSTANT       DECIMAL
+75   )                   DELIMITER      202
+76   txMin               IDENTIFIER     
+76   =                   OPERATOR       305
+76   npy                 IDENTIFIER     
+76   .                   DELIMITER      210
+76   min                 IDENTIFIER     
+76   (                   DELIMITER      201
+76   tx                  IDENTIFIER     
+76   ,                   DELIMITER      209
+76   axis                IDENTIFIER     
+76   =                   OPERATOR       305
+76   1                   CONSTANT       DECIMAL
+76   )                   DELIMITER      202
+77   tnm                 IDENTIFIER     
+77   =                   OPERATOR       305
+77   tx                  IDENTIFIER     
+77   .                   DELIMITER      210
+77   copy                IDENTIFIER     
+77   (                   DELIMITER      201
+77   )                   DELIMITER      202
+78   for                 KEYWORD        103
+78   nn                  IDENTIFIER     
+78   in                  KEYWORD        116
+78   range               IDENTIFIER     
+78   (                   DELIMITER      201
+78   0                   CONSTANT       DECIMAL
+78   ,                   DELIMITER      209
+78   testSz              IDENTIFIER     
+78   )                   DELIMITER      202
+78   :                   DELIMITER      208
+79   for                 KEYWORD        103
+79   mm                  IDENTIFIER     
+79   in                  KEYWORD        116
+79   range               IDENTIFIER     
+79   (                   DELIMITER      201
+79   0                   CONSTANT       DECIMAL
+79   ,                   DELIMITER      209
+79   2                   CONSTANT       DECIMAL
+79   )                   DELIMITER      202
+79   :                   DELIMITER      208
+80   tnm                 IDENTIFIER     
+80   [                   DELIMITER      203
+80   mm                  IDENTIFIER     
+80   ,                   DELIMITER      209
+80   nn                  IDENTIFIER     
+80   ]                   DELIMITER      204
+80   =                   OPERATOR       305
+80   (                   DELIMITER      201
+80   (                   DELIMITER      201
+80   tnm                 IDENTIFIER     
+80   [                   DELIMITER      203
+80   mm                  IDENTIFIER     
+80   ,                   DELIMITER      209
+80   nn                  IDENTIFIER     
+80   ]                   DELIMITER      204
+80   -                   OPERATOR       302
+80   txMin               IDENTIFIER     
+80   [                   DELIMITER      203
+80   mm                  IDENTIFIER     
+80   ,                   DELIMITER      209
+80   0                   CONSTANT       DECIMAL
+80   ]                   DELIMITER      204
+80   )                   DELIMITER      202
+80   /                   OPERATOR       304
+80   (                   DELIMITER      201
+80   txMax               IDENTIFIER     
+80   [                   DELIMITER      203
+80   mm                  IDENTIFIER     
+80   ,                   DELIMITER      209
+80   0                   CONSTANT       DECIMAL
+80   ]                   DELIMITER      204
+80   -                   OPERATOR       302
+80   txMin               IDENTIFIER     
+80   [                   DELIMITER      203
+80   mm                  IDENTIFIER     
+80   ,                   DELIMITER      209
+80   0                   CONSTANT       DECIMAL
+80   ]                   DELIMITER      204
+80   )                   DELIMITER      202
+80   -                   OPERATOR       302
+80   0.5                 CONSTANT       FLOAT
+80   )                   DELIMITER      202
+80   *                   OPERATOR       303
+80   10                  CONSTANT       DECIMAL
+83   epochRec            IDENTIFIER     
+83   ,                   DELIMITER      209
+83   costRec             IDENTIFIER     
+83   =                   OPERATOR       305
+83   [                   DELIMITER      203
+83   ]                   DELIMITER      204
+83   ,                   DELIMITER      209
+83   [                   DELIMITER      203
+83   ]                   DELIMITER      204
+86   for                 KEYWORD        103
+86   epo                 IDENTIFIER     
+86   in                  KEYWORD        116
+86   range               IDENTIFIER     
+86   (                   DELIMITER      201
+86   0                   CONSTANT       DECIMAL
+86   ,                   DELIMITER      209
+86   1000                CONSTANT       DECIMAL
+86   )                   DELIMITER      202
+86   :                   DELIMITER      208
+88   cost                IDENTIFIER     
+88   =                   OPERATOR       305
+88   0                   CONSTANT       DECIMAL
+89   for                 KEYWORD        103
+89   r                   IDENTIFIER     
+89   in                  KEYWORD        116
+89   range               IDENTIFIER     
+89   (                   DELIMITER      201
+89   0                   CONSTANT       DECIMAL
+89   ,                   DELIMITER      209
+89   trainSz             IDENTIFIER     
+89   )                   DELIMITER      202
+89   :                   DELIMITER      208
+91   xSample             IDENTIFIER     
+91   =                   OPERATOR       305
+91   xnm                 IDENTIFIER     
+91   [                   DELIMITER      203
+91   :                   DELIMITER      208
+91   ,                   DELIMITER      209
+91   r                   IDENTIFIER     
+91   ]                   DELIMITER      204
+92   ySample             IDENTIFIER     
+92   =                   OPERATOR       305
+92   y                   IDENTIFIER     
+92   [                   DELIMITER      203
+92   r                   IDENTIFIER     
+92   ,                   DELIMITER      209
+92   0                   CONSTANT       DECIMAL
+92   ]                   DELIMITER      204
+94   for                 KEYWORD        103
+94   h                   IDENTIFIER     
+94   in                  KEYWORD        116
+94   range               IDENTIFIER     
+94   (                   DELIMITER      201
+94   0                   CONSTANT       DECIMAL
+94   ,                   DELIMITER      209
+94   bSz                 IDENTIFIER     
+94   )                   DELIMITER      202
+94   :                   DELIMITER      208
+95   b                   IDENTIFIER     
+95   [                   DELIMITER      203
+95   0                   CONSTANT       DECIMAL
+95   ,                   DELIMITER      209
+95   h                   IDENTIFIER     
+95   ]                   DELIMITER      204
+95   =                   OPERATOR       305
+95   sigmoid             IDENTIFIER     
+95   (                   DELIMITER      201
+95   (                   DELIMITER      201
+95   v                   IDENTIFIER     
+95   [                   DELIMITER      203
+95   h                   IDENTIFIER     
+95   ,                   DELIMITER      209
+95   :                   DELIMITER      208
+95   ]                   DELIMITER      204
+95   *                   OPERATOR       303
+95   xSample             IDENTIFIER     
+95   +                   OPERATOR       301
+95   gamma               IDENTIFIER     
+95   [                   DELIMITER      203
+95   0                   CONSTANT       DECIMAL
+95   ,                   DELIMITER      209
+95   h                   IDENTIFIER     
+95   ]                   DELIMITER      204
+95   )                   DELIMITER      202
+95   [                   DELIMITER      203
+95   0                   CONSTANT       DECIMAL
+95   ,                   DELIMITER      209
+95   0                   CONSTANT       DECIMAL
+95   ]                   DELIMITER      204
+95   )                   DELIMITER      202
+97   yEst                IDENTIFIER     
+97   =                   OPERATOR       305
+97   sigmoid             IDENTIFIER     
+97   (                   DELIMITER      201
+97   (                   DELIMITER      201
+97   w                   IDENTIFIER     
+97   *                   OPERATOR       303
+97   b                   IDENTIFIER     
+97   .                   DELIMITER      210
+97   T                   IDENTIFIER     
+97   )                   DELIMITER      202
+97   [                   DELIMITER      203
+97   0                   CONSTANT       DECIMAL
+97   ,                   DELIMITER      209
+97   0                   CONSTANT       DECIMAL
+97   ]                   DELIMITER      204
+97   +                   OPERATOR       301
+97   theta               IDENTIFIER     
+97   )                   DELIMITER      202
+99   errOut              IDENTIFIER     
+99   =                   OPERATOR       305
+99   (                   DELIMITER      201
+99   yEst                IDENTIFIER     
+99   -                   OPERATOR       302
+99   ySample             IDENTIFIER     
+99   )                   DELIMITER      202
+99   *                   OPERATOR       303
+99   yEst                IDENTIFIER     
+99   *                   OPERATOR       303
+99   (                   DELIMITER      201
+99   1                   CONSTANT       DECIMAL
+99   -                   OPERATOR       302
+99   yEst                IDENTIFIER     
+99   )                   DELIMITER      202
+101  errHid              IDENTIFIER     
+101  =                   OPERATOR       305
+101  [                   DELIMITER      203
+101  ]                   DELIMITER      204
+102  for                 KEYWORD        103
+102  h                   IDENTIFIER     
+102  in                  KEYWORD        116
+102  range               IDENTIFIER     
+102  (                   DELIMITER      201
+102  0                   CONSTANT       DECIMAL
+102  ,                   DELIMITER      209
+102  bSz                 IDENTIFIER     
+102  )                   DELIMITER      202
+102  :                   DELIMITER      208
+103  errHid              IDENTIFIER     
+103  .                   DELIMITER      210
+103  append              IDENTIFIER     
+103  (                   DELIMITER      201
+103  errOut              IDENTIFIER     
+103  *                   OPERATOR       303
+103  w                   IDENTIFIER     
+103  [                   DELIMITER      203
+103  0                   CONSTANT       DECIMAL
+103  ,                   DELIMITER      209
+103  h                   IDENTIFIER     
+103  ]                   DELIMITER      204
+103  *                   OPERATOR       303
+103  b                   IDENTIFIER     
+103  [                   DELIMITER      203
+103  0                   CONSTANT       DECIMAL
+103  ,                   DELIMITER      209
+103  h                   IDENTIFIER     
+103  ]                   DELIMITER      204
+103  *                   OPERATOR       303
+103  (                   DELIMITER      201
+103  1                   CONSTANT       DECIMAL
+103  -                   OPERATOR       302
+103  b                   IDENTIFIER     
+103  [                   DELIMITER      203
+103  0                   CONSTANT       DECIMAL
+103  ,                   DELIMITER      209
+103  h                   IDENTIFIER     
+103  ]                   DELIMITER      204
+103  )                   DELIMITER      202
+103  )                   DELIMITER      202
+105  for                 KEYWORD        103
+105  h                   IDENTIFIER     
+105  in                  KEYWORD        116
+105  range               IDENTIFIER     
+105  (                   DELIMITER      201
+105  0                   CONSTANT       DECIMAL
+105  ,                   DELIMITER      209
+105  bSz                 IDENTIFIER     
+105  )                   DELIMITER      202
+105  :                   DELIMITER      208
+106  w                   IDENTIFIER     
+106  [                   DELIMITER      203
+106  0                   CONSTANT       DECIMAL
+106  ,                   DELIMITER      209
+106  h                   IDENTIFIER     
+106  ]                   DELIMITER      204
+106  =                   OPERATOR       305
+106  w                   IDENTIFIER     
+106  [                   DELIMITER      203
+106  0                   CONSTANT       DECIMAL
+106  ,                   DELIMITER      209
+106  h                   IDENTIFIER     
+106  ]                   DELIMITER      204
+106  -                   OPERATOR       302
+106  alpha               IDENTIFIER     
+106  *                   OPERATOR       303
+106  errOut              IDENTIFIER     
+106  *                   OPERATOR       303
+106  b                   IDENTIFIER     
+106  [                   DELIMITER      203
+106  0                   CONSTANT       DECIMAL
+106  ,                   DELIMITER      209
+106  h                   IDENTIFIER     
+106  ]                   DELIMITER      204
+107  v                   IDENTIFIER     
+107  [                   DELIMITER      203
+107  h                   IDENTIFIER     
+107  ,                   DELIMITER      209
+107  0                   CONSTANT       DECIMAL
+107  ]                   DELIMITER      204
+107  =                   OPERATOR       305
+107  v                   IDENTIFIER     
+107  [                   DELIMITER      203
+107  h                   IDENTIFIER     
+107  ,                   DELIMITER      209
+107  0                   CONSTANT       DECIMAL
+107  ]                   DELIMITER      204
+107  -                   OPERATOR       302
+107  alpha               IDENTIFIER     
+107  *                   OPERATOR       303
+107  errHid              IDENTIFIER     
+107  [                   DELIMITER      203
+107  h                   IDENTIFIER     
+107  ]                   DELIMITER      204
+107  *                   OPERATOR       303
+107  xSample             IDENTIFIER     
+107  [                   DELIMITER      203
+107  0                   CONSTANT       DECIMAL
+107  ,                   DELIMITER      209
+107  0                   CONSTANT       DECIMAL
+107  ]                   DELIMITER      204
+108  v                   IDENTIFIER     
+108  [                   DELIMITER      203
+108  h                   IDENTIFIER     
+108  ,                   DELIMITER      209
+108  1                   CONSTANT       DECIMAL
+108  ]                   DELIMITER      204
+108  =                   OPERATOR       305
+108  v                   IDENTIFIER     
+108  [                   DELIMITER      203
+108  h                   IDENTIFIER     
+108  ,                   DELIMITER      209
+108  1                   CONSTANT       DECIMAL
+108  ]                   DELIMITER      204
+108  -                   OPERATOR       302
+108  alpha               IDENTIFIER     
+108  *                   OPERATOR       303
+108  errHid              IDENTIFIER     
+108  [                   DELIMITER      203
+108  h                   IDENTIFIER     
+108  ]                   DELIMITER      204
+108  *                   OPERATOR       303
+108  xSample             IDENTIFIER     
+108  [                   DELIMITER      203
+108  1                   CONSTANT       DECIMAL
+108  ,                   DELIMITER      209
+108  0                   CONSTANT       DECIMAL
+108  ]                   DELIMITER      204
+109  gamma               IDENTIFIER     
+109  [                   DELIMITER      203
+109  0                   CONSTANT       DECIMAL
+109  ,                   DELIMITER      209
+109  h                   IDENTIFIER     
+109  ]                   DELIMITER      204
+109  =                   OPERATOR       305
+109  gamma               IDENTIFIER     
+109  [                   DELIMITER      203
+109  0                   CONSTANT       DECIMAL
+109  ,                   DELIMITER      209
+109  h                   IDENTIFIER     
+109  ]                   DELIMITER      204
+109  -                   OPERATOR       302
+109  alpha               IDENTIFIER     
+109  *                   OPERATOR       303
+109  errHid              IDENTIFIER     
+109  [                   DELIMITER      203
+109  h                   IDENTIFIER     
+109  ]                   DELIMITER      204
+110  theta               IDENTIFIER     
+110  =                   OPERATOR       305
+110  theta               IDENTIFIER     
+110  -                   OPERATOR       302
+110  alpha               IDENTIFIER     
+110  *                   OPERATOR       303
+110  errOut              IDENTIFIER     
+112  cost                IDENTIFIER     
+112  =                   OPERATOR       305
+112  cost                IDENTIFIER     
+112  +                   OPERATOR       301
+112  (                   DELIMITER      201
+112  yEst                IDENTIFIER     
+112  -                   OPERATOR       302
+112  ySample             IDENTIFIER     
+112  )                   DELIMITER      202
+112  *                   OPERATOR       303
+112  (                   DELIMITER      201
+112  yEst                IDENTIFIER     
+112  -                   OPERATOR       302
+112  ySample             IDENTIFIER     
+112  )                   DELIMITER      202
+112  /                   OPERATOR       304
+112  2                   CONSTANT       DECIMAL
+114  epochRec            IDENTIFIER     
+114  .                   DELIMITER      210
+114  append              IDENTIFIER     
+114  (                   DELIMITER      201
+114  epo                 IDENTIFIER     
+114  )                   DELIMITER      202
+115  costRec             IDENTIFIER     
+115  .                   DELIMITER      210
+115  append              IDENTIFIER     
+115  (                   DELIMITER      201
+115  cost                IDENTIFIER     
+115  /                   OPERATOR       304
+115  trainSz             IDENTIFIER     
+115  )                   DELIMITER      202
+118  for                 KEYWORD        103
+118  r                   IDENTIFIER     
+118  in                  KEYWORD        116
+118  range               IDENTIFIER     
+118  (                   DELIMITER      201
+118  0                   CONSTANT       DECIMAL
+118  ,                   DELIMITER      209
+118  testSz              IDENTIFIER     
+118  )                   DELIMITER      202
+118  :                   DELIMITER      208
+119  txSample            IDENTIFIER     
+119  =                   OPERATOR       305
+119  tnm                 IDENTIFIER     
+119  [                   DELIMITER      203
+119  :                   DELIMITER      208
+119  ,                   DELIMITER      209
+119  r                   IDENTIFIER     
+119  ]                   DELIMITER      204
+120  tb                  IDENTIFIER     
+120  =                   OPERATOR       305
+120  npy                 IDENTIFIER     
+120  .                   DELIMITER      210
+120  zeros               IDENTIFIER     
+120  (                   DELIMITER      201
+120  (                   DELIMITER      201
+120  1                   CONSTANT       DECIMAL
+120  ,                   DELIMITER      209
+120  bSz                 IDENTIFIER     
+120  )                   DELIMITER      202
+120  )                   DELIMITER      202
+121  for                 KEYWORD        103
+121  h                   IDENTIFIER     
+121  in                  KEYWORD        116
+121  range               IDENTIFIER     
+121  (                   DELIMITER      201
+121  0                   CONSTANT       DECIMAL
+121  ,                   DELIMITER      209
+121  bSz                 IDENTIFIER     
+121  )                   DELIMITER      202
+121  :                   DELIMITER      208
+122  tb                  IDENTIFIER     
+122  [                   DELIMITER      203
+122  0                   CONSTANT       DECIMAL
+122  ,                   DELIMITER      209
+122  h                   IDENTIFIER     
+122  ]                   DELIMITER      204
+122  =                   OPERATOR       305
+122  sigmoid             IDENTIFIER     
+122  (                   DELIMITER      201
+122  (                   DELIMITER      201
+122  v                   IDENTIFIER     
+122  [                   DELIMITER      203
+122  h                   IDENTIFIER     
+122  ,                   DELIMITER      209
+122  :                   DELIMITER      208
+122  ]                   DELIMITER      204
+122  *                   OPERATOR       303
+122  txSample            IDENTIFIER     
+122  +                   OPERATOR       301
+122  gamma               IDENTIFIER     
+122  [                   DELIMITER      203
+122  0                   CONSTANT       DECIMAL
+122  ,                   DELIMITER      209
+122  h                   IDENTIFIER     
+122  ]                   DELIMITER      204
+122  )                   DELIMITER      202
+122  [                   DELIMITER      203
+122  0                   CONSTANT       DECIMAL
+122  ,                   DELIMITER      209
+122  0                   CONSTANT       DECIMAL
+122  ]                   DELIMITER      204
+122  )                   DELIMITER      202
+123  testYRst            IDENTIFIER     
+123  .                   DELIMITER      210
+123  append              IDENTIFIER     
+123  (                   DELIMITER      201
+123  sigmoid             IDENTIFIER     
+123  (                   DELIMITER      201
+123  (                   DELIMITER      201
+123  w                   IDENTIFIER     
+123  *                   OPERATOR       303
+123  tb                  IDENTIFIER     
+123  .                   DELIMITER      210
+123  T                   IDENTIFIER     
+123  )                   DELIMITER      202
+123  [                   DELIMITER      203
+123  0                   CONSTANT       DECIMAL
+123  ,                   DELIMITER      209
+123  0                   CONSTANT       DECIMAL
+123  ]                   DELIMITER      204
+123  +                   OPERATOR       301
+123  theta               IDENTIFIER     
+123  )                   DELIMITER      202
+123  )                   DELIMITER      202
+126  for                 KEYWORD        103
+126  r                   IDENTIFIER     
+126  in                  KEYWORD        116
+126  range               IDENTIFIER     
+126  (                   DELIMITER      201
+126  0                   CONSTANT       DECIMAL
+126  ,                   DELIMITER      209
+126  testSz              IDENTIFIER     
+126  )                   DELIMITER      202
+126  :                   DELIMITER      208
+127  print               IDENTIFIER     
+127  (                   DELIMITER      201
+127  "x0 = "             CONSTANT       STRING
+127  +                   OPERATOR       301
+127  str                 IDENTIFIER     
+127  (                   DELIMITER      201
+127  tx                  IDENTIFIER     
+127  [                   DELIMITER      203
+127  0                   CONSTANT       DECIMAL
+127  ,                   DELIMITER      209
+127  r                   IDENTIFIER     
+127  ]                   DELIMITER      204
+127  )                   DELIMITER      202
+127  +                   OPERATOR       301
+127  ", x1 = "           CONSTANT       STRING
+127  +                   OPERATOR       301
+127  str                 IDENTIFIER     
+127  (                   DELIMITER      201
+127  tx                  IDENTIFIER     
+127  [                   DELIMITER      203
+127  1                   CONSTANT       DECIMAL
+127  ,                   DELIMITER      209
+127  r                   IDENTIFIER     
+127  ]                   DELIMITER      204
+127  )                   DELIMITER      202
+127  +                   OPERATOR       301
+127  ", y = "            CONSTANT       STRING
+127  +                   OPERATOR       301
+127  str                 IDENTIFIER     
+127  (                   DELIMITER      201
+127  testYRst            IDENTIFIER     
+127  [                   DELIMITER      203
+127  r                   IDENTIFIER     
+127  ]                   DELIMITER      204
+127  )                   DELIMITER      202
+127  )                   DELIMITER      202
+130  ppl                 IDENTIFIER     
+130  .                   DELIMITER      210
+130  figure              IDENTIFIER     
+130  (                   DELIMITER      201
+130  figsize             IDENTIFIER     
+130  =                   OPERATOR       305
+130  (                   DELIMITER      201
+130  13.5                CONSTANT       FLOAT
+130  ,                   DELIMITER      209
+130  6.5                 CONSTANT       FLOAT
+130  )                   DELIMITER      202
+130  )                   DELIMITER      202
+131  ppl                 IDENTIFIER     
+131  .                   DELIMITER      210
+131  subplot2grid        IDENTIFIER     
+131  (                   DELIMITER      201
+131  (                   DELIMITER      201
+131  1                   CONSTANT       DECIMAL
+131  ,                   DELIMITER      209
+131  5                   CONSTANT       DECIMAL
+131  )                   DELIMITER      202
+131  ,                   DELIMITER      209
+131  (                   DELIMITER      201
+131  0                   CONSTANT       DECIMAL
+131  ,                   DELIMITER      209
+131  0                   CONSTANT       DECIMAL
+131  )                   DELIMITER      202
+131  ,                   DELIMITER      209
+131  colspan             IDENTIFIER     
+131  =                   OPERATOR       305
+131  2                   CONSTANT       DECIMAL
+131  )                   DELIMITER      202
+132  ppl                 IDENTIFIER     
+132  .                   DELIMITER      210
+132  title               IDENTIFIER     
+132  (                   DELIMITER      201
+132  "Cost function"     CONSTANT       STRING
+132  )                   DELIMITER      202
+133  ppl                 IDENTIFIER     
+133  .                   DELIMITER      210
+133  plot                IDENTIFIER     
+133  (                   DELIMITER      201
+133  epochRec            IDENTIFIER     
+133  ,                   DELIMITER      209
+133  costRec             IDENTIFIER     
+133  ,                   DELIMITER      209
+133                      ERROR          UNFINISHED_WORD
+135  x10                 IDENTIFIER     
+135  ,                   DELIMITER      209
+135  x11                 IDENTIFIER     
+135  ,                   DELIMITER      209
+135  x20                 IDENTIFIER     
+135  ,                   DELIMITER      209
+135  x21                 IDENTIFIER     
+135  =                   OPERATOR       305
+135  [                   DELIMITER      203
+135  ]                   DELIMITER      204
+135  ,                   DELIMITER      209
+135  [                   DELIMITER      203
+135  ]                   DELIMITER      204
+135  ,                   DELIMITER      209
+135  [                   DELIMITER      203
+135  ]                   DELIMITER      204
+135  ,                   DELIMITER      209
+135  [                   DELIMITER      203
+135  ]                   DELIMITER      204
+136  for                 KEYWORD        103
+136  k                   IDENTIFIER     
+136  in                  KEYWORD        116
+136  range               IDENTIFIER     
+136  (                   DELIMITER      201
+136  0                   CONSTANT       DECIMAL
+136  ,                   DELIMITER      209
+136  trainSz             IDENTIFIER     
+136  )                   DELIMITER      202
+136  :                   DELIMITER      208
+137  if                  KEYWORD        101
+137  y                   IDENTIFIER     
+137  [                   DELIMITER      203
+137  k                   IDENTIFIER     
+137  ,                   DELIMITER      209
+137  0                   CONSTANT       DECIMAL
+137  ]                   DELIMITER      204
+137  ==                  OPERATOR       306
+137  0                   CONSTANT       DECIMAL
+137  :                   DELIMITER      208
+138  x10                 IDENTIFIER     
+138  .                   DELIMITER      210
+138  append              IDENTIFIER     
+138  (                   DELIMITER      201
+138  x                   IDENTIFIER     
+138  [                   DELIMITER      203
+138  0                   CONSTANT       DECIMAL
+138  ,                   DELIMITER      209
+138  k                   IDENTIFIER     
+138  ]                   DELIMITER      204
+138  )                   DELIMITER      202
+139  x20                 IDENTIFIER     
+139  .                   DELIMITER      210
+139  append              IDENTIFIER     
+139  (                   DELIMITER      201
+139  x                   IDENTIFIER     
+139  [                   DELIMITER      203
+139  1                   CONSTANT       DECIMAL
+139  ,                   DELIMITER      209
+139  k                   IDENTIFIER     
+139  ]                   DELIMITER      204
+139  )                   DELIMITER      202
+140  else                KEYWORD        102
+140  :                   DELIMITER      208
+141  x11                 IDENTIFIER     
+141  .                   DELIMITER      210
+141  append              IDENTIFIER     
+141  (                   DELIMITER      201
+141  x                   IDENTIFIER     
+141  [                   DELIMITER      203
+141  0                   CONSTANT       DECIMAL
+141  ,                   DELIMITER      209
+141  k                   IDENTIFIER     
+141  ]                   DELIMITER      204
+141  )                   DELIMITER      202
+142  x21                 IDENTIFIER     
+142  .                   DELIMITER      210
+142  append              IDENTIFIER     
+142  (                   DELIMITER      201
+142  x                   IDENTIFIER     
+142  [                   DELIMITER      203
+142  1                   CONSTANT       DECIMAL
+142  ,                   DELIMITER      209
+142  k                   IDENTIFIER     
+142  ]                   DELIMITER      204
+142  )                   DELIMITER      202
+143  tx10corr            IDENTIFIER     
+143  ,                   DELIMITER      209
+143  tx11corr            IDENTIFIER     
+143  ,                   DELIMITER      209
+143  tx20corr            IDENTIFIER     
+143  ,                   DELIMITER      209
+143  tx21corr            IDENTIFIER     
+143  ,                   DELIMITER      209
+143  tx10wrong           IDENTIFIER     
+143  ,                   DELIMITER      209
+143  tx11wrong           IDENTIFIER     
+143  ,                   DELIMITER      209
+143  tx20wrong           IDENTIFIER     
+143  ,                   DELIMITER      209
+143  tx21wrong           IDENTIFIER     
+143  =                   OPERATOR       305
+143  [                   DELIMITER      203
+143  ]                   DELIMITER      204
+143  ,                   DELIMITER      209
+143  [                   DELIMITER      203
+143  ]                   DELIMITER      204
+143  ,                   DELIMITER      209
+143  [                   DELIMITER      203
+143  ]                   DELIMITER      204
+143  ,                   DELIMITER      209
+143  [                   DELIMITER      203
+143  ]                   DELIMITER      204
+143  ,                   DELIMITER      209
+143  [                   DELIMITER      203
+143  ]                   DELIMITER      204
+143  ,                   DELIMITER      209
+143  [                   DELIMITER      203
+143  ]                   DELIMITER      204
+143  ,                   DELIMITER      209
+143  [                   DELIMITER      203
+143  ]                   DELIMITER      204
+143  ,                   DELIMITER      209
+143  [                   DELIMITER      203
+143  ]                   DELIMITER      204
+144  for                 KEYWORD        103
+144  k                   IDENTIFIER     
+144  in                  KEYWORD        116
+144  range               IDENTIFIER     
+144  (                   DELIMITER      201
+144  0                   CONSTANT       DECIMAL
+144  ,                   DELIMITER      209
+144  testSz              IDENTIFIER     
+144  )                   DELIMITER      202
+144  :                   DELIMITER      208
+145  if                  KEYWORD        101
+145  ty                  IDENTIFIER     
+145  [                   DELIMITER      203
+145  k                   IDENTIFIER     
+145  ,                   DELIMITER      209
+145  0                   CONSTANT       DECIMAL
+145  ]                   DELIMITER      204
+145  ==                  OPERATOR       306
+145  0                   CONSTANT       DECIMAL
+145  :                   DELIMITER      208
+146  if                  KEYWORD        101
+146  testYRst            IDENTIFIER     
+146  [                   DELIMITER      203
+146  k                   IDENTIFIER     
+146  ]                   DELIMITER      204
+146  <=                  OPERATOR       310
+146  0.5                 CONSTANT       FLOAT
+146  :                   DELIMITER      208
+147  tx10corr            IDENTIFIER     
+147  .                   DELIMITER      210
+147  append              IDENTIFIER     
+147  (                   DELIMITER      201
+147  tx                  IDENTIFIER     
+147  [                   DELIMITER      203
+147  0                   CONSTANT       DECIMAL
+147  ,                   DELIMITER      209
+147  k                   IDENTIFIER     
+147  ]                   DELIMITER      204
+147  )                   DELIMITER      202
+148  tx20corr            IDENTIFIER     
+148  .                   DELIMITER      210
+148  append              IDENTIFIER     
+148  (                   DELIMITER      201
+148  tx                  IDENTIFIER     
+148  [                   DELIMITER      203
+148  1                   CONSTANT       DECIMAL
+148  ,                   DELIMITER      209
+148  k                   IDENTIFIER     
+148  ]                   DELIMITER      204
+148  )                   DELIMITER      202
+149  else                KEYWORD        102
+149  :                   DELIMITER      208
+150  tx10wrong           IDENTIFIER     
+150  .                   DELIMITER      210
+150  append              IDENTIFIER     
+150  (                   DELIMITER      201
+150  tx                  IDENTIFIER     
+150  [                   DELIMITER      203
+150  0                   CONSTANT       DECIMAL
+150  ,                   DELIMITER      209
+150  k                   IDENTIFIER     
+150  ]                   DELIMITER      204
+150  )                   DELIMITER      202
+151  tx20wrong           IDENTIFIER     
+151  .                   DELIMITER      210
+151  append              IDENTIFIER     
+151  (                   DELIMITER      201
+151  tx                  IDENTIFIER     
+151  [                   DELIMITER      203
+151  1                   CONSTANT       DECIMAL
+151  ,                   DELIMITER      209
+151  k                   IDENTIFIER     
+151  ]                   DELIMITER      204
+151  )                   DELIMITER      202
+152  else                KEYWORD        102
+152  :                   DELIMITER      208
+153  if                  KEYWORD        101
+153  testYRst            IDENTIFIER     
+153  [                   DELIMITER      203
+153  k                   IDENTIFIER     
+153  ]                   DELIMITER      204
+153  >                   OPERATOR       307
+153  0.5                 CONSTANT       FLOAT
+153  :                   DELIMITER      208
+154  tx11corr            IDENTIFIER     
+154  .                   DELIMITER      210
+154  append              IDENTIFIER     
+154  (                   DELIMITER      201
+154  tx                  IDENTIFIER     
+154  [                   DELIMITER      203
+154  0                   CONSTANT       DECIMAL
+154  ,                   DELIMITER      209
+154  k                   IDENTIFIER     
+154  ]                   DELIMITER      204
+154  )                   DELIMITER      202
+155  tx21corr            IDENTIFIER     
+155  .                   DELIMITER      210
+155  append              IDENTIFIER     
+155  (                   DELIMITER      201
+155  tx                  IDENTIFIER     
+155  [                   DELIMITER      203
+155  1                   CONSTANT       DECIMAL
+155  ,                   DELIMITER      209
+155  k                   IDENTIFIER     
+155  ]                   DELIMITER      204
+155  )                   DELIMITER      202
+156  else                KEYWORD        102
+156  :                   DELIMITER      208
+157  tx11wrong           IDENTIFIER     
+157  .                   DELIMITER      210
+157  append              IDENTIFIER     
+157  (                   DELIMITER      201
+157  tx                  IDENTIFIER     
+157  [                   DELIMITER      203
+157  0                   CONSTANT       DECIMAL
+157  ,                   DELIMITER      209
+157  k                   IDENTIFIER     
+157  ]                   DELIMITER      204
+157  )                   DELIMITER      202
+158  tx21wrong           IDENTIFIER     
+158  .                   DELIMITER      210
+158  append              IDENTIFIER     
+158  (                   DELIMITER      201
+158  tx                  IDENTIFIER     
+158  [                   DELIMITER      203
+158  1                   CONSTANT       DECIMAL
+158  ,                   DELIMITER      209
+158  k                   IDENTIFIER     
+158  ]                   DELIMITER      204
+158  )                   DELIMITER      202
+159  ppl                 IDENTIFIER     
+159  .                   DELIMITER      210
+159  subplot2grid        IDENTIFIER     
+159  (                   DELIMITER      201
+159  (                   DELIMITER      201
+159  1                   CONSTANT       DECIMAL
+159  ,                   DELIMITER      209
+159  5                   CONSTANT       DECIMAL
+159  )                   DELIMITER      202
+159  ,                   DELIMITER      209
+159  (                   DELIMITER      201
+159  0                   CONSTANT       DECIMAL
+159  ,                   DELIMITER      209
+159  2                   CONSTANT       DECIMAL
+159  )                   DELIMITER      202
+159  ,                   DELIMITER      209
+159  colspan             IDENTIFIER     
+159  =                   OPERATOR       305
+159  3                   CONSTANT       DECIMAL
+159  )                   DELIMITER      202
+160  ppl                 IDENTIFIER     
+160  .                   DELIMITER      210
+160  title               IDENTIFIER     
+160  (                   DELIMITER      201
+160  "Result"            CONSTANT       STRING
+160  )                   DELIMITER      202
+161  ppl                 IDENTIFIER     
+161  .                   DELIMITER      210
+161  plot                IDENTIFIER     
+161  (                   DELIMITER      201
+161  x10                 IDENTIFIER     
+161  ,                   DELIMITER      209
+161  x20                 IDENTIFIER     
+161  ,                   DELIMITER      209
+161                      ERROR          UNFINISHED_WORD
+162  ppl                 IDENTIFIER     
+162  .                   DELIMITER      210
+162  plot                IDENTIFIER     
+162  (                   DELIMITER      201
+162  x11                 IDENTIFIER     
+162  ,                   DELIMITER      209
+162  x21                 IDENTIFIER     
+162  ,                   DELIMITER      209
+162                      ERROR          UNFINISHED_WORD
+163  ppl                 IDENTIFIER     
+163  .                   DELIMITER      210
+163  plot                IDENTIFIER     
+163  (                   DELIMITER      201
+163  tx10corr            IDENTIFIER     
+163  ,                   DELIMITER      209
+163  tx20corr            IDENTIFIER     
+163  ,                   DELIMITER      209
+163                      ERROR          UNFINISHED_WORD
+164  ppl                 IDENTIFIER     
+164  .                   DELIMITER      210
+164  plot                IDENTIFIER     
+164  (                   DELIMITER      201
+164  tx10wrong           IDENTIFIER     
+164  ,                   DELIMITER      209
+164  tx20wrong           IDENTIFIER     
+164  ,                   DELIMITER      209
+164                      ERROR          UNFINISHED_WORD
+165  ppl                 IDENTIFIER     
+165  .                   DELIMITER      210
+165  plot                IDENTIFIER     
+165  (                   DELIMITER      201
+165  tx11corr            IDENTIFIER     
+165  ,                   DELIMITER      209
+165  tx21corr            IDENTIFIER     
+165  ,                   DELIMITER      209
+165                      ERROR          UNFINISHED_WORD
+166  ppl                 IDENTIFIER     
+166  .                   DELIMITER      210
+166  plot                IDENTIFIER     
+166  (                   DELIMITER      201
+166  tx11wrong           IDENTIFIER     
+166  ,                   DELIMITER      209
+166  tx21wrong           IDENTIFIER     
+166  ,                   DELIMITER      209
+166                      ERROR          UNFINISHED_WORD
+167  ppl                 IDENTIFIER     
+167  .                   DELIMITER      210
+167  legend              IDENTIFIER     
+167  (                   DELIMITER      201
+167  loc                 IDENTIFIER     
+167  =                   OPERATOR       305
+167  "best"              CONSTANT       STRING
+167  ,                   DELIMITER      209
+167  framealpha          IDENTIFIER     
+167  =                   OPERATOR       305
+167  0.333               CONSTANT       FLOAT
+167  )                   DELIMITER      202
+168  ppl                 IDENTIFIER     
+168  .                   DELIMITER      210
+168  tight_layout        IDENTIFIER     
+168  (                   DELIMITER      201
+168  )                   DELIMITER      202
+169  ppl                 IDENTIFIER     
+169  .                   DELIMITER      210
+169  show                IDENTIFIER     
+169  (                   DELIMITER      201
+169  )                   DELIMITER      202

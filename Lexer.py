@@ -3,7 +3,7 @@ from Lexicon import *
 
 # 读取词法规则文件
 production_formulae = []
-file = open("Normal Grammar.txt", encoding="UTF-8")
+file = open("Lexical Syntax.txt", encoding="UTF-8")
 line = file.readline()
 while line:
     line = line.replace(' ', '')

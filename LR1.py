@@ -15,11 +15,12 @@ def LR1_RightSideProcess(s: str):
 
 
 # 读取产生式
+# 返回的产生式的数据结构：tuple(左边, list[右边按顺序排列])
 def LR1_FormulaeResolution(l: str, whole_r: str):
     # 拆分多个右部
     r = LR1_RightSideProcess(whole_r)
     # 终结符集、非终结符集、产生式列表
-    terminal, non_term, l_and_r_list = set(), set(), []
+    terminal, non_term, production_list = set(), set(), []
 
     # 左边
     # 是否为非终结符符号
@@ -78,6 +79,28 @@ def LR1_FormulaeResolution(l: str, whole_r: str):
                     else:
                         rBuff += rs
         # 每一个右部和其对应的左部形成一条产生式列表信息
-        l_and_r_list.append((lBuff, rBfs))
+        production_list.append((lBuff, rBfs))
 
-    return terminal, non_term, l_and_r_list
+    return terminal, non_term, production_list
+
+
+# FIRST集
+def FIRST(symbol_list: list, terminal: set, non_term: set, productions: list):
+    FIRST_set = set()
+    for s in symbol_list:
+        # 找到第一个终结符
+        if s in terminal:
+            FIRST_set.add(s)
+        # 非终结符
+        elif s in non_term:
+            # 查找以其为左部的产生式
+            for prd in productions:
+                if prd[0] == s:
+                    # 递归调用
+                    FIRST_set = FIRST_set.union(
+                        FIRST(prd[1], terminal, non_term, productions))
+        # 若找到终结符，则结束
+        if FIRST_set:
+            return FIRST_set
+
+    return FIRST_set

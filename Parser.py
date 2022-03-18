@@ -12,13 +12,16 @@ while line:
     line = file.readline()
 file.close()
 
-terminal_set, non_term_set, l_to_r_list = set(), set(), []
+# 获取所有非终结符、终结符、产生式
+terminal_set, non_term_set, production_list = set(), set(), []
 for gf in grammar_formulae:
-    t, n, l = LR1_FormulaeResolution(gf[0], gf[1])
-    terminal_set = terminal_set.union(t)
-    non_term_set = non_term_set.union(n)
-    l_to_r_list += l
+    tms, nts, ltr = LR1_FormulaeResolution(gf[0], gf[1])
+    terminal_set = terminal_set.union(tms)
+    non_term_set = non_term_set.union(nts)
+    production_list += ltr
 
 print(terminal_set)
 print(non_term_set)
-print(l_to_r_list)
+print(production_list)
+
+print(FIRST(['S', 'c', 'd'], terminal_set, non_term_set, production_list))

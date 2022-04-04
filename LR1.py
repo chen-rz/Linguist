@@ -15,12 +15,12 @@ def LR1_RightSideProcess(s: str):
 
 
 # 读取产生式
-# 返回的产生式的数据结构：tuple(左边, list[右边按顺序排列])
+# 返回的产生式的数据结构：tuple(0 - 左边, 1 - list[右边按顺序排列])
 def LR1_FormulaeResolution(l: str, whole_r: str):
     # 拆分多个右部
     r = LR1_RightSideProcess(whole_r)
     # 终结符集、非终结符集、产生式列表
-    terminal, non_term, production_list = set(), set(), []
+    terminal, non_term, producer_list = set(), set(), []
 
     # 左边
     # 是否为非终结符符号
@@ -79,13 +79,13 @@ def LR1_FormulaeResolution(l: str, whole_r: str):
                     else:
                         rBuff += rs
         # 每一个右部和其对应的左部形成一条产生式列表信息
-        production_list.append((lBuff, rBfs))
+        producer_list.append((lBuff, rBfs))
 
-    return terminal, non_term, production_list
+    return terminal, non_term, producer_list
 
 
 # FIRST集
-def FIRST(symbol_list: list, terminal: set, non_term: set, productions: list):
+def FIRST(symbol_list: list, terminal: set, non_term: set, producers: list):
     FIRST_set = set()
     for s in symbol_list:
         # 找到第一个终结符
@@ -94,13 +94,65 @@ def FIRST(symbol_list: list, terminal: set, non_term: set, productions: list):
         # 非终结符
         elif s in non_term:
             # 查找以其为左部的产生式
-            for prd in productions:
+            for prd in producers:
                 if prd[0] == s:
                     # 递归调用
                     FIRST_set = FIRST_set.union(
-                        FIRST(prd[1], terminal, non_term, productions))
+                        FIRST(prd[1], terminal, non_term, producers))
         # 若找到终结符，则结束
         if FIRST_set:
             return FIRST_set
 
     return FIRST_set
+
+
+# 构造LR(1)项目集族
+# 项目的数据结构：list[0 - left: str, 1 - beforeDot: list, 2 - afterDot: list, 3 - searchSymbol: str]
+IT_LEFT, IT_BEFORE_DOT, IT_AFTER_DOT, IT_SEARCH = range(4)
+
+
+class ItemSet:
+    def __init__(self):
+        self.idNo = -1
+        self.items = []
+
+    def setIdNo(self, idNo: int):
+        self.idNo = idNo
+
+    def addItem(self, item: list):
+        self.items.append(item)
+
+
+def ItemSetClosure(idNo: int, I: ItemSet, terminals: set, non_terminals: set, producers: list):
+    clo = I
+    clo.setIdNo(idNo)
+
+    converged = False
+    while not converged:
+        for i in clo.items:
+            # 若有项目A→α·Bβ,a属于CLOSURE(I)，
+            if i[IT_AFTER_DOT] and i[IT_AFTER_DOT][0] in non_terminals:
+                # B→γ是文法中的产生式，
+                nextAfterDot = i[IT_AFTER_DOT][0]
+                for p in producers:
+                    if p[0] == nextAfterDot:
+                        # βa
+                        bAfterDot = i[IT_AFTER_DOT].copy()  # 一定要以拷贝的形式！
+                        bAfterDot.pop(0)
+                        bAfterDot.append(i[IT_SEARCH])
+                        # FIRST集
+                        firstBetas = FIRST(bAfterDot, terminals, non_terminals, producers)
+                        # b∈FIRST(βa)，
+                        for sfs in firstBetas:
+                            # 则B→·γ,b也属于CLOSURE(I)
+                            it = [nextAfterDot, [], p[1], sfs]
+                            # 直到CLOSURE(I)不再增大为止
+                            converged = True
+                            if it not in clo.items:
+                                clo.addItem(it)
+                                converged = False
+            # CLOSURE(I)改变，重新开始循环
+            if not converged:
+                break
+
+    return clo

@@ -20,42 +20,30 @@ for gf in grammar_formulae:
     non_term_set = non_term_set.union(nts)
     producer_list += ltr
 
-print(terminal_set)
-print(non_term_set)
-print(producer_list)
-# print(FIRST(['START', 'c', 'd'], terminal_set, non_term_set, producer_list))
-
 # 项目集族、GO表
 allItemSets = []
 GOTable = {}
-itemSetID = 0
 
 # 初始项目
-IS = ItemSet()
-IS.setIdNo(itemSetID)
-itemSetID += 1
-IS.addItem(["START'", [], ["START"], ""])
-clo = ItemSetClosure(itemSetID, IS, terminal_set, non_term_set, producer_list)
+IS = [["START'", [], ["START"], ""]]
+clo = ItemSetClosure(IS, terminal_set, non_term_set, producer_list)
 allItemSets.append(clo)
 
+# 所有的文法符号
 allSymbols = set().union(terminal_set).union(non_term_set)
 allSymbols.discard("")
-# 每个文法符号
-for X in allSymbols:
 
-    # TODO There is an unknown error that leads to a dead loop!
-    terminated = False
-    while not terminated:
-        # 假设没有新项目产生
-        terminated = True
+terminated = False
+while not terminated:
+    terminated = True
+    # 每个文法符号
+    for X in allSymbols:
         # 每个项目集
-        for s in allItemSets:
+        for s in range(len(allItemSets)):
             # 新的项目集
-            IS = ItemSet()
-            IS.setIdNo(itemSetID)
-            itemSetID += 1
+            IS = []
             # 一个项目集的每个项目
-            for i in s.items:
+            for i in allItemSets[s]:
                 # [A→α·Xβ,a]∈I
                 if i[IT_AFTER_DOT] and i[IT_AFTER_DOT][0] == X:
                     # 任何形如[A→αX·β,a]的项目
@@ -63,19 +51,70 @@ for X in allSymbols:
                     newBefore.append(i[IT_AFTER_DOT][0])
                     newAfter = i[IT_AFTER_DOT].copy()
                     newAfter.pop(0)
-                    IS.addItem([i[IT_LEFT], newBefore, newAfter, i[IT_SEARCH]])
+                    IS.append([i[IT_LEFT], newBefore, newAfter, i[IT_SEARCH]])
             # 有新项目产生
-            if IS.items:
-                clo = ItemSetClosure(itemSetID, IS, terminal_set, non_term_set, producer_list)
+            if IS:
+                clo = ItemSetClosure(IS, terminal_set, non_term_set, producer_list)
                 if clo not in allItemSets:
                     allItemSets.append(clo)
-                    GOTable[(s.idNo, X)] = clo
+                    # 使用下标作为编号，刚刚加入的应为最后一项
+                    GOTable[(s, X)] = len(allItemSets) - 1
                     terminated = False
                     # 重新开始循环
                     break
-            # 没有新项目产生
-            else:
-                itemSetID -= 1
+                # 已有的项目集也需要加入GO表
+                else:
+                    # 查找已有项目集下标
+                    for cx in range(len(allItemSets)):
+                        if allItemSets[cx] == clo:
+                            GOTable[(s, X)] = cx
+                            break
+        if not terminated:
+            break
 
-for al in allItemSets:
-    print(al.items)
+# 语法分析过程展示
+file = open("Process of LR(1) Parsing.txt", "w", encoding="UTF-8")
+file.write("Process of LR(1) Parsing" + "\n" + "=" * 100 + "\n")
+# 终结符
+file.write("Terminals:\n")
+terminalList = list(terminal_set)
+terminalList.sort()
+for k in range(len(terminalList)):
+    file.write(str(terminalList[k]).center(20, ' '))
+    if (k + 1) % 5 == 0:
+        file.write("\n")
+file.write("\n" + "=" * 100 + "\n")
+# 非终结符
+file.write("Non-terminals:\n")
+nonTerminalList = list(non_term_set)
+nonTerminalList.sort()
+for k in range(len(nonTerminalList)):
+    file.write(str(nonTerminalList[k]).center(20, ' '))
+    if (k + 1) % 5 == 0:
+        file.write("\n")
+file.write("\n" + "=" * 100 + "\n")
+# 项目集
+file.write("Closures of Item Sets:\n")
+for ax in range(len(allItemSets)):
+    file.write(str(ax).rjust(3, ' '))
+    for k in range(len(allItemSets[ax])):
+        s1, s2, s3, s4 = allItemSets[ax][k][IT_LEFT], \
+                         " ".join(allItemSets[ax][k][IT_BEFORE_DOT]), \
+                         " ".join(allItemSets[ax][k][IT_AFTER_DOT]), \
+                         allItemSets[ax][k][IT_SEARCH]
+        if not s4:
+            s4 = "#"
+        file.write((s1 + " => " + s2 + " · " + s3 + ", " + s4).center(50, ' '))
+        if (k + 1) % 2 == 0:
+            file.write("\n" + ' ' * 3)
+    file.write("\n")
+file.write("\n" + "=" * 100 + "\n")
+# 转换函数（GO）
+file.write("GO Functions:\n")
+GOList = list(zip(list(GOTable.keys()), list(GOTable.values())))
+GOList.sort(key=lambda ki: ki[0])
+for k in range(len(GOList)):
+    file.write((str(GOList[k][0]) + " => " + str(GOList[k][1])).center(25, ' '))
+    if (k + 1) % 4 == 0:
+        file.write("\n")
+file.write("\n" + "=" * 100 + "\n")

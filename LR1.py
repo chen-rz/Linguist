@@ -111,25 +111,14 @@ def FIRST(symbol_list: list, terminal: set, non_term: set, producers: list):
 IT_LEFT, IT_BEFORE_DOT, IT_AFTER_DOT, IT_SEARCH = range(4)
 
 
-class ItemSet:
-    def __init__(self):
-        self.idNo = -1
-        self.items = []
-
-    def setIdNo(self, idNo: int):
-        self.idNo = idNo
-
-    def addItem(self, item: list):
-        self.items.append(item)
-
-
-def ItemSetClosure(idNo: int, I: ItemSet, terminals: set, non_terminals: set, producers: list):
-    clo = I
-    clo.setIdNo(idNo)
+# 项目集是一个存储项目的list
+def ItemSetClosure(I: list, terminals: set, non_terminals: set, producers: list):
+    clo = I.copy()
 
     converged = False
     while not converged:
-        for i in clo.items:
+        converged = True
+        for i in clo:
             # 若有项目A→α·Bβ,a属于CLOSURE(I)，
             if i[IT_AFTER_DOT] and i[IT_AFTER_DOT][0] in non_terminals:
                 # B→γ是文法中的产生式，
@@ -147,9 +136,8 @@ def ItemSetClosure(idNo: int, I: ItemSet, terminals: set, non_terminals: set, pr
                             # 则B→·γ,b也属于CLOSURE(I)
                             it = [nextAfterDot, [], p[1], sfs]
                             # 直到CLOSURE(I)不再增大为止
-                            converged = True
-                            if it not in clo.items:
-                                clo.addItem(it)
+                            if it not in clo:
+                                clo.append(it)
                                 converged = False
             # CLOSURE(I)改变，重新开始循环
             if not converged:

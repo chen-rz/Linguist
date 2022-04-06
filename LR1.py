@@ -84,6 +84,14 @@ def LR1_FormulaeResolution(l: str, whole_r: str):
     return terminal, non_term, producer_list
 
 
+# 查询产生式的编号
+def ProducerIdNo(p: tuple, producer_list: list):
+    for i in range(len(producer_list)):
+        if producer_list[i] == p:
+            return i
+    return -1
+
+
 # FIRST集
 def FIRST(symbol_list: list, terminal: set, non_term: set, producers: list):
     FIRST_set = set()
@@ -119,6 +127,11 @@ def ItemSetClosure(I: list, terminals: set, non_terminals: set, producers: list)
     while not converged:
         converged = True
         for i in clo:
+            # 处理空产生式的情况
+            while "" in i[IT_BEFORE_DOT]:
+                i[IT_BEFORE_DOT].remove("")
+            while "" in i[IT_AFTER_DOT]:
+                i[IT_AFTER_DOT].remove("")
             # 若有项目A→α·Bβ,a属于CLOSURE(I)，
             if i[IT_AFTER_DOT] and i[IT_AFTER_DOT][0] in non_terminals:
                 # B→γ是文法中的产生式，

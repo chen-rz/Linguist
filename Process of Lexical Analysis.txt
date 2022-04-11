@@ -339,34 +339,34 @@ NFA Transition Functions:
 
 ====================================================================================================
 DFA Statuses:
- DS01 (T)      FINISH         F_DEL     
- DS02 (T)      FINISH        F_OPE_1    
- DS03 (T)      C_E_1          FINISH         FLO_1         F_DEC_1    
+ DS01 (T)      FINISH         F_K_I     
+ DS02 (T)      C_E_1          FINISH         FLO_1         F_DEC_1    
                SCI_1     
- DS04 (T)      FINISH         F_K_I     
- DS05         F_STR_1    
- DS06 (T)      FINISH        F_OPE_6    
- DS07 (T)      FINISH        F_OPE_2    
- DS08 (T)      FINISH        F_OPE_4    
- DS09 (T)      C_E_1          FINISH         FLO_1         F_DEC_1    
+ DS03 (T)      FINISH         F_DEL     
+ DS04 (T)      FINISH        F_OPE_2    
+ DS05 (T)      FINISH        F_OPE_1    
+ DS06         F_STR_1    
+ DS07 (T)      FINISH        F_OPE_3    
+ DS08 (T)      FINISH        F_OPE_5    
+ DS09 (T)      FINISH        F_OPE_6    
+ DS10 (T)      FINISH        F_OPE_4    
+ DS11 (T)      C_E_1          FINISH         FLO_1         F_DEC_1    
                HEX_1          SCI_1     
- DS10 (T)      FINISH        F_OPE_5    
- DS11 (T)      FINISH        F_OPE_3    
- DS12 (T)      FINISH    
- DS13          C_E_4     
- DS14          C_E_2          FLO_2          SCI_2     
- DS15 (T)      FINISH        F_DEC_2    
- DS16 (T)      FINISH        F_HEX_2    
- DS17 (T)      FINISH        F_DEC_3    
- DS18 (T)      FINISH        F_HEX_3    
- DS19 (T)      FINISH        F_HEX_4    
- DS20 (T)      C_E_3          FINISH        F_FLO_3         SCI_3     
- DS21          SCI_4          SCI_5     
- DS22          SCI_5     
+ DS12 (T)      FINISH        F_DEC_3    
+ DS13 (T)      FINISH        F_HEX_2    
+ DS14 (T)      FINISH        F_DEC_2    
+ DS15          C_E_2          FLO_2          SCI_2     
+ DS16          C_E_4     
+ DS17 (T)      FINISH        F_C_E_5    
+ DS18          C_E_6     
+ DS19 (T)      FINISH    
+ DS20 (T)      FINISH        F_C_E_7    
+ DS21 (T)      C_E_3          FINISH        F_FLO_3         SCI_3     
+ DS22          SCI_4          SCI_5     
  DS23 (T)      FINISH        F_SCI_6    
- DS24 (T)      FINISH        F_C_E_5    
- DS25          C_E_6     
- DS26 (T)      FINISH        F_C_E_7    
+ DS24          SCI_5     
+ DS25 (T)      FINISH        F_HEX_4    
+ DS26 (T)      FINISH        F_HEX_3    
  DS27         F_STR_2    
 START         C_START    Complex_Expression    D_START        Decimal    
                Float       Hexadecimal      Integer       K_I_START       O_START    
@@ -375,262 +375,262 @@ START         C_START    Complex_Expression    D_START        Decimal
 ====================================================================================================
 DFA Transition Functions:
 
-      START == ] => DS01            START == - => DS02      
-      START == 7 => DS03            START == } => DS01      
-      START == Y => DS04            START == q => DS04      
-      START == . => DS01            START == u => DS04      
-      START == V => DS04            START == I => DS04      
-      START == S => DS04            START == T => DS04      
-      START == " => DS05            START == > => DS06      
-      START == v => DS04            START == ^ => DS07      
-      START == [ => DS01            START == E => DS04      
-      START == g => DS04            START == h => DS04      
-      START == a => DS04            START == k => DS04      
-      START == U => DS04            START == | => DS08      
-      START == c => DS04            START == ; => DS01      
-      START == i => DS04            START == B => DS04      
-      START == ( => DS01            START == # => DS01      
-      START == J => DS04            START == 1 => DS03      
-      START == j => DS04            START == w => DS04      
-      START == n => DS04            START == 3 => DS03      
-      START == x => DS04            START == y => DS04      
-      START == ) => DS01            START == L => DS04      
-      START == ! => DS07            START == H => DS04      
-      START == 8 => DS03            START == t => DS04      
-      START == ~ => DS07            START == Q => DS04      
-      START == d => DS04            START == * => DS02      
-      START == M => DS04            START == 5 => DS03      
-      START == 2 => DS03            START == R => DS04      
-      START == r => DS04            START == o => DS04      
-      START == l => DS04            START == p => DS04      
-      START == e => DS04            START == W => DS04      
-      START == , => DS01            START == b => DS04      
-      START == 0 => DS09            START == 9 => DS03      
-      START == + => DS02            START == % => DS07      
-      START == < => DS10            START == X => DS04      
-      START == s => DS04            START == N => DS04      
-      START == { => DS01            START == & => DS11      
-      START == O => DS04            START == A => DS04      
-      START == / => DS02            START == f => DS04      
-      START == m => DS04            START == P => DS04      
-      START == C => DS04            START == F => DS04      
-      START == : => DS01            START == z => DS04      
-      START == G => DS04            START == 6 => DS03      
-      START == 4 => DS03            START == = => DS02      
-      START == D => DS04            START == _ => DS04      
-      START == ? => DS01            START == Z => DS04      
-      START == K => DS04            DS11 == & => DS12       
-      DS10 == < => DS12             DS10 == = => DS12       
-      DS09 == - => DS13             DS09 == 7 => DS03       
-      DS09 == . => DS14             DS09 == u => DS15       
-      DS09 == U => DS15             DS09 == 1 => DS03       
-      DS09 == 3 => DS03             DS09 == x => DS16       
-      DS09 == L => DS17             DS09 == 8 => DS03       
-      DS09 == 5 => DS03             DS09 == 2 => DS03       
-      DS09 == l => DS17             DS09 == 0 => DS03       
-      DS09 == 9 => DS03             DS09 == + => DS13       
-      DS09 == X => DS16             DS09 == 6 => DS03       
-      DS09 == 4 => DS03             DS17 == u => DS12       
-      DS17 == U => DS12             DS16 == 7 => DS16       
-      DS16 == u => DS18             DS16 == E => DS16       
-      DS16 == a => DS16             DS16 == U => DS18       
-      DS16 == c => DS16             DS16 == B => DS16       
-      DS16 == 1 => DS16             DS16 == 3 => DS16       
-      DS16 == L => DS19             DS16 == 8 => DS16       
-      DS16 == d => DS16             DS16 == 5 => DS16       
-      DS16 == 2 => DS16             DS16 == l => DS19       
-      DS16 == e => DS16             DS16 == b => DS16       
-      DS16 == 0 => DS16             DS16 == 9 => DS16       
-      DS16 == A => DS16             DS16 == f => DS16       
-      DS16 == C => DS16             DS16 == F => DS16       
-      DS16 == 6 => DS16             DS16 == 4 => DS16       
-      DS16 == D => DS16             DS19 == u => DS12       
-      DS19 == U => DS12             DS18 == L => DS12       
-      DS18 == l => DS12             DS15 == L => DS12       
-      DS15 == l => DS12             DS14 == 7 => DS20       
-      DS14 == 1 => DS20             DS14 == 3 => DS20       
-      DS14 == 8 => DS20             DS14 == 5 => DS20       
-      DS14 == 2 => DS20             DS14 == 0 => DS20       
-      DS14 == 9 => DS20             DS14 == 6 => DS20       
-      DS14 == 4 => DS20             DS20 == - => DS13       
-      DS20 == 7 => DS20             DS20 == E => DS21       
-      DS20 == 1 => DS20             DS20 == 3 => DS20       
-      DS20 == 8 => DS20             DS20 == 5 => DS20       
-      DS20 == 2 => DS20             DS20 == e => DS21       
-      DS20 == 0 => DS20             DS20 == 9 => DS20       
-      DS20 == + => DS13             DS20 == 6 => DS20       
-      DS20 == 4 => DS20             DS21 == - => DS22       
-      DS21 == 7 => DS23             DS21 == 1 => DS23       
-      DS21 == 3 => DS23             DS21 == 8 => DS23       
-      DS21 == 5 => DS23             DS21 == 2 => DS23       
-      DS21 == 0 => DS23             DS21 == 9 => DS23       
-      DS21 == + => DS22             DS21 == 6 => DS23       
-      DS21 == 4 => DS23             DS23 == 7 => DS23       
-      DS23 == 1 => DS23             DS23 == 3 => DS23       
-      DS23 == 8 => DS23             DS23 == 5 => DS23       
-      DS23 == 2 => DS23             DS23 == 0 => DS23       
-      DS23 == 9 => DS23             DS23 == 6 => DS23       
-      DS23 == 4 => DS23             DS22 == 7 => DS23       
-      DS22 == 1 => DS23             DS22 == 3 => DS23       
-      DS22 == 8 => DS23             DS22 == 5 => DS23       
-      DS22 == 2 => DS23             DS22 == 0 => DS23       
-      DS22 == 9 => DS23             DS22 == 6 => DS23       
-      DS22 == 4 => DS23             DS13 == 7 => DS24       
-      DS13 == 1 => DS24             DS13 == 3 => DS24       
-      DS13 == 8 => DS24             DS13 == 5 => DS24       
-      DS13 == 2 => DS24             DS13 == 0 => DS24       
-      DS13 == 9 => DS24             DS13 == 6 => DS24       
-      DS13 == 4 => DS24             DS24 == 7 => DS24       
-      DS24 == . => DS25             DS24 == i => DS12       
-      DS24 == 1 => DS24             DS24 == 3 => DS24       
-      DS24 == 8 => DS24             DS24 == 5 => DS24       
-      DS24 == 2 => DS24             DS24 == 0 => DS24       
-      DS24 == 9 => DS24             DS24 == 6 => DS24       
-      DS24 == 4 => DS24             DS25 == 7 => DS26       
-      DS25 == 1 => DS26             DS25 == 3 => DS26       
-      DS25 == 8 => DS26             DS25 == 5 => DS26       
-      DS25 == 2 => DS26             DS25 == 0 => DS26       
-      DS25 == 9 => DS26             DS25 == 6 => DS26       
-      DS25 == 4 => DS26             DS26 == 7 => DS26       
-      DS26 == i => DS12             DS26 == 1 => DS26       
-      DS26 == 3 => DS26             DS26 == 8 => DS26       
-      DS26 == 5 => DS26             DS26 == 2 => DS26       
-      DS26 == 0 => DS26             DS26 == 9 => DS26       
-      DS26 == 6 => DS26             DS26 == 4 => DS26       
-      DS08 == | => DS12             DS06 == > => DS12       
-      DS06 == = => DS12             DS05 == ] => DS27       
-      DS05 == - => DS27             DS05 == 7 => DS27       
-      DS05 == } => DS27             DS05 == Y => DS27       
-      DS05 == q => DS27             DS05 == . => DS27       
-      DS05 == u => DS27             DS05 == V => DS27       
-      DS05 == I => DS27             DS05 ==   => DS27       
-      DS05 == S => DS27             DS05 == T => DS27       
-      DS05 == " => DS12             DS05 == > => DS27       
-      DS05 == v => DS27             DS05 == ^ => DS27       
-      DS05 == [ => DS27             DS05 == E => DS27       
-      DS05 == ` => DS27             DS05 == g => DS27       
-      DS05 == h => DS27             DS05 == a => DS27       
-      DS05 == k => DS27             DS05 == U => DS27       
-      DS05 == | => DS27             DS05 == c => DS27       
-      DS05 == ; => DS27             DS05 == i => DS27       
-      DS05 == B => DS27             DS05 == ( => DS27       
-      DS05 == # => DS27             DS05 == J => DS27       
-      DS05 == 1 => DS27             DS05 == j => DS27       
-      DS05 == w => DS27             DS05 == n => DS27       
-      DS05 == 3 => DS27             DS05 == x => DS27       
-      DS05 == y => DS27             DS05 == ) => DS27       
-      DS05 == L => DS27             DS05 == ! => DS27       
-      DS05 == H => DS27             DS05 == 8 => DS27       
-      DS05 == t => DS27             DS05 == ~ => DS27       
-      DS05 == Q => DS27             DS05 == d => DS27       
-      DS05 == * => DS27             DS05 == M => DS27       
-      DS05 == ' => DS27             DS05 == 5 => DS27       
-      DS05 == 2 => DS27             DS05 == R => DS27       
-      DS05 == r => DS27             DS05 == o => DS27       
-      DS05 == @ => DS27             DS05 == l => DS27       
-      DS05 == \ => DS27             DS05 == p => DS27       
-      DS05 == e => DS27             DS05 == W => DS27       
-      DS05 == , => DS27             DS05 == b => DS27       
-      DS05 == 0 => DS27             DS05 == 9 => DS27       
-      DS05 == + => DS27             DS05 == % => DS27       
-      DS05 == < => DS27             DS05 == X => DS27       
-      DS05 == s => DS27             DS05 == N => DS27       
-      DS05 == { => DS27             DS05 == & => DS27       
-      DS05 == O => DS27             DS05 == A => DS27       
-      DS05 == / => DS27             DS05 == f => DS27       
-      DS05 == m => DS27             DS05 == P => DS27       
-      DS05 == C => DS27             DS05 == F => DS27       
-      DS05 == : => DS27             DS05 == z => DS27       
-      DS05 == G => DS27             DS05 == 6 => DS27       
-      DS05 == 4 => DS27             DS05 == = => DS27       
-      DS05 == D => DS27             DS05 == _ => DS27       
-      DS05 == ? => DS27             DS05 == Z => DS27       
-      DS05 == K => DS27             DS27 == ] => DS27       
-      DS27 == - => DS27             DS27 == 7 => DS27       
-      DS27 == } => DS27             DS27 == Y => DS27       
-      DS27 == q => DS27             DS27 == . => DS27       
-      DS27 == u => DS27             DS27 == V => DS27       
-      DS27 == I => DS27             DS27 ==   => DS27       
-      DS27 == S => DS27             DS27 == T => DS27       
-      DS27 == " => DS12             DS27 == > => DS27       
-      DS27 == v => DS27             DS27 == ^ => DS27       
-      DS27 == [ => DS27             DS27 == E => DS27       
-      DS27 == ` => DS27             DS27 == g => DS27       
-      DS27 == h => DS27             DS27 == a => DS27       
-      DS27 == k => DS27             DS27 == U => DS27       
-      DS27 == | => DS27             DS27 == c => DS27       
-      DS27 == ; => DS27             DS27 == i => DS27       
-      DS27 == B => DS27             DS27 == ( => DS27       
-      DS27 == # => DS27             DS27 == J => DS27       
-      DS27 == 1 => DS27             DS27 == j => DS27       
-      DS27 == w => DS27             DS27 == n => DS27       
-      DS27 == 3 => DS27             DS27 == x => DS27       
-      DS27 == y => DS27             DS27 == ) => DS27       
-      DS27 == L => DS27             DS27 == ! => DS27       
-      DS27 == H => DS27             DS27 == 8 => DS27       
-      DS27 == t => DS27             DS27 == ~ => DS27       
-      DS27 == Q => DS27             DS27 == d => DS27       
-      DS27 == * => DS27             DS27 == M => DS27       
-      DS27 == ' => DS27             DS27 == 5 => DS27       
-      DS27 == 2 => DS27             DS27 == R => DS27       
-      DS27 == r => DS27             DS27 == o => DS27       
-      DS27 == @ => DS27             DS27 == l => DS27       
-      DS27 == \ => DS27             DS27 == p => DS27       
-      DS27 == e => DS27             DS27 == W => DS27       
-      DS27 == , => DS27             DS27 == b => DS27       
-      DS27 == 0 => DS27             DS27 == 9 => DS27       
-      DS27 == + => DS27             DS27 == % => DS27       
-      DS27 == < => DS27             DS27 == X => DS27       
-      DS27 == s => DS27             DS27 == N => DS27       
-      DS27 == { => DS27             DS27 == & => DS27       
-      DS27 == O => DS27             DS27 == A => DS27       
-      DS27 == / => DS27             DS27 == f => DS27       
-      DS27 == m => DS27             DS27 == P => DS27       
-      DS27 == C => DS27             DS27 == F => DS27       
-      DS27 == : => DS27             DS27 == z => DS27       
-      DS27 == G => DS27             DS27 == 6 => DS27       
-      DS27 == 4 => DS27             DS27 == = => DS27       
-      DS27 == D => DS27             DS27 == _ => DS27       
-      DS27 == ? => DS27             DS27 == Z => DS27       
-      DS27 == K => DS27             DS04 == 7 => DS04       
-      DS04 == Y => DS04             DS04 == q => DS04       
-      DS04 == u => DS04             DS04 == V => DS04       
-      DS04 == I => DS04             DS04 == S => DS04       
-      DS04 == T => DS04             DS04 == v => DS04       
-      DS04 == E => DS04             DS04 == g => DS04       
-      DS04 == h => DS04             DS04 == a => DS04       
-      DS04 == k => DS04             DS04 == U => DS04       
-      DS04 == c => DS04             DS04 == i => DS04       
-      DS04 == B => DS04             DS04 == J => DS04       
-      DS04 == 1 => DS04             DS04 == j => DS04       
-      DS04 == w => DS04             DS04 == n => DS04       
-      DS04 == 3 => DS04             DS04 == x => DS04       
-      DS04 == y => DS04             DS04 == L => DS04       
-      DS04 == H => DS04             DS04 == 8 => DS04       
-      DS04 == t => DS04             DS04 == Q => DS04       
-      DS04 == d => DS04             DS04 == M => DS04       
-      DS04 == 5 => DS04             DS04 == 2 => DS04       
-      DS04 == R => DS04             DS04 == r => DS04       
-      DS04 == o => DS04             DS04 == l => DS04       
-      DS04 == p => DS04             DS04 == e => DS04       
-      DS04 == W => DS04             DS04 == b => DS04       
-      DS04 == 0 => DS04             DS04 == 9 => DS04       
-      DS04 == X => DS04             DS04 == s => DS04       
-      DS04 == N => DS04             DS04 == O => DS04       
-      DS04 == A => DS04             DS04 == f => DS04       
-      DS04 == m => DS04             DS04 == P => DS04       
-      DS04 == C => DS04             DS04 == F => DS04       
-      DS04 == z => DS04             DS04 == G => DS04       
-      DS04 == 6 => DS04             DS04 == 4 => DS04       
-      DS04 == D => DS04             DS04 == _ => DS04       
-      DS04 == Z => DS04             DS04 == K => DS04       
-      DS03 == - => DS13             DS03 == 7 => DS03       
-      DS03 == . => DS14             DS03 == u => DS15       
-      DS03 == U => DS15             DS03 == 1 => DS03       
-      DS03 == 3 => DS03             DS03 == L => DS17       
-      DS03 == 8 => DS03             DS03 == 5 => DS03       
-      DS03 == 2 => DS03             DS03 == l => DS17       
-      DS03 == 0 => DS03             DS03 == 9 => DS03       
-      DS03 == + => DS13             DS03 == 6 => DS03       
-      DS03 == 4 => DS03             DS02 == = => DS12       
+      START == H => DS01            START == 3 => DS02      
+      START == A => DS01            START == ; => DS03      
+      START == d => DS01            START == K => DS01      
+      START == o => DS01            START == L => DS01      
+      START == l => DS01            START == Q => DS01      
+      START == y => DS01            START == G => DS01      
+      START == P => DS01            START == ! => DS04      
+      START == * => DS05            START == ? => DS03      
+      START == " => DS06            START == : => DS03      
+      START == ] => DS03            START == [ => DS03      
+      START == w => DS01            START == W => DS01      
+      START == 8 => DS02            START == 7 => DS02      
+      START == 2 => DS02            START == m => DS01      
+      START == V => DS01            START == p => DS01      
+      START == j => DS01            START == 5 => DS02      
+      START == & => DS07            START == B => DS01      
+      START == ^ => DS04            START == c => DS01      
+      START == = => DS05            START == _ => DS01      
+      START == O => DS01            START == / => DS05      
+      START == < => DS08            START == ) => DS03      
+      START == C => DS01            START == g => DS01      
+      START == X => DS01            START == n => DS01      
+      START == a => DS01            START == u => DS01      
+      START == # => DS03            START == Y => DS01      
+      START == M => DS01            START == } => DS03      
+      START == D => DS01            START == e => DS01      
+      START == f => DS01            START == z => DS01      
+      START == I => DS01            START == h => DS01      
+      START == k => DS01            START == > => DS09      
+      START == J => DS01            START == | => DS10      
+      START == . => DS03            START == T => DS01      
+      START == 6 => DS02            START == F => DS01      
+      START == 9 => DS02            START == % => DS04      
+      START == + => DS05            START == U => DS01      
+      START == 4 => DS02            START == ~ => DS04      
+      START == Z => DS01            START == , => DS03      
+      START == t => DS01            START == E => DS01      
+      START == s => DS01            START == i => DS01      
+      START == 0 => DS11            START == b => DS01      
+      START == x => DS01            START == q => DS01      
+      START == r => DS01            START == v => DS01      
+      START == N => DS01            START == ( => DS03      
+      START == { => DS03            START == S => DS01      
+      START == - => DS05            START == 1 => DS02      
+      START == R => DS01            DS11 == 3 => DS02       
+      DS11 == L => DS12             DS11 == l => DS12       
+      DS11 == 8 => DS02             DS11 == 7 => DS02       
+      DS11 == 2 => DS02             DS11 == 5 => DS02       
+      DS11 == X => DS13             DS11 == u => DS14       
+      DS11 == . => DS15             DS11 == 6 => DS02       
+      DS11 == 9 => DS02             DS11 == + => DS16       
+      DS11 == U => DS14             DS11 == 4 => DS02       
+      DS11 == 0 => DS02             DS11 == x => DS13       
+      DS11 == - => DS16             DS11 == 1 => DS02       
+      DS16 == 3 => DS17             DS16 == 8 => DS17       
+      DS16 == 7 => DS17             DS16 == 2 => DS17       
+      DS16 == 5 => DS17             DS16 == 6 => DS17       
+      DS16 == 9 => DS17             DS16 == 4 => DS17       
+      DS16 == 0 => DS17             DS16 == 1 => DS17       
+      DS17 == 3 => DS17             DS17 == 8 => DS17       
+      DS17 == 7 => DS17             DS17 == 2 => DS17       
+      DS17 == 5 => DS17             DS17 == . => DS18       
+      DS17 == 6 => DS17             DS17 == 9 => DS17       
+      DS17 == 4 => DS17             DS17 == i => DS19       
+      DS17 == 0 => DS17             DS17 == 1 => DS17       
+      DS18 == 3 => DS20             DS18 == 8 => DS20       
+      DS18 == 7 => DS20             DS18 == 2 => DS20       
+      DS18 == 5 => DS20             DS18 == 6 => DS20       
+      DS18 == 9 => DS20             DS18 == 4 => DS20       
+      DS18 == 0 => DS20             DS18 == 1 => DS20       
+      DS20 == 3 => DS20             DS20 == 8 => DS20       
+      DS20 == 7 => DS20             DS20 == 2 => DS20       
+      DS20 == 5 => DS20             DS20 == 6 => DS20       
+      DS20 == 9 => DS20             DS20 == 4 => DS20       
+      DS20 == i => DS19             DS20 == 0 => DS20       
+      DS20 == 1 => DS20             DS15 == 3 => DS21       
+      DS15 == 8 => DS21             DS15 == 7 => DS21       
+      DS15 == 2 => DS21             DS15 == 5 => DS21       
+      DS15 == 6 => DS21             DS15 == 9 => DS21       
+      DS15 == 4 => DS21             DS15 == 0 => DS21       
+      DS15 == 1 => DS21             DS21 == 3 => DS21       
+      DS21 == 8 => DS21             DS21 == 7 => DS21       
+      DS21 == 2 => DS21             DS21 == 5 => DS21       
+      DS21 == e => DS22             DS21 == 6 => DS21       
+      DS21 == 9 => DS21             DS21 == + => DS16       
+      DS21 == 4 => DS21             DS21 == E => DS22       
+      DS21 == 0 => DS21             DS21 == - => DS16       
+      DS21 == 1 => DS21             DS22 == 3 => DS23       
+      DS22 == 8 => DS23             DS22 == 7 => DS23       
+      DS22 == 2 => DS23             DS22 == 5 => DS23       
+      DS22 == 6 => DS23             DS22 == 9 => DS23       
+      DS22 == + => DS24             DS22 == 4 => DS23       
+      DS22 == 0 => DS23             DS22 == - => DS24       
+      DS22 == 1 => DS23             DS24 == 3 => DS23       
+      DS24 == 8 => DS23             DS24 == 7 => DS23       
+      DS24 == 2 => DS23             DS24 == 5 => DS23       
+      DS24 == 6 => DS23             DS24 == 9 => DS23       
+      DS24 == 4 => DS23             DS24 == 0 => DS23       
+      DS24 == 1 => DS23             DS23 == 3 => DS23       
+      DS23 == 8 => DS23             DS23 == 7 => DS23       
+      DS23 == 2 => DS23             DS23 == 5 => DS23       
+      DS23 == 6 => DS23             DS23 == 9 => DS23       
+      DS23 == 4 => DS23             DS23 == 0 => DS23       
+      DS23 == 1 => DS23             DS14 == L => DS19       
+      DS14 == l => DS19             DS13 == 3 => DS13       
+      DS13 == A => DS13             DS13 == d => DS13       
+      DS13 == L => DS25             DS13 == l => DS25       
+      DS13 == 8 => DS13             DS13 == 7 => DS13       
+      DS13 == 2 => DS13             DS13 == 5 => DS13       
+      DS13 == B => DS13             DS13 == c => DS13       
+      DS13 == C => DS13             DS13 == a => DS13       
+      DS13 == u => DS26             DS13 == D => DS13       
+      DS13 == e => DS13             DS13 == f => DS13       
+      DS13 == 6 => DS13             DS13 == F => DS13       
+      DS13 == 9 => DS13             DS13 == U => DS26       
+      DS13 == 4 => DS13             DS13 == E => DS13       
+      DS13 == 0 => DS13             DS13 == b => DS13       
+      DS13 == 1 => DS13             DS26 == L => DS19       
+      DS26 == l => DS19             DS25 == u => DS19       
+      DS25 == U => DS19             DS12 == u => DS19       
+      DS12 == U => DS19             DS10 == | => DS19       
+      DS09 == = => DS19             DS09 == > => DS19       
+      DS08 == = => DS19             DS08 == < => DS19       
+      DS07 == & => DS19             DS06 == H => DS27       
+      DS06 == 3 => DS27             DS06 == A => DS27       
+      DS06 == ; => DS27             DS06 == d => DS27       
+      DS06 == K => DS27             DS06 == o => DS27       
+      DS06 == L => DS27             DS06 == l => DS27       
+      DS06 == Q => DS27             DS06 == y => DS27       
+      DS06 == G => DS27             DS06 == P => DS27       
+      DS06 == \ => DS27             DS06 == ! => DS27       
+      DS06 == * => DS27             DS06 ==   => DS27       
+      DS06 == ? => DS27             DS06 == " => DS19       
+      DS06 == : => DS27             DS06 == ] => DS27       
+      DS06 == [ => DS27             DS06 == w => DS27       
+      DS06 == W => DS27             DS06 == 8 => DS27       
+      DS06 == 7 => DS27             DS06 == 2 => DS27       
+      DS06 == m => DS27             DS06 == V => DS27       
+      DS06 == p => DS27             DS06 == j => DS27       
+      DS06 == 5 => DS27             DS06 == & => DS27       
+      DS06 == B => DS27             DS06 == ^ => DS27       
+      DS06 == c => DS27             DS06 == = => DS27       
+      DS06 == _ => DS27             DS06 == O => DS27       
+      DS06 == / => DS27             DS06 == < => DS27       
+      DS06 == ) => DS27             DS06 == C => DS27       
+      DS06 == g => DS27             DS06 == X => DS27       
+      DS06 == n => DS27             DS06 == a => DS27       
+      DS06 == u => DS27             DS06 == # => DS27       
+      DS06 == Y => DS27             DS06 == M => DS27       
+      DS06 == } => DS27             DS06 == D => DS27       
+      DS06 == e => DS27             DS06 == f => DS27       
+      DS06 == ` => DS27             DS06 == z => DS27       
+      DS06 == I => DS27             DS06 == h => DS27       
+      DS06 == k => DS27             DS06 == > => DS27       
+      DS06 == J => DS27             DS06 == | => DS27       
+      DS06 == . => DS27             DS06 == T => DS27       
+      DS06 == 6 => DS27             DS06 == F => DS27       
+      DS06 == 9 => DS27             DS06 == % => DS27       
+      DS06 == + => DS27             DS06 == U => DS27       
+      DS06 == 4 => DS27             DS06 == ~ => DS27       
+      DS06 == Z => DS27             DS06 == , => DS27       
+      DS06 == t => DS27             DS06 == E => DS27       
+      DS06 == s => DS27             DS06 == i => DS27       
+      DS06 == 0 => DS27             DS06 == b => DS27       
+      DS06 == x => DS27             DS06 == ' => DS27       
+      DS06 == q => DS27             DS06 == r => DS27       
+      DS06 == v => DS27             DS06 == N => DS27       
+      DS06 == ( => DS27             DS06 == { => DS27       
+      DS06 == @ => DS27             DS06 == S => DS27       
+      DS06 == - => DS27             DS06 == 1 => DS27       
+      DS06 == R => DS27             DS27 == H => DS27       
+      DS27 == 3 => DS27             DS27 == A => DS27       
+      DS27 == ; => DS27             DS27 == d => DS27       
+      DS27 == K => DS27             DS27 == o => DS27       
+      DS27 == L => DS27             DS27 == l => DS27       
+      DS27 == Q => DS27             DS27 == y => DS27       
+      DS27 == G => DS27             DS27 == P => DS27       
+      DS27 == \ => DS27             DS27 == ! => DS27       
+      DS27 == * => DS27             DS27 ==   => DS27       
+      DS27 == ? => DS27             DS27 == " => DS19       
+      DS27 == : => DS27             DS27 == ] => DS27       
+      DS27 == [ => DS27             DS27 == w => DS27       
+      DS27 == W => DS27             DS27 == 8 => DS27       
+      DS27 == 7 => DS27             DS27 == 2 => DS27       
+      DS27 == m => DS27             DS27 == V => DS27       
+      DS27 == p => DS27             DS27 == j => DS27       
+      DS27 == 5 => DS27             DS27 == & => DS27       
+      DS27 == B => DS27             DS27 == ^ => DS27       
+      DS27 == c => DS27             DS27 == = => DS27       
+      DS27 == _ => DS27             DS27 == O => DS27       
+      DS27 == / => DS27             DS27 == < => DS27       
+      DS27 == ) => DS27             DS27 == C => DS27       
+      DS27 == g => DS27             DS27 == X => DS27       
+      DS27 == n => DS27             DS27 == a => DS27       
+      DS27 == u => DS27             DS27 == # => DS27       
+      DS27 == Y => DS27             DS27 == M => DS27       
+      DS27 == } => DS27             DS27 == D => DS27       
+      DS27 == e => DS27             DS27 == f => DS27       
+      DS27 == ` => DS27             DS27 == z => DS27       
+      DS27 == I => DS27             DS27 == h => DS27       
+      DS27 == k => DS27             DS27 == > => DS27       
+      DS27 == J => DS27             DS27 == | => DS27       
+      DS27 == . => DS27             DS27 == T => DS27       
+      DS27 == 6 => DS27             DS27 == F => DS27       
+      DS27 == 9 => DS27             DS27 == % => DS27       
+      DS27 == + => DS27             DS27 == U => DS27       
+      DS27 == 4 => DS27             DS27 == ~ => DS27       
+      DS27 == Z => DS27             DS27 == , => DS27       
+      DS27 == t => DS27             DS27 == E => DS27       
+      DS27 == s => DS27             DS27 == i => DS27       
+      DS27 == 0 => DS27             DS27 == b => DS27       
+      DS27 == x => DS27             DS27 == ' => DS27       
+      DS27 == q => DS27             DS27 == r => DS27       
+      DS27 == v => DS27             DS27 == N => DS27       
+      DS27 == ( => DS27             DS27 == { => DS27       
+      DS27 == @ => DS27             DS27 == S => DS27       
+      DS27 == - => DS27             DS27 == 1 => DS27       
+      DS27 == R => DS27             DS05 == = => DS19       
+      DS02 == 3 => DS02             DS02 == L => DS12       
+      DS02 == l => DS12             DS02 == 8 => DS02       
+      DS02 == 7 => DS02             DS02 == 2 => DS02       
+      DS02 == 5 => DS02             DS02 == u => DS14       
+      DS02 == . => DS15             DS02 == 6 => DS02       
+      DS02 == 9 => DS02             DS02 == + => DS16       
+      DS02 == U => DS14             DS02 == 4 => DS02       
+      DS02 == 0 => DS02             DS02 == - => DS16       
+      DS02 == 1 => DS02             DS01 == H => DS01       
+      DS01 == 3 => DS01             DS01 == A => DS01       
+      DS01 == d => DS01             DS01 == K => DS01       
+      DS01 == o => DS01             DS01 == L => DS01       
+      DS01 == l => DS01             DS01 == Q => DS01       
+      DS01 == y => DS01             DS01 == G => DS01       
+      DS01 == P => DS01             DS01 == w => DS01       
+      DS01 == W => DS01             DS01 == 8 => DS01       
+      DS01 == 7 => DS01             DS01 == 2 => DS01       
+      DS01 == m => DS01             DS01 == V => DS01       
+      DS01 == p => DS01             DS01 == j => DS01       
+      DS01 == 5 => DS01             DS01 == B => DS01       
+      DS01 == c => DS01             DS01 == _ => DS01       
+      DS01 == O => DS01             DS01 == C => DS01       
+      DS01 == g => DS01             DS01 == X => DS01       
+      DS01 == n => DS01             DS01 == a => DS01       
+      DS01 == u => DS01             DS01 == Y => DS01       
+      DS01 == M => DS01             DS01 == D => DS01       
+      DS01 == e => DS01             DS01 == f => DS01       
+      DS01 == z => DS01             DS01 == I => DS01       
+      DS01 == h => DS01             DS01 == k => DS01       
+      DS01 == J => DS01             DS01 == T => DS01       
+      DS01 == 6 => DS01             DS01 == F => DS01       
+      DS01 == 9 => DS01             DS01 == U => DS01       
+      DS01 == 4 => DS01             DS01 == Z => DS01       
+      DS01 == t => DS01             DS01 == E => DS01       
+      DS01 == s => DS01             DS01 == i => DS01       
+      DS01 == 0 => DS01             DS01 == b => DS01       
+      DS01 == x => DS01             DS01 == q => DS01       
+      DS01 == r => DS01             DS01 == v => DS01       
+      DS01 == N => DS01             DS01 == S => DS01       
+      DS01 == 1 => DS01             DS01 == R => DS01       
 ====================================================================================================

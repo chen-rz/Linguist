@@ -1,4 +1,5 @@
 from LR1 import *
+from Utils import *
 
 
 def parse(token_list: list, grammar_file="Grammar.txt"):
@@ -13,6 +14,7 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
             grammar_formulae.append([line.split("==>")[0], line.split("==>")[1]])
         line = file.readline()
     file.close()
+    CONSOLE("Read grammar rules.", "NORMAL")
 
     # 获取所有非终结符、终结符、产生式
     terminal_set, non_term_set, producer_list = set(), set(), []
@@ -93,8 +95,8 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
                 pIdN = ProducerIdNo((prdLeft, prdRight), producer_list)
                 # 产生式不存在则报错
                 if pIdN == -1:
-                    print("No such producer-formula: " + ik[IT_LEFT] + " → ", end="")
-                    print(ik[IT_BEFORE_DOT])
+                    er = "No such producer-formula: " + ik[IT_LEFT] + " → " + ik[IT_BEFORE_DOT]
+                    CONSOLE(er, "ERROR")
                 else:
                     ACTION[(k, ik[IT_SEARCH])] = "r" + str(pIdN)
             # [S'→S·,#]
@@ -104,6 +106,8 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
         for A in non_term_set:
             if (k, A) in GO_dict.keys():
                 GOTO[(k, A)] = GO_dict[(k, A)]
+
+    CONSOLE("Established ACTION and GOTO tables for LR(1) parsing.", "NORMAL")
 
     # 语法分析
     # 状态栈、符号栈
@@ -132,9 +136,8 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
         if nextIn in terminal_set:
             # ACTION[S,a]不存在，报错
             if (status_stack[-1], nextIn) not in ACTION.keys():
-                print("\033[1;35m", end="")
-                print("Error: ACTION" + str((status_stack[-1], nextIn)) + " does not exist.")
-                print("\033[0m", end="")
+                er = "Error: ACTION" + str((status_stack[-1], nextIn)) + " does not exist."
+                CONSOLE(er, "ERROR")
                 break
             # ACTION[S,a]
             else:
@@ -143,15 +146,13 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
                 if actVal == "acc":
                     # 分析成功
                     if t == token_list[-1]:
-                        print("\033[1;32m", end="")
-                        print("Congratulations! Parsing completed.")
-                        print("\033[0m", end="")
+                        nm = "Congratulations! Parsing completed."
+                        CONSOLE(nm, "NORMAL")
                         token_list.pop(0)
                     # 非正常终止
                     else:
-                        print("\033[1;35m", end="")
-                        print("LR(1) parsing finished at the terminal status, but input was unfinished.")
-                        print("\033[0m", end="")
+                        er = "LR(1) parsing finished at the terminal status, but input was unfinished."
+                        CONSOLE(er, "ERROR")
                         break
                 # ACTION[S,a]=Sj
                 elif actVal[0] == "S":
@@ -170,9 +171,8 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
                     nextA = producer_list[int(actVal[1:])][0]
                     # GOTO[S,A]不存在，报错
                     if (not status_stack) or (status_stack[-1], nextA) not in GOTO.keys():
-                        print("\033[1;35m", end="")
-                        print("GOTO error")
-                        print("\033[0m", end="")
+                        er = "GOTO error"
+                        CONSOLE(er, "ERROR")
                         break
                     # GOTO[S,A]
                     else:
@@ -185,6 +185,9 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
         curr_log.append(gotoVal)
         parser_log.append(curr_log)
 
+    CONSOLE("Completed LR(1) parsing.", "NORMAL")
+
+    # TODO 完善语法，添加报错信息~
     for plg in parser_log:
         print(plg)
 
@@ -266,3 +269,5 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
                 file.write(" " * 20)
         file.write("\n")
     file.write("=" * 100 + "\n")
+
+    CONSOLE("Showed process of LR(1) parsing, wrote \"Process of LR(1) Parsing.txt\".", "NORMAL")

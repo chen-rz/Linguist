@@ -1,5 +1,6 @@
 from FA import *
 from Lexicon import *
+from Utils import *
 
 
 def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.txt"):
@@ -14,6 +15,7 @@ def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.t
             production_formulae.append([line.split("==>")[0], line.split("==>")[1]])
         line = file.readline()
     file.close()
+    CONSOLE("Read lexical syntax.", "NORMAL")
 
     # NFA的字母表、状态集
     alphabet, NFA_statuses = set(), {FA_START_STATUS, FA_FINISH_STATUS}
@@ -27,9 +29,11 @@ def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.t
         for ont in one_non_terminals:
             NFA_statuses.add(ont)
         transition_functions += one_transitions
+    CONSOLE("Established NFA.", "NORMAL")
 
     # DFA
     DFA_statuses, DFA_transitions = NFAToDFA(alphabet, transition_functions)
+    CONSOLE("Established DFA.", "NORMAL")
 
     # 读取源代码
     source_code = []
@@ -51,6 +55,7 @@ def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.t
         source_code.append(line)
         line = file.readline()
     file.close()
+    CONSOLE("Read and resolved source code.", "NORMAL")
 
     # 分析源代码
     # (行号, 单词, Token, 值)
@@ -171,6 +176,7 @@ def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.t
 
             # 读取下一个字符
             i += 1
+    CONSOLE("Analyzed source code.", "NORMAL")
 
     # 写入输出文件
     file = open("Token List.txt", "w", encoding="UTF-8")
@@ -180,34 +186,7 @@ def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.t
         file.write(str(tt[0]).ljust(5, ' ') + str(tt[1]).ljust(20, ' ')
                    + str(tt[2]).ljust(15, ' ') + str(tt[3]) + "\n")
     file.close()
-
-    # 控制台输出报错信息
-    if errorInfo:
-        print("\033[1;35m", end="")
-        print(str(len(errorInfo)) + " error(s)")
-        print("\033[0m", end="")
-        for ei in errorInfo:
-            line_info = "In Line " + str(ei[0]) + ": "
-            print(line_info + ei[1])
-            print(" " * len(line_info) + " " * ei[2] + "^")
-            if ei[3] == ERR_HEX:
-                print(" " * len(line_info) + "Error: Illegal hexadecimal")
-                print(" " * len(line_info) +
-                      "Hint: Hex digits should be numbers or letters in A-F (case insensitive)")
-            elif ei[3] == ERR_IDENTIFIER:
-                print(" " * len(line_info) + "Error: Illegal identifier, or incorrect decimal number")
-                print(" " * len(line_info) +
-                      "Hint: Identifiers should begin with a letter or an underline, " +
-                      "and should only consist of letters, digits and underline")
-            elif ei[3] == ERR_ILLEGAL_CHAR:
-                print(" " * len(line_info) + "Error: Unsupported character")
-                print(" " * len(line_info) +
-                      "Hint: Non-ascii characters are currently unacceptable")
-            elif ei[3] == ERR_UNFINISHED_WORD:
-                print(" " * len(line_info) + "Error: Unexpected ending")
-                print(" " * len(line_info) +
-                      "Hint: It looks like an unfinished word")
-        print("Analysis terminated.")
+    CONSOLE("Completed lexical analysis, wrote \"Token List.txt\".", "NORMAL")
 
     # 词法分析过程展示
     file = open("Process of Lexical Analysis.txt", "w", encoding="UTF-8")
@@ -282,5 +261,6 @@ def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.t
         k += 1
     file.write("\n" + "=" * 100 + "\n")
     file.close()
+    CONSOLE("Showed process of lexical analysis, wrote \"Process of Lexical Analysis.txt\".", "NORMAL")
 
-    return token_tuples
+    return token_tuples, errorInfo

@@ -3,6 +3,10 @@ from Lexer import *
 import Parser
 from Utils import *
 
+# 欢迎
+CONSOLE("Welcome to Linguist, the integrated lexer and parser!", "PLAIN")
+CONSOLE("Copyright © 2022 Runze Chen\n", "PLAIN")
+
 # 输入各文件名
 sourceCode_file = input("Input path of source code " +
                         "(press Enter directly for default \"Source Code.txt\"):\n")

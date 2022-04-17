@@ -35,13 +35,13 @@ TOK_OPERATOR = "OPERATOR"
 TOK_ERROR = "ERROR"
 
 # Constant
-CON_DECIMAL = "DECIMAL"
-CON_HEX = "HEXADECIMAL"
-CON_FLOAT = "FLOAT"
-CON_SCIENTIFIC = "SCIENTIFIC"
-CON_EXPRESSION = "EXPRESSION"
-CON_COMPLEX = "COMPLEX"
-CON_STRING = "STRING"
+CON_DECIMAL = "301"
+CON_HEX = "302"
+CON_FLOAT = "303"
+CON_SCIENTIFIC = "304"
+CON_EXPRESSION = "305"
+CON_COMPLEX = "306"
+CON_STRING = "307"
 
 # Error
 # 1 标识符错误（数字后面跟字母）
@@ -53,6 +53,7 @@ ERR_ILLEGAL_CHAR = "UNSUPPORTED_CHARACTER"
 # 4 未完成的单词
 ERR_UNFINISHED_WORD = "UNFINISHED_WORD"
 
+# 使用代号存储，为未来的语义分析预留接口
 # 关键字
 KEYWORD = {}
 # Common (11)
@@ -102,12 +103,26 @@ KEYWORD["with"] = KWD_WITH
 KEYWORD["except"] = KWD_EXCEPT
 KEYWORD["raise"] = KWD_RAISE
 
+# C++ (Part of, 9)
+KWD_AUTO, KWD_DOUBLE, KWD_BOOL, KWD_INT, KWD_LONG, \
+KWD_STATIC, KWD_STRING, KWD_CONST, KWD_FLOAT \
+    = range(134, 143)
+KEYWORD["auto"] = KWD_AUTO
+KEYWORD["double"] = KWD_DOUBLE
+KEYWORD["bool"] = KWD_BOOL
+KEYWORD["int"] = KWD_INT
+KEYWORD["long"] = KWD_LONG
+KEYWORD["float"] = KWD_FLOAT
+KEYWORD["string"] = KWD_STRING
+KEYWORD["static"] = KWD_STATIC
+KEYWORD["const"] = KWD_CONST
+
 # 限定符
 DELIMITER = {}
 DEL_L_PARENTHESIS, DEL_R_PARENTHESIS, DEL_L_BRACKET, DEL_R_BRACKET, DEL_L_BRACE, \
 DEL_R_BRACE, DEL_SEMICOLON, DEL_COLON, DEL_COMMA, DEL_PERIOD, \
 DEL_OCTOTHORPE, DEL_QUESTION \
-    = range(201, 213)
+    = range(401, 413)
 
 DELIMITER["("] = DEL_L_PARENTHESIS
 DELIMITER[")"] = DEL_R_PARENTHESIS
@@ -129,7 +144,7 @@ OPR_EQUAL, OPR_GT, OPR_LT, OPR_GET, OPR_LET, \
 OPR_SELF_PLUS, OPR_SELF_MINUS, OPR_SELF_MUL, OPR_SELF_DIV, OPR_MOD, \
 OPR_DBL_GT, OPR_DBL_LT, OPR_ARITH_AND, OPR_ARITH_OR, OPR_NOT, \
 OPR_INVERSE, OPR_XOR, OPR_LOGI_AND, OPR_LOGI_OR \
-    = range(301, 325)
+    = range(501, 525)
 OPERATOR["+"] = OPR_PLUS
 OPERATOR["-"] = OPR_MINUS
 OPERATOR["*"] = OPR_MUL
@@ -170,7 +185,7 @@ def GetToken(status_stack: list, word: str):
             if FIN_KW_ID in elem:
                 # 查询关键字表
                 if KEYWORD.get(word):
-                    tok, val = TOK_KEYWORD, KEYWORD.get(word)
+                    tok, val = TOK_KEYWORD, str(KEYWORD.get(word))
                 # 标识符
                 else:
                     tok, val = TOK_IDENTIFIER, ""
@@ -207,11 +222,11 @@ def GetToken(status_stack: list, word: str):
                 break
             # 8 界符
             elif FIN_DELIMITER in elem:
-                tok, val = TOK_DELIMITER, DELIMITER.get(word)
+                tok, val = TOK_DELIMITER, str(DELIMITER.get(word))
                 break
             # 9 运算符
             elif FIN_OPERATOR in elem:
-                tok, val = TOK_OPERATOR, OPERATOR.get(word)
+                tok, val = TOK_OPERATOR, str(OPERATOR.get(word))
                 break
 
     return tok, val
@@ -231,3 +246,7 @@ def IsSyntaxError(word: str, ch: str, alphabet: set):
     # 4 未完成的单词，由词法分析程序判断
     # 其他情况不是错误
     return None
+
+
+def getTerminalCode(word: str):
+    return str(eval(word))

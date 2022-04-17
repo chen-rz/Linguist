@@ -1,3 +1,6 @@
+import Lexicon
+
+
 # 产生式右部拆分
 def LR1_RightSideProcess(s: str):
     # 拆分一条产生式的多个右部选项
@@ -73,6 +76,11 @@ def LR1_FormulaeResolution(l: str, whole_r: str):
                 elif nt_or_t == -1:
                     if rs == ")":
                         nt_or_t = 0
+
+                        # 存储终结符代号
+                        if rBuff:
+                            rBuff = Lexicon.getTerminalCode(rBuff)
+
                         rBfs.append(rBuff)
                         terminal.add(rBuff)
                         rBuff = ""
@@ -95,7 +103,29 @@ def ProducerIdNo(p: tuple, producer_list: list):
 # FIRST集
 def FIRST(symbol_list: list, terminal: set, non_term: set, producers: list):
     FIRST_set = set()
-    for s in symbol_list:
+
+    # for s in symbol_list:
+    #     # 找到第一个终结符
+    #     if s in terminal:
+    #         FIRST_set.add(s)
+    #     # 非终结符
+    #     elif s in non_term:
+    #         # 查找以其为左部的产生式
+    #         for prd in producers:
+    #             if prd[0] == s:
+    #                 # 递归调用
+    #                 FIRST_set = FIRST_set.union(
+    #                     FIRST(prd[1], terminal, non_term, producers))
+    #     # 若找到终结符，则结束
+    #     if FIRST_set:
+    #         return FIRST_set
+
+    # 采用迭代算法
+    pstack = [symbol_list]
+    while pstack:
+        # 首符号
+        s = pstack[-1][0]
+        pstack.pop(-1)
         # 找到第一个终结符
         if s in terminal:
             FIRST_set.add(s)
@@ -104,12 +134,7 @@ def FIRST(symbol_list: list, terminal: set, non_term: set, producers: list):
             # 查找以其为左部的产生式
             for prd in producers:
                 if prd[0] == s:
-                    # 递归调用
-                    FIRST_set = FIRST_set.union(
-                        FIRST(prd[1], terminal, non_term, producers))
-        # 若找到终结符，则结束
-        if FIRST_set:
-            return FIRST_set
+                    pstack.append(prd[1])
 
     return FIRST_set
 

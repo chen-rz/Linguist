@@ -22,7 +22,75 @@
 #<B> ==> (a) <B> $ (b)
 
 # 著名的期末复习题
+#<START'> ==> () <START> ()
+#<START> ==> <A>
+#<A> ==> <A> <B> $ ()
+#<B> ==> (a) <B> $ (b)
+
+##################################################
+
+# 不检测换行，也不采用GO语言式自动添加行末分号的编译过程，因此需要行末分号，分析时将其转换为句子括号以起分隔作用
+# 开始
 <START'> ==> () <START> ()
-<START> ==> <A>
-<A> ==> <A> <B> $ ()
-<B> ==> (a) <B> $ (b)
+
+# 包声明、函数定义、类定义、语句
+<START> ==> <START><Package> $ <START><Func_Def> $ <START><Statement>
+<START> ==> ()
+
+# 通用非终结符
+# 语句结束符
+<EOS> ==> (DEL_SEMICOLON)
+# 常量
+<Constant> ==> (CON_DECIMAL) $ (CON_HEX) $ (CON_FLOAT) $ (CON_SCIENTIFIC) $ (CON_EXPRESSION)
+<Constant> ==> (CON_COMPLEX) $ (CON_STRING) $ (KWD_FALSE) $ (KWD_TRUE)
+# 变量类型
+<Var_Type> ==> (KWD_AUTO) $ (KWD_DOUBLE) $ (KWD_BOOL) $ (KWD_INT)
+<Var_Type> ==> (KWD_LONG) $ (KWD_FLOAT) $ (KWD_STRING)
+# 变量修饰符
+<Var_Decorate> ==> (KWD_STATIC) $ (KWD_CONST)
+# 运算符
+<Operator> ==> (OPR_PLUS) $ (OPR_MINUS) $ (OPR_MUL) $ (OPR_DIV) $ (OPR_ASSIGN)
+<Operator> ==> (OPR_SELF_PLUS) $ (OPR_SELF_MINUS) $ (OPR_SELF_MUL) $ (OPR_SELF_DIV) $ (OPR_EQUAL)
+<Operator> ==> (OPR_INVERSE) $ (OPR_NOT) $ (OPR_MOD) $ (OPR_XOR) $ (OPR_LOGI_AND)
+<Operator> ==> (OPR_LOGI_OR) $ (OPR_DBL_LT) $ (OPR_DBL_GT) $ (OPR_GT) $ (OPR_LT)
+<Operator> ==> (OPR_GET) $ (OPR_LET) $ (OPR_ARITH_AND) $ (OPR_ARITH_OR)
+
+# 包声明
+# import x
+<Package> ==> (KWD_IMPORT)(TOK_IDENTIFIER)<P_1>
+# .x
+<P_1> ==> (DEL_PERIOD)(TOK_IDENTIFIER)<P_1> $ <P_2>
+# as x;
+<P_2> ==> (KWD_AS)(TOK_IDENTIFIER)<EOS> $ <EOS>
+# from x
+<Package> ==> (KWD_FROM)(TOK_IDENTIFIER)<P_3>
+# .x
+<P_3> ==> (DEL_PERIOD)(TOK_IDENTIFIER)<P_3>
+# import *; / import x;
+<P_3> ==> (KWD_IMPORT)(OPR_MUL)<EOS> $ (KWD_IMPORT)(TOK_IDENTIFIER)<EOS>
+
+# 函数定义
+<Func_Def> ==> (KWD_DEF)(TOK_IDENTIFIER)(DEL_L_PARENTHESIS)<F_P>
+# 参数表
+<F_P> ==> (TOK_IDENTIFIER)(DEL_COLON)<Var_Type><F_P_1> $ <F_P_E>
+<F_P_1> ==> (DEL_COMMA)(TOK_IDENTIFIER)(DEL_COLON)<Var_Type><F_P_1> $ <F_P_E>
+<F_P_E> ==> (DEL_R_PARENTHESIS)(DEL_L_BRACE)<F_B>
+# 函数体
+<F_B> ==> <Statement><F_B> $ (DEL_R_BRACE)
+
+
+# 语句
+# 表达式、返回语句、声明语句、条件控制语句、循环控制语句、lambda表达式
+<Statement> ==> <S_Expression> $ <S_Return>
+# 语句块
+<Statement> ==> (DEL_L_BRACE)<Statement>(DEL_R_BRACE)
+
+# 表达式
+<S_Expression> ==> (DEL_L_PARENTHESIS)<S_Expression>(DEL_R_PARENTHESIS)
+<S_Expression> ==> (TOK_IDENTIFIER)<S_Exp_1> $ <Constant><S_Exp_1>
+<S_Exp_1> ==> <Operator><S_Expression> $ <EOS>
+
+# 返回语句
+<S_Return> ==> (KWD_RETURN)<EOS> $ (KWD_RETURN)(TOK_IDENTIFIER)<EOS> $ (KWD_RETURN)<S_Expression><EOS>
+
+# 左值、右值

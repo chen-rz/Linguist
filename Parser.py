@@ -95,7 +95,7 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
                 pIdN = ProducerIdNo((prdLeft, prdRight), producer_list)
                 # 产生式不存在则报错
                 if pIdN == -1:
-                    er = "No such producer-formula: " + ik[IT_LEFT] + " → " + ik[IT_BEFORE_DOT]
+                    er = "No such producer-formula: " + str(ik[IT_LEFT]) + " → " + str(ik[IT_BEFORE_DOT])
                     CONSOLE(er, "ERROR")
                 else:
                     ACTION[(k, ik[IT_SEARCH])] = "r" + str(pIdN)
@@ -131,7 +131,7 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
         # 用于记录ACTION和GOTO表值
         actVal, gotoVal = "", ""
         # 当前步骤分析记录
-        curr_log = [status_stack.copy(), symbol_stack.copy(), nextIn]
+        curr_log = [status_stack.copy(), symbol_stack.copy(), t[1] + " (" + nextIn + ")"]
 
         if nextIn in terminal_set:
             # ACTION[S,a]不存在，报错
@@ -146,12 +146,14 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
                 if actVal == "acc":
                     # 分析成功
                     if t == token_list[-1]:
-                        nm = "Congratulations! Parsing completed."
-                        CONSOLE(nm, "NORMAL")
+                        CONSOLE("Congratulations! Parsing finished successfully.", "NORMAL")
                         token_list.pop(0)
                     # 非正常终止
                     else:
                         er = "LR(1) parsing finished at the terminal status, but input was unfinished."
+                        er += "\nRemaining: "
+                        for tki in token_list:
+                            er += str(tki) + " "
                         CONSOLE(er, "ERROR")
                         break
                 # ACTION[S,a]=Sj
@@ -180,6 +182,11 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
                         gotoVal = str(GOTO[(status_stack[-1], nextA)])
                         status_stack.append(GOTO[(status_stack[-1], nextA)])
 
+        # 非法字符输入
+        else:
+            CONSOLE("Illegal token input: " + str(nextIn) + ". LR(1) parsing failed.", "ERROR")
+            return
+
         # 记录分析过程
         curr_log.append(actVal)
         curr_log.append(gotoVal)
@@ -188,8 +195,6 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
     CONSOLE("Completed LR(1) parsing.", "NORMAL")
 
     # TODO 完善语法，添加报错信息~
-    for plg in parser_log:
-        print(plg)
 
     # 语法分析过程展示
     file = open("Process of LR(1) Parsing.txt", "w", encoding="UTF-8")
@@ -267,6 +272,33 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
                 file.write(str(GOTO[(k, A)]).center(20, ' '))
             else:
                 file.write(" " * 20)
+        file.write("\n")
+    file.write("=" * 100 + "\n")
+    # 移进、归约过程
+    col_1_width = len(str(len(parser_log))) + 2
+    col_2_width, col_3_width, col_4_width = 12, 12, 20
+    for plg in parser_log:
+        if len(str(plg[0])) > col_2_width:
+            col_2_width = len(str(plg[0]))
+        if len(str(plg[1])) > col_3_width:
+            col_3_width = len(str(plg[1]))
+        if len(str(plg[2])) > col_4_width:
+            col_4_width = len(str(plg[2]))
+    file.write("Analysis Record:\n")
+    file.write("No.".center(col_1_width, ' '))
+    file.write("Status Stack".center(col_2_width, ' '))
+    file.write("Symbol Stack".center(col_3_width, ' '))
+    file.write("Next Word (Symbol)".center(col_4_width, ' '))
+    file.write("ACTION".center(8, ' '))
+    file.write("GOTO".center(6, ' '))
+    file.write("\n")
+    for k in range(len(parser_log)):
+        file.write(str(k + 1).ljust(col_1_width, ' '))
+        file.write(str(parser_log[k][0]).ljust(col_2_width, ' '))
+        file.write(str(parser_log[k][1]).ljust(col_3_width, ' '))
+        file.write(str(parser_log[k][2]).ljust(col_4_width, ' '))
+        file.write(str(parser_log[k][3]).center(8, ' '))
+        file.write(str(parser_log[k][4]).center(6, ' '))
         file.write("\n")
     file.write("=" * 100 + "\n")
 

@@ -18,7 +18,7 @@ FIN_FLOAT = "F_FLO"
 # 5
 FIN_SCIENTIFIC = "F_SCI"
 # 6
-FIN_CP_EP = "F_C_E"
+FIN_COMPLEX = "F_COM"
 # 7
 FIN_STRING = "F_STR"
 # 8
@@ -207,14 +207,9 @@ def GetToken(status_stack: list, word: str):
             elif FIN_SCIENTIFIC in elem:
                 tok, val = TOK_CONSTANT, CON_SCIENTIFIC
                 break
-            # 6 常量：复数或加减表达式
-            elif FIN_CP_EP in elem:
-                # 复数
-                if word[-1] == "i":
-                    tok, val = TOK_CONSTANT, CON_COMPLEX
-                # 表达式
-                else:
-                    tok, val = TOK_CONSTANT, CON_EXPRESSION
+            # 6 常量：复数
+            elif FIN_COMPLEX in elem:
+                tok, val = TOK_CONSTANT, CON_COMPLEX
                 break
             # 7 常量：字符串
             elif FIN_STRING in elem:

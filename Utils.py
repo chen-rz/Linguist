@@ -15,3 +15,20 @@ def CONSOLE(e: str, infoType: str):
 
     print(e)
     print("\033[0m", end="")
+
+
+# 进度条
+def ProgressBar(p: float):
+    p *= 100
+    pi = int(p)
+    pd = int((p - pi) * 10)
+    print("\033[1;34m", end="")
+    pgb = "\r[" + "#" * (pi - 1)
+    if pd == 0:
+        pgb += "#"
+    else:
+        pgb += str(pd)
+    pgb += " " * (100 - pi) + "] "
+    pgb += str(pi) + "." + str(pd) + "%"
+    print(pgb, end="")
+    print("\033[0m", end="")

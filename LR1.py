@@ -149,24 +149,55 @@ def ItemSetClosure(I: list, terminals: set, non_terminals: set, producers: list)
     clo = I.copy()
 
     converged = False
+    i = 0
     while not converged:
         converged = True
-        for i in clo:
+        # for i in clo:
+        #     # 处理空产生式的情况
+        #     while "" in i[IT_BEFORE_DOT]:
+        #         i[IT_BEFORE_DOT].remove("")
+        #     while "" in i[IT_AFTER_DOT]:
+        #         i[IT_AFTER_DOT].remove("")
+        #     # 若有项目A→α·Bβ,a属于CLOSURE(I)，
+        #     if i[IT_AFTER_DOT] and i[IT_AFTER_DOT][0] in non_terminals:
+        #         # B→γ是文法中的产生式，
+        #         nextAfterDot = i[IT_AFTER_DOT][0]
+        #         for p in producers:
+        #             if p[0] == nextAfterDot:
+        #                 # βa
+        #                 bAfterDot = i[IT_AFTER_DOT].copy()  # 一定要以拷贝的形式！
+        #                 bAfterDot.pop(0)
+        #                 bAfterDot.append(i[IT_SEARCH])
+        #                 # FIRST集
+        #                 firstBetas = FIRST(bAfterDot, terminals, non_terminals, producers)
+        #                 # b∈FIRST(βa)，
+        #                 for sfs in firstBetas:
+        #                     # 则B→·γ,b也属于CLOSURE(I)
+        #                     it = [nextAfterDot, [], p[1], sfs]
+        #                     # 直到CLOSURE(I)不再增大为止
+        #                     if it not in clo:
+        #                         clo.append(it)
+        #                         converged = False
+        #     # CLOSURE(I)改变，重新开始循环
+        #     if not converged:
+        #         break
+
+        while i in range(len(clo)):
             # 处理空产生式的情况
-            while "" in i[IT_BEFORE_DOT]:
-                i[IT_BEFORE_DOT].remove("")
-            while "" in i[IT_AFTER_DOT]:
-                i[IT_AFTER_DOT].remove("")
+            while "" in clo[i][IT_BEFORE_DOT]:
+                clo[i][IT_BEFORE_DOT].remove("")
+            while "" in clo[i][IT_AFTER_DOT]:
+                clo[i][IT_AFTER_DOT].remove("")
             # 若有项目A→α·Bβ,a属于CLOSURE(I)，
-            if i[IT_AFTER_DOT] and i[IT_AFTER_DOT][0] in non_terminals:
+            if clo[i][IT_AFTER_DOT] and clo[i][IT_AFTER_DOT][0] in non_terminals:
                 # B→γ是文法中的产生式，
-                nextAfterDot = i[IT_AFTER_DOT][0]
+                nextAfterDot = clo[i][IT_AFTER_DOT][0]
                 for p in producers:
                     if p[0] == nextAfterDot:
                         # βa
-                        bAfterDot = i[IT_AFTER_DOT].copy()  # 一定要以拷贝的形式！
+                        bAfterDot = clo[i][IT_AFTER_DOT].copy()  # 一定要以拷贝的形式！
                         bAfterDot.pop(0)
-                        bAfterDot.append(i[IT_SEARCH])
+                        bAfterDot.append(clo[i][IT_SEARCH])
                         # FIRST集
                         firstBetas = FIRST(bAfterDot, terminals, non_terminals, producers)
                         # b∈FIRST(βa)，
@@ -177,6 +208,7 @@ def ItemSetClosure(I: list, terminals: set, non_terminals: set, producers: list)
                             if it not in clo:
                                 clo.append(it)
                                 converged = False
+            i += 1
             # CLOSURE(I)改变，重新开始循环
             if not converged:
                 break

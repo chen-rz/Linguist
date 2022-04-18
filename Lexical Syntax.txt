@@ -65,7 +65,7 @@
 
 
 # 常量
-<C_START> ==> <Integer> $ <Float> $ <Scientific> $ <Complex_Expression> $ <String>
+<C_START> ==> <Integer> $ <Float> $ <Scientific> $ <Complex> $ <String>
 <Integer> ==> <Decimal> $ <Hexadecimal>
 
 # 十进制整数
@@ -135,41 +135,45 @@
 <F_SCI_6> ==> 5<F_SCI_6> $ 6<F_SCI_6> $ 7<F_SCI_6> $ 8<F_SCI_6> $ 9<F_SCI_6>
 <F_SCI_6> ==>
 
-# 复数或加减表达式
+# 复数
+# 左括号
+<Complex> ==> (<COM_0>
 # 实部
 # 以0~9开头
-<Complex_Expression> ==> 0<C_E_1> $ 1<C_E_1> $ 2<C_E_1> $ 3<C_E_1> $ 4<C_E_1>
-<Complex_Expression> ==> 5<C_E_1> $ 6<C_E_1> $ 7<C_E_1> $ 8<C_E_1> $ 9<C_E_1>
+<COM_0> ==> 0<COM_1> $ 1<COM_1> $ 2<COM_1> $ 3<COM_1> $ 4<COM_1>
+<COM_0> ==> 5<COM_1> $ 6<COM_1> $ 7<COM_1> $ 8<COM_1> $ 9<COM_1>
 # 直到小数点
-<C_E_1> ==> 0<C_E_1> $ 1<C_E_1> $ 2<C_E_1> $ 3<C_E_1> $ 4<C_E_1>
-<C_E_1> ==> 5<C_E_1> $ 6<C_E_1> $ 7<C_E_1> $ 8<C_E_1> $ 9<C_E_1>
-<C_E_1> ==> .<C_E_2>
+<COM_1> ==> 0<COM_1> $ 1<COM_1> $ 2<COM_1> $ 3<COM_1> $ 4<COM_1>
+<COM_1> ==> 5<COM_1> $ 6<COM_1> $ 7<COM_1> $ 8<COM_1> $ 9<COM_1>
+<COM_1> ==> .<COM_2>
 # 也有可能没有小数点
-<C_E_1> ==> +<C_E_4> $ -<C_E_4>
+<COM_1> ==> +<COM_4> $ -<COM_4>
 # 小数点之后
-<C_E_2> ==> 0<C_E_3> $ 1<C_E_3> $ 2<C_E_3> $ 3<C_E_3> $ 4<C_E_3>
-<C_E_2> ==> 5<C_E_3> $ 6<C_E_3> $ 7<C_E_3> $ 8<C_E_3> $ 9<C_E_3>
+<COM_2> ==> 0<COM_3> $ 1<COM_3> $ 2<COM_3> $ 3<COM_3> $ 4<COM_3>
+<COM_2> ==> 5<COM_3> $ 6<COM_3> $ 7<COM_3> $ 8<COM_3> $ 9<COM_3>
 # 小数部分结束，+、-
-<C_E_3> ==> 0<C_E_3> $ 1<C_E_3> $ 2<C_E_3> $ 3<C_E_3> $ 4<C_E_3>
-<C_E_3> ==> 5<C_E_3> $ 6<C_E_3> $ 7<C_E_3> $ 8<C_E_3> $ 9<C_E_3>
-<C_E_3> ==> +<C_E_4> $ -<C_E_4>
+<COM_3> ==> 0<COM_3> $ 1<COM_3> $ 2<COM_3> $ 3<COM_3> $ 4<COM_3>
+<COM_3> ==> 5<COM_3> $ 6<COM_3> $ 7<COM_3> $ 8<COM_3> $ 9<COM_3>
+<COM_3> ==> +<COM_4> $ -<COM_4>
 # 虚部
 # 以0~9开头
-<C_E_4> ==> 0<F_C_E_5> $ 1<F_C_E_5> $ 2<F_C_E_5> $ 3<F_C_E_5> $ 4<F_C_E_5>
-<C_E_4> ==> 5<F_C_E_5> $ 6<F_C_E_5> $ 7<F_C_E_5> $ 8<F_C_E_5> $ 9<F_C_E_5>
+<COM_4> ==> 0<COM_5> $ 1<COM_5> $ 2<COM_5> $ 3<COM_5> $ 4<COM_5>
+<COM_4> ==> 5<COM_5> $ 6<COM_5> $ 7<COM_5> $ 8<COM_5> $ 9<COM_5>
 # 直到小数点
-<F_C_E_5> ==> 0<F_C_E_5> $ 1<F_C_E_5> $ 2<F_C_E_5> $ 3<F_C_E_5> $ 4<F_C_E_5>
-<F_C_E_5> ==> 5<F_C_E_5> $ 6<F_C_E_5> $ 7<F_C_E_5> $ 8<F_C_E_5> $ 9<F_C_E_5>
-<F_C_E_5> ==> .<C_E_6>
+<COM_5> ==> 0<COM_5> $ 1<COM_5> $ 2<COM_5> $ 3<COM_5> $ 4<COM_5>
+<COM_5> ==> 5<COM_5> $ 6<COM_5> $ 7<COM_5> $ 8<COM_5> $ 9<COM_5>
+<COM_5> ==> .<COM_6>
 # 也有可能没有小数点
-<F_C_E_5> ==> i $
+<COM_5> ==> i<F_COM_8>
 # 小数点之后
-<C_E_6> ==> 0<F_C_E_7> $ 1<F_C_E_7> $ 2<F_C_E_7> $ 3<F_C_E_7> $ 4<F_C_E_7>
-<C_E_6> ==> 5<F_C_E_7> $ 6<F_C_E_7> $ 7<F_C_E_7> $ 8<F_C_E_7> $ 9<F_C_E_7>
+<COM_6> ==> 0<COM_7> $ 1<COM_7> $ 2<COM_7> $ 3<COM_7> $ 4<COM_7>
+<COM_6> ==> 5<COM_7> $ 6<COM_7> $ 7<COM_7> $ 8<COM_7> $ 9<COM_7>
 # 小数部分结束，i或ε
-<F_C_E_7> ==> 0<F_C_E_7> $ 1<F_C_E_7> $ 2<F_C_E_7> $ 3<F_C_E_7> $ 4<F_C_E_7>
-<F_C_E_7> ==> 5<F_C_E_7> $ 6<F_C_E_7> $ 7<F_C_E_7> $ 8<F_C_E_7> $ 9<F_C_E_7>
-<F_C_E_7> ==> i $
+<COM_7> ==> 0<COM_7> $ 1<COM_7> $ 2<COM_7> $ 3<COM_7> $ 4<COM_7>
+<COM_7> ==> 5<COM_7> $ 6<COM_7> $ 7<COM_7> $ 8<COM_7> $ 9<COM_7>
+<COM_7> ==> i<F_COM_8>
+# 右括号
+<F_COM_8> ==> )
 
 # 字符串
 <String> ==> "<F_STR_1>

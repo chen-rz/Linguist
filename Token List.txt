@@ -40,23 +40,32 @@ Line Word                Token          Value
 7    double              KEYWORD        135
 7    )                   DELIMITER      402
 7    {                   DELIMITER      405
+8    int                 KEYWORD        137
 8    i                   IDENTIFIER     
 8    =                   OPERATOR       505
-8    a                   IDENTIFIER     
-8    +                   OPERATOR       501
 8    jia                 IDENTIFIER     
 8    +                   OPERATOR       501
-8    1+2                 CONSTANT       305
+8    1                   CONSTANT       301
+8    +                   OPERATOR       501
+8    a                   IDENTIFIER     
+8    +                   OPERATOR       501
+8    (1.2+2.3i)          CONSTANT       306
+8    +                   OPERATOR       501
+8    2.235e-28           CONSTANT       304
 8    *                   OPERATOR       503
-8    3                   CONSTANT       301
-8    /                   OPERATOR       504
-8    4                   CONSTANT       301
-8    ^                   OPERATOR       522
-8    5                   CONSTANT       301
-8    |                   OPERATOR       519
-8    6                   CONSTANT       301
+8    3.14159             CONSTANT       303
+8    +                   OPERATOR       501
+8    1                   CONSTANT       301
 8    &                   OPERATOR       518
-8    7+8                 CONSTANT       305
+8    2                   CONSTANT       301
+8    %                   OPERATOR       515
+8    4                   CONSTANT       301
+8    |                   OPERATOR       519
+8    5                   CONSTANT       301
+8    ^                   OPERATOR       522
+8    67                  CONSTANT       301
+8    +                   OPERATOR       501
+8    8                   CONSTANT       301
 8    -                   OPERATOR       502
 8    fake                IDENTIFIER     
 8    ;                   DELIMITER      407
@@ -64,3 +73,14 @@ Line Word                Token          Value
 9    jia                 IDENTIFIER     
 9    ;                   DELIMITER      407
 10   }                   DELIMITER      406
+12   while               KEYWORD        104
+12   (                   DELIMITER      401
+12   True                KEYWORD        122
+12   ;                   DELIMITER      407
+12   )                   DELIMITER      402
+12   {                   DELIMITER      405
+16   i                   IDENTIFIER     
+16   +=                  OPERATOR       511
+16   1                   CONSTANT       301
+16   ;                   DELIMITER      407
+17   }                   DELIMITER      406

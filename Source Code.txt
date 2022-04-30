@@ -1,17 +1,48 @@
+<!--# 语法错误示例1/3
+;int a=1;
+-->
+
 # 包声明
 import os;
 from Lexer import *;
 from Foo.bar.foo import Bar;
 import matplotlib.pyplot as ppl;
 
-def mian(jia:string,fake:int,counterfeit:double){
-    int i=jia+1+a+(1.2+2.3i)+2.235e-28*3.14159+1&2%4|5^67+8-fake;
-    return jia;
+# 函数声明
+def fun(arg1:string,arg2:int,arg3:double){
+
+    <!--# 词法错误示例
+    int foo=0x3G;
+    float 6abc=2.1412;
+    string français="bonjour";
+    double d=1.23e;
+    -->
+
+    <!--# 语法错误示例2/3
+    return ab n;
+    int float a=0.35e+35;
+    -->
+    <!--# 语法错误示例3/3
+    auto x=8.8
+    -->
+
+    return;
 }
 
+# 语句示例
 while(True;){
-    <!--for(int i=0;i<=s;i+=1;){
-        if(i<=k) i+=k;
-    }-->
+    string english="hello";
+    for(int i=0;i<=s;i+=1;){
+        if(i<=k;)
+            i+=k;
+        i*=10086;
+        while(True;){
+            i=1+2+3;
+            j=3*4/5;
+            if(j;) break;
+        }
+
+        break;
+    }
     i+=1;
 }

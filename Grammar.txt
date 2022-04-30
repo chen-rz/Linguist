@@ -29,7 +29,7 @@
 
 ##################################################
 
-# 不检测换行，也不采用GO语言式自动添加行末分号的编译过程，因此需要行末分号，分析时将其转换为句子括号以起分隔作用
+# 不检测换行，也不采用GO语言式自动添加行末分号的编译过程，因此需要行末分号以分隔语句
 # 开始
 <START'> ==> () <START> ()
 # 包声明、语句、函数定义
@@ -45,19 +45,20 @@
 <Var_Type> ==> (KWD_AUTO) $ (KWD_DOUBLE) $ (KWD_BOOL) $ (KWD_INT)
 <Var_Type> ==> (KWD_LONG) $ (KWD_FLOAT) $ (KWD_STRING)
 
-# 运算符
+# 双目运算符
 # + - * / = ==
 <Operator> ==> (OPR_PLUS) $ (OPR_MINUS) $ (OPR_MUL) $ (OPR_DIV) $ (OPR_ASSIGN) $ (OPR_EQUAL)
 # >= <= > <
 <Operator> ==> (OPR_GET) $ (OPR_LET) $ (OPR_GT) $ (OPR_LT)
-# % || && !
-<Operator> ==> (OPR_MOD) $ (OPR_LOGI_OR) $ (OPR_LOGI_AND) $ (OPR_NOT)
+# % || && ^ & |
+<Operator> ==> (OPR_MOD) $ (OPR_LOGI_OR) $ (OPR_LOGI_AND) $ (OPR_XOR) $ (OPR_ARITH_AND) $ (OPR_ARITH_OR)
 # += -= *= /=
 <Operator> ==> (OPR_SELF_PLUS) $ (OPR_SELF_MINUS) $ (OPR_SELF_MUL) $ (OPR_SELF_DIV)
-# ~ ^ & |
-<Operator> ==> (OPR_INVERSE) $ (OPR_XOR) $ (OPR_ARITH_AND) $ (OPR_ARITH_OR)
 # << >>
 <Operator> ==> (OPR_DBL_LT) $ (OPR_DBL_GT)
+
+# 单目运算符 ! ~
+<Operator_1> ==> (OPR_NOT) $ (OPR_INVERSE)
 
 # 常量
 <Constant> ==> (CON_DECIMAL) $ (CON_HEX) $ (CON_FLOAT) $ (CON_SCIENTIFIC) $ (CON_EXPRESSION)
@@ -80,17 +81,25 @@
 
 
 # 语句
-# 表达式、返回语句、声明语句、if语句、while语句、for语句
-<Statement> ==> <S_Expression> $ <S_Return> $ <S_Define> $ <S_If> $ <S_While> $ <S_For>
+# 表达式、返回语句、break语句、声明语句、if语句、while语句、for语句
+<Statement> ==> <S_Expression> $ <S_Return> $ <S_Break> $ <S_Define> $ <S_If> $ <S_While> $ <S_For>
+# 多条语句
+<S_Multi> ==> <Statement><S_Multi> $ <Statement>
 # 语句块
-<Statement> ==> (DEL_L_BRACE)<Statement>(DEL_R_BRACE)
+<S_Multi> ==> (DEL_L_BRACE)<S_Multi>(DEL_R_BRACE)
+
 
 # 表达式，不支持括号
-<S_Expression> ==> (TOK_IDENTIFIER)<S_Exp_1> $ <Constant><S_Exp_1>
-<S_Exp_1> ==> <Operator>(TOK_IDENTIFIER)<S_Exp_1> $ <Operator><Constant><S_Exp_1> $ <EOS>
+# 可能含有单目运算符
+<S_Expression> ==> <Operator_1><S_Exp_Con_Opr><S_Exp_1> $ <S_Exp_Con_Opr><S_Exp_1>
+<S_Exp_Con_Opr> ==> (TOK_IDENTIFIER) $ <Constant>
+<S_Exp_1> ==> <Operator><S_Exp_Con_Opr><S_Exp_1> $ <EOS>
 
 # 返回语句
 <S_Return> ==> (KWD_RETURN)<EOS> $ (KWD_RETURN)(TOK_IDENTIFIER)<EOS> $ (KWD_RETURN)<S_Expression><EOS>
+
+# break语句
+<S_Break> ==> (KWD_BREAK)<EOS>
 
 # 声明语句
 <S_Define> ==> (KWD_STATIC)<S_D_1> $ (KWD_CONST)<S_D_1> $ <S_D_1>
@@ -98,13 +107,13 @@
 <S_D_1> ==> <Var_Type>(TOK_IDENTIFIER)(OPR_ASSIGN)<S_Expression>
 
 # if语句
-<S_If> ==> (KWD_IF)(DEL_L_PARENTHESIS)<S_Expression>(DEL_R_PARENTHESIS)<Statement>
+<S_If> ==> (KWD_IF)(DEL_L_PARENTHESIS)<S_Expression>(DEL_R_PARENTHESIS)<S_Multi>
 
 # while语句
-<S_While> ==> (KWD_WHILE)(DEL_L_PARENTHESIS)<S_Expression>(DEL_R_PARENTHESIS)<Statement>
+<S_While> ==> (KWD_WHILE)(DEL_L_PARENTHESIS)<S_Expression>(DEL_R_PARENTHESIS)<S_Multi>
 
 # for语句
-<S_For> ==> (KWD_FOR)(DEL_L_PARENTHESIS)<Statement><Expression><Expression>(DEL_R_PARENTHESIS)<Statement>
+<S_For> ==> (KWD_FOR)(DEL_L_PARENTHESIS)<Statement><S_Expression><S_Expression>(DEL_R_PARENTHESIS)<S_Multi>
 
 
 # 函数定义
@@ -114,4 +123,4 @@
 <F_P_1> ==> (DEL_COMMA)(TOK_IDENTIFIER)(DEL_COLON)<Var_Type><F_P_1> $ <F_P_E>
 <F_P_E> ==> (DEL_R_PARENTHESIS)(DEL_L_BRACE)<F_B>
 # 函数体
-<F_B> ==> <Statement><F_B> $ (DEL_R_BRACE)
+<F_B> ==> <S_Multi><F_B> $ (DEL_R_BRACE)

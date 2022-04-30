@@ -4,6 +4,9 @@ from Utils import *
 
 
 def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.txt"):
+    # 日志记录
+    logRec = ""
+
     # 读取词法规则文件
     production_formulae = []
     file = open(syntax_file, encoding="UTF-8")
@@ -15,7 +18,7 @@ def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.t
             production_formulae.append([line.split("==>")[0], line.split("==>")[1]])
         line = file.readline()
     file.close()
-    CONSOLE("Read lexical syntax.", "NORMAL")
+    logRec += CONSOLE("Read lexical syntax.", "NORMAL")
 
     # NFA的字母表、状态集
     alphabet, NFA_statuses = set(), {FA_START_STATUS, FA_FINISH_STATUS}
@@ -29,11 +32,11 @@ def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.t
         for ont in one_non_terminals:
             NFA_statuses.add(ont)
         transition_functions += one_transitions
-    CONSOLE("Established NFA.", "NORMAL")
+    logRec += CONSOLE("Established NFA.", "NORMAL")
 
     # DFA
     DFA_statuses, DFA_transitions = NFAToDFA(alphabet, transition_functions)
-    CONSOLE("Established DFA.", "NORMAL")
+    logRec += CONSOLE("Established DFA.", "NORMAL")
 
     # 读取源代码
     source_code = []
@@ -55,7 +58,7 @@ def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.t
         source_code.append(line)
         line = file.readline()
     file.close()
-    CONSOLE("Read and resolved source code.", "NORMAL")
+    logRec += CONSOLE("Read and resolved source code.", "NORMAL")
 
     # 分析源代码
     # (行号, 单词, Token, 值)
@@ -176,7 +179,7 @@ def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.t
 
             # 读取下一个字符
             i += 1
-    CONSOLE("Analyzed source code.", "NORMAL")
+    logRec += CONSOLE("Analyzed source code.", "NORMAL")
 
     # 写入输出文件
     file = open("Token List.txt", "w", encoding="UTF-8")
@@ -186,7 +189,7 @@ def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.t
         file.write(str(tt[0]).ljust(5, ' ') + str(tt[1]).ljust(20, ' ')
                    + str(tt[2]).ljust(15, ' ') + str(tt[3]) + "\n")
     file.close()
-    CONSOLE("Completed lexical analysis, wrote \"Token List.txt\".", "NORMAL")
+    logRec += CONSOLE("Completed lexical analysis, wrote \"Token List.txt\".", "NORMAL")
 
     # 词法分析过程展示
     file = open("Process of Lexical Analysis.txt", "w", encoding="UTF-8")
@@ -261,6 +264,6 @@ def lex_analyze(syntax_file="Lexical Syntax.txt", sourceCode_file="Source Code.t
         k += 1
     file.write("\n" + "=" * 100 + "\n")
     file.close()
-    CONSOLE("Showed process of lexical analysis, wrote \"Process of Lexical Analysis.txt\".", "NORMAL")
+    logRec += CONSOLE("Showed process of lexical analysis, wrote \"Process of Lexical Analysis.txt\".", "NORMAL")
 
-    return token_tuples, errorInfo
+    return token_tuples, errorInfo, logRec

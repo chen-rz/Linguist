@@ -2,7 +2,48 @@ from LR1 import *
 from Utils import *
 
 
+# 错误提示信息
+def errorDetail(tas: list, nextTok: tuple):
+    # 程序开头出错
+    if not tas:
+        er = "\nError found in source code:\n"
+        er += "Invalid beginning of source code: "
+        er += str(nextTok[1]) + "\n"
+        er += " " * len("Invalid beginning of source code: ") + "^"
+        er += "\nParsing interrupted.\n"
+        return er
+    else:
+        # 缺少行末分号
+        if tas[-1][0] < nextTok[0]:
+            er = "\nError found in source code:\n"
+            er += "In Line " + str(tas[-1][0]) + ": "
+            for tase in tas:
+                if tase[0] == tas[-1][0]:
+                    er += str(tase[1]) + " "
+            er += str(nextTok[1]) + "\n" + " " * (len(er) - len("\nError found in source code:\n")) + "^\n"
+            er += " " * len("In Line " + str(tas[-1][0]) + ": ")
+            er += "Expected ';' after '" + str(tas[-1][1]) + "'."
+            er += "\nParsing interrupted.\n"
+            return er
+        # 多余的单词
+        elif tas[-1][2] == nextTok[2]:
+            er = "\nError found in source code:\n"
+            er += "In Line " + str(tas[-1][0]) + ": "
+            for tase in tas:
+                if tase[0] == tas[-1][0]:
+                    er += str(tase[1]) + " "
+            er += str(nextTok[1]) + "\n" + " " * (len(er) - len("\nError found in source code:\n")) + "^\n"
+            er += " " * len("In Line " + str(tas[-1][0]) + ": ")
+            er += "Here may well be a redundant word."
+            er += "\nParsing interrupted.\n"
+            return er
+
+
+# 返回日志记录
 def parse(token_list: list, grammar_file="Grammar.txt"):
+    # 日志记录
+    logRec = ""
+
     # 读取语法规则
     grammar_formulae = []
     file = open(grammar_file, encoding="UTF-8")
@@ -14,7 +55,7 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
             grammar_formulae.append([line.split("==>")[0], line.split("==>")[1]])
         line = file.readline()
     file.close()
-    CONSOLE("Read grammar rules.", "NORMAL")
+    logRec += CONSOLE("Read grammar rules.", "NORMAL")
 
     # 获取所有非终结符、终结符、产生式
     terminal_set, non_term_set, producer_list = set(), set(), []
@@ -24,7 +65,7 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
         non_term_set = non_term_set.union(nts)
         producer_list += ltr
 
-    CONSOLE("Constructing LR(1) item sets...", "INFO")
+    logRec += CONSOLE("Constructing LR(1) item sets...", "INFO")
     # 项目集族、GO表
     allItemSets = []
     GO_dict = {}
@@ -124,7 +165,7 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
             s += 1
             if not terminated:
                 break
-    CONSOLE("\nCompleted construction of LR(1) item sets. Established GO-Functions.", "NORMAL")
+    logRec += CONSOLE("\nCompleted construction of LR(1) item sets. Established GO-Functions.", "NORMAL")
 
     # ACTION表和GOTO表
     ACTION, GOTO = {}, {}
@@ -146,7 +187,7 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
                 # 产生式不存在则报错
                 if pIdN == -1:
                     er = "No such producer-formula: " + str(ik[IT_LEFT]) + " → " + str(ik[IT_BEFORE_DOT])
-                    CONSOLE(er, "ERROR")
+                    logRec += CONSOLE(er, "ERROR")
                 else:
                     ACTION[(k, ik[IT_SEARCH])] = "r" + str(pIdN)
             # [S'→S·,#]
@@ -157,7 +198,7 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
             if (k, A) in GO_dict.keys():
                 GOTO[(k, A)] = GO_dict[(k, A)]
 
-    CONSOLE("Established ACTION and GOTO tables for LR(1) parsing.", "NORMAL")
+    logRec += CONSOLE("Established ACTION and GOTO tables for LR(1) parsing.", "NORMAL")
 
     # 语法分析
     # 状态栈、符号栈
@@ -169,6 +210,9 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
     token_list.append((-1, "#END#", "", ""))
     status_stack.append(0)
     symbol_stack.append("")
+
+    # 保存已接收的单词，用于错误提示信息
+    token_accepted_stack = []
 
     while token_list:
         t = token_list[0]
@@ -187,7 +231,8 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
             # ACTION[S,a]不存在，报错
             if (status_stack[-1], nextIn) not in ACTION.keys():
                 er = "Error: ACTION" + str((status_stack[-1], nextIn)) + " does not exist."
-                CONSOLE(er, "ERROR")
+                logRec += CONSOLE(er, "ERROR")
+                logRec += CONSOLE(errorDetail(token_accepted_stack, t), "ERROR")
                 break
             # ACTION[S,a]
             else:
@@ -196,21 +241,24 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
                 if actVal == "acc":
                     # 分析成功
                     if t == token_list[-1]:
-                        CONSOLE("Congratulations! Parsing finished successfully.", "NORMAL")
+                        logRec += CONSOLE("Congratulations! Parsing finished successfully.", "NORMAL")
                         token_list.pop(0)
+                        token_accepted_stack.append(t)
                     # 非正常终止
                     else:
                         er = "LR(1) parsing finished at the terminal status, but input was unfinished."
                         er += "\nRemaining: "
                         for tki in token_list:
                             er += str(tki) + " "
-                        CONSOLE(er, "ERROR")
+                        logRec += CONSOLE(er, "ERROR")
+                        logRec += CONSOLE(errorDetail(token_accepted_stack, t), "ERROR")
                         break
                 # ACTION[S,a]=Sj
                 elif actVal[0] == "S":
                     symbol_stack.append(nextIn)
                     status_stack.append(int(actVal[1:]))
                     token_list.pop(0)
+                    token_accepted_stack.append(t)
                 # ACTION[S,a]=rj
                 elif actVal[0] == "r":
                     # 第j个产生式右部的符号串长度
@@ -223,8 +271,12 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
                     nextA = producer_list[int(actVal[1:])][0]
                     # GOTO[S,A]不存在，报错
                     if (not status_stack) or (status_stack[-1], nextA) not in GOTO.keys():
-                        er = "GOTO error"
-                        CONSOLE(er, "ERROR")
+                        if not status_stack:
+                            er = "GOTO error: Status stack is empty."
+                        else:
+                            er = "GOTO[" + str(status_stack[-1], nextA) + "] does not exist."
+                        logRec += CONSOLE(er, "ERROR")
+                        logRec += CONSOLE(errorDetail(token_accepted_stack, t), "ERROR")
                         break
                     # GOTO[S,A]
                     else:
@@ -234,7 +286,7 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
 
         # 非法字符输入
         else:
-            CONSOLE("Illegal token input: " + str(nextIn) + ". LR(1) parsing failed.", "ERROR")
+            logRec += CONSOLE("Illegal token input: " + str(nextIn) + ". LR(1) parsing failed.", "ERROR")
             return
 
         # 记录分析过程
@@ -242,9 +294,7 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
         curr_log.append(gotoVal)
         parser_log.append(curr_log)
 
-    CONSOLE("Completed LR(1) parsing.", "NORMAL")
-
-    # TODO 完善语法，添加报错信息~
+    logRec += CONSOLE("Completed LR(1) parsing.", "NORMAL")
 
     # 语法分析过程展示
     file = open("Process of LR(1) Parsing.txt", "w", encoding="UTF-8")
@@ -352,4 +402,5 @@ def parse(token_list: list, grammar_file="Grammar.txt"):
         file.write("\n")
     file.write("=" * 100 + "\n")
 
-    CONSOLE("Showed process of LR(1) parsing, wrote \"Process of LR(1) Parsing.txt\".", "NORMAL")
+    logRec += CONSOLE("Showed process of LR(1) parsing, wrote \"Process of LR(1) Parsing.txt\".", "NORMAL")
+    return logRec

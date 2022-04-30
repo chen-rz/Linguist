@@ -1,3 +1,6 @@
+import datetime
+
+
 # 封装控制台信息输出格式
 def CONSOLE(e: str, infoType: str):
     if infoType == "ERROR":
@@ -15,6 +18,16 @@ def CONSOLE(e: str, infoType: str):
 
     print(e)
     print("\033[0m", end="")
+
+    # 日志记录
+    e = list(e.strip("\n"))
+    for i in range(len(e) - 1):
+        if e[i] == "\n":
+            e.insert(i + 1, " " * 30)
+    if e and e[-1] != "\n":
+        e.append("\n")
+    e = "".join(e)
+    return str(datetime.datetime.now()) + " " * 4 + e
 
 
 # 进度条

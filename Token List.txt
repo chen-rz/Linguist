@@ -1,86 +1,126 @@
 Line Word                Token          Value
 ==================================================
-2    import              KEYWORD        109
-2    os                  IDENTIFIER     
-2    ;                   DELIMITER      407
-3    from                KEYWORD        129
-3    Lexer               IDENTIFIER     
-3    import              KEYWORD        109
-3    *                   OPERATOR       503
-3    ;                   DELIMITER      407
-4    from                KEYWORD        129
-4    Foo                 IDENTIFIER     
-4    .                   DELIMITER      410
-4    bar                 IDENTIFIER     
-4    .                   DELIMITER      410
-4    foo                 IDENTIFIER     
-4    import              KEYWORD        109
-4    Bar                 IDENTIFIER     
-4    ;                   DELIMITER      407
-5    import              KEYWORD        109
-5    matplotlib          IDENTIFIER     
-5    .                   DELIMITER      410
-5    pyplot              IDENTIFIER     
-5    as                  KEYWORD        113
-5    ppl                 IDENTIFIER     
-5    ;                   DELIMITER      407
-7    def                 KEYWORD        124
-7    mian                IDENTIFIER     
-7    (                   DELIMITER      401
-7    jia                 IDENTIFIER     
-7    :                   DELIMITER      408
-7    string              KEYWORD        140
-7    ,                   DELIMITER      409
-7    fake                IDENTIFIER     
-7    :                   DELIMITER      408
-7    int                 KEYWORD        137
-7    ,                   DELIMITER      409
-7    counterfeit         IDENTIFIER     
-7    :                   DELIMITER      408
-7    double              KEYWORD        135
-7    )                   DELIMITER      402
-7    {                   DELIMITER      405
-8    int                 KEYWORD        137
-8    i                   IDENTIFIER     
-8    =                   OPERATOR       505
-8    jia                 IDENTIFIER     
-8    +                   OPERATOR       501
-8    1                   CONSTANT       301
-8    +                   OPERATOR       501
-8    a                   IDENTIFIER     
-8    +                   OPERATOR       501
-8    (1.2+2.3i)          CONSTANT       306
-8    +                   OPERATOR       501
-8    2.235e-28           CONSTANT       304
-8    *                   OPERATOR       503
-8    3.14159             CONSTANT       303
-8    +                   OPERATOR       501
-8    1                   CONSTANT       301
-8    &                   OPERATOR       518
-8    2                   CONSTANT       301
-8    %                   OPERATOR       515
-8    4                   CONSTANT       301
-8    |                   OPERATOR       519
-8    5                   CONSTANT       301
-8    ^                   OPERATOR       522
-8    67                  CONSTANT       301
-8    +                   OPERATOR       501
-8    8                   CONSTANT       301
-8    -                   OPERATOR       502
-8    fake                IDENTIFIER     
+6    import              KEYWORD        109
+6    os                  IDENTIFIER     
+6    ;                   DELIMITER      407
+7    from                KEYWORD        129
+7    Lexer               IDENTIFIER     
+7    import              KEYWORD        109
+7    *                   OPERATOR       503
+7    ;                   DELIMITER      407
+8    from                KEYWORD        129
+8    Foo                 IDENTIFIER     
+8    .                   DELIMITER      410
+8    bar                 IDENTIFIER     
+8    .                   DELIMITER      410
+8    foo                 IDENTIFIER     
+8    import              KEYWORD        109
+8    Bar                 IDENTIFIER     
 8    ;                   DELIMITER      407
-9    return              KEYWORD        108
-9    jia                 IDENTIFIER     
+9    import              KEYWORD        109
+9    matplotlib          IDENTIFIER     
+9    .                   DELIMITER      410
+9    pyplot              IDENTIFIER     
+9    as                  KEYWORD        113
+9    ppl                 IDENTIFIER     
 9    ;                   DELIMITER      407
-10   }                   DELIMITER      406
-12   while               KEYWORD        104
+12   def                 KEYWORD        124
+12   fun                 IDENTIFIER     
 12   (                   DELIMITER      401
-12   True                KEYWORD        122
-12   ;                   DELIMITER      407
+12   arg1                IDENTIFIER     
+12   :                   DELIMITER      408
+12   string              KEYWORD        140
+12   ,                   DELIMITER      409
+12   arg2                IDENTIFIER     
+12   :                   DELIMITER      408
+12   int                 KEYWORD        137
+12   ,                   DELIMITER      409
+12   arg3                IDENTIFIER     
+12   :                   DELIMITER      408
+12   double              KEYWORD        135
 12   )                   DELIMITER      402
 12   {                   DELIMITER      405
-16   i                   IDENTIFIER     
-16   +=                  OPERATOR       511
-16   1                   CONSTANT       301
-16   ;                   DELIMITER      407
-17   }                   DELIMITER      406
+29   return              KEYWORD        108
+29   ;                   DELIMITER      407
+30   }                   DELIMITER      406
+33   while               KEYWORD        104
+33   (                   DELIMITER      401
+33   True                KEYWORD        122
+33   ;                   DELIMITER      407
+33   )                   DELIMITER      402
+33   {                   DELIMITER      405
+34   string              KEYWORD        140
+34   english             IDENTIFIER     
+34   =                   OPERATOR       505
+34   "hello"             CONSTANT       307
+34   ;                   DELIMITER      407
+35   for                 KEYWORD        103
+35   (                   DELIMITER      401
+35   int                 KEYWORD        137
+35   i                   IDENTIFIER     
+35   =                   OPERATOR       505
+35   0                   CONSTANT       301
+35   ;                   DELIMITER      407
+35   i                   IDENTIFIER     
+35   <=                  OPERATOR       510
+35   s                   IDENTIFIER     
+35   ;                   DELIMITER      407
+35   i                   IDENTIFIER     
+35   +=                  OPERATOR       511
+35   1                   CONSTANT       301
+35   ;                   DELIMITER      407
+35   )                   DELIMITER      402
+35   {                   DELIMITER      405
+36   if                  KEYWORD        101
+36   (                   DELIMITER      401
+36   i                   IDENTIFIER     
+36   <=                  OPERATOR       510
+36   k                   IDENTIFIER     
+36   ;                   DELIMITER      407
+36   )                   DELIMITER      402
+37   i                   IDENTIFIER     
+37   +=                  OPERATOR       511
+37   k                   IDENTIFIER     
+37   ;                   DELIMITER      407
+38   i                   IDENTIFIER     
+38   *=                  OPERATOR       513
+38   10086               CONSTANT       301
+38   ;                   DELIMITER      407
+39   while               KEYWORD        104
+39   (                   DELIMITER      401
+39   True                KEYWORD        122
+39   ;                   DELIMITER      407
+39   )                   DELIMITER      402
+39   {                   DELIMITER      405
+40   i                   IDENTIFIER     
+40   =                   OPERATOR       505
+40   1                   CONSTANT       301
+40   +                   OPERATOR       501
+40   2                   CONSTANT       301
+40   +                   OPERATOR       501
+40   3                   CONSTANT       301
+40   ;                   DELIMITER      407
+41   j                   IDENTIFIER     
+41   =                   OPERATOR       505
+41   3                   CONSTANT       301
+41   *                   OPERATOR       503
+41   4                   CONSTANT       301
+41   /                   OPERATOR       504
+41   5                   CONSTANT       301
+41   ;                   DELIMITER      407
+42   if                  KEYWORD        101
+42   (                   DELIMITER      401
+42   j                   IDENTIFIER     
+42   ;                   DELIMITER      407
+42   )                   DELIMITER      402
+42   break               KEYWORD        105
+42   ;                   DELIMITER      407
+43   }                   DELIMITER      406
+45   break               KEYWORD        105
+45   ;                   DELIMITER      407
+46   }                   DELIMITER      406
+47   i                   IDENTIFIER     
+47   +=                  OPERATOR       511
+47   1                   CONSTANT       301
+47   ;                   DELIMITER      407
+48   }                   DELIMITER      406

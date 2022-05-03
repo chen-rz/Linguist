@@ -1,16 +1,16 @@
-2022-04-30 15:07:17.052435    Welcome to Linguist, the integrated lexer and parser!
-2022-04-30 15:07:17.052435    Copyright © 2022 Runze Chen
-2022-04-30 15:07:19.379745    Read lexical syntax.
-2022-04-30 15:07:19.389265    Established NFA.
-2022-04-30 15:07:19.655856    Established DFA.
-2022-04-30 15:07:19.655856    Read and resolved source code.
-2022-04-30 15:07:19.687567    Analyzed source code.
-2022-04-30 15:07:19.687567    Completed lexical analysis, wrote "Token List.txt".
-2022-04-30 15:07:19.703187    Showed process of lexical analysis, wrote "Process of Lexical Analysis.txt".
-2022-04-30 15:07:19.703187    Read grammar rules.
-2022-04-30 15:07:19.703187    Constructing LR(1) item sets...
-2022-04-30 15:07:38.664000    Completed construction of LR(1) item sets. Established GO-Functions.
-2022-04-30 15:07:38.762027    Established ACTION and GOTO tables for LR(1) parsing.
-2022-04-30 15:07:38.763040    Congratulations! Parsing finished successfully.
-2022-04-30 15:07:38.763040    Completed LR(1) parsing.
-2022-04-30 15:07:38.927064    Showed process of LR(1) parsing, wrote "Process of LR(1) Parsing.txt".
+2022-05-03 09:39:02.905893    Welcome to Linguist, the integrated lexer and parser!
+2022-05-03 09:39:02.905893    Copyright © 2022 Runze Chen
+2022-05-03 09:39:04.856890    Read lexical syntax.
+2022-05-03 09:39:04.859883    Established NFA.
+2022-05-03 09:39:05.124453    Established DFA.
+2022-05-03 09:39:05.124453    Read and resolved source code.
+2022-05-03 09:39:05.194476    Analyzed source code.
+2022-05-03 09:39:05.195475    Completed lexical analysis, wrote "Token List.txt".
+2022-05-03 09:39:05.200464    Showed process of lexical analysis, wrote "Process of Lexical Analysis.txt".
+2022-05-03 09:39:05.201471    Read grammar rules.
+2022-05-03 09:39:05.202471    Constructing LR(1) item sets...
+2022-05-03 09:39:45.986690    Completed construction of LR(1) item sets. Established GO-Functions.
+2022-05-03 09:39:46.142730    Established ACTION and GOTO tables for LR(1) parsing.
+2022-05-03 09:39:46.144724    Congratulations! Parsing finished successfully.
+2022-05-03 09:39:46.144724    Completed LR(1) parsing.
+2022-05-03 09:39:46.461576    Showed process of LR(1) parsing, wrote "Process of LR(1) Parsing.txt".

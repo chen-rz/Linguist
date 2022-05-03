@@ -49,78 +49,161 @@ Line Word                Token          Value
 33   ;                   DELIMITER      407
 33   )                   DELIMITER      402
 33   {                   DELIMITER      405
-34   string              KEYWORD        140
-34   english             IDENTIFIER     
-34   =                   OPERATOR       505
-34   "hello"             CONSTANT       307
-34   ;                   DELIMITER      407
-35   for                 KEYWORD        103
-35   (                   DELIMITER      401
 35   int                 KEYWORD        137
-35   i                   IDENTIFIER     
+35   a                   IDENTIFIER     
 35   =                   OPERATOR       505
-35   0                   CONSTANT       301
+35   123                 CONSTANT       301
 35   ;                   DELIMITER      407
-35   i                   IDENTIFIER     
-35   <=                  OPERATOR       510
-35   s                   IDENTIFIER     
-35   ;                   DELIMITER      407
-35   i                   IDENTIFIER     
-35   +=                  OPERATOR       511
-35   1                   CONSTANT       301
-35   ;                   DELIMITER      407
-35   )                   DELIMITER      402
-35   {                   DELIMITER      405
-36   if                  KEYWORD        101
-36   (                   DELIMITER      401
-36   i                   IDENTIFIER     
-36   <=                  OPERATOR       510
-36   k                   IDENTIFIER     
+36   int                 KEYWORD        137
+36   hex1                IDENTIFIER     
+36   =                   OPERATOR       505
+36   0x1688              CONSTANT       302
 36   ;                   DELIMITER      407
-36   )                   DELIMITER      402
-37   i                   IDENTIFIER     
-37   +=                  OPERATOR       511
-37   k                   IDENTIFIER     
+37   int                 KEYWORD        137
+37   hex2                IDENTIFIER     
+37   =                   OPERATOR       505
+37   0XAeFf7             CONSTANT       302
 37   ;                   DELIMITER      407
-38   i                   IDENTIFIER     
-38   *=                  OPERATOR       513
-38   10086               CONSTANT       301
+38   double              KEYWORD        135
+38   b                   IDENTIFIER     
+38   =                   OPERATOR       505
+38   123.456             CONSTANT       303
 38   ;                   DELIMITER      407
-39   while               KEYWORD        104
-39   (                   DELIMITER      401
-39   True                KEYWORD        122
+39   double              KEYWORD        135
+39   c1                  IDENTIFIER     
+39   =                   OPERATOR       505
+39   1.23E+45            CONSTANT       304
 39   ;                   DELIMITER      407
-39   )                   DELIMITER      402
-39   {                   DELIMITER      405
-40   i                   IDENTIFIER     
+40   double              KEYWORD        135
+40   c2                  IDENTIFIER     
 40   =                   OPERATOR       505
-40   1                   CONSTANT       301
-40   +                   OPERATOR       501
-40   2                   CONSTANT       301
-40   +                   OPERATOR       501
-40   3                   CONSTANT       301
+40   1.234567e-89        CONSTANT       304
 40   ;                   DELIMITER      407
-41   j                   IDENTIFIER     
+41   auto                KEYWORD        134
+41   complex             IDENTIFIER     
 41   =                   OPERATOR       505
-41   3                   CONSTANT       301
-41   *                   OPERATOR       503
-41   4                   CONSTANT       301
-41   /                   OPERATOR       504
-41   5                   CONSTANT       301
+41   (1.23+4.56i)        CONSTANT       306
 41   ;                   DELIMITER      407
-42   if                  KEYWORD        101
-42   (                   DELIMITER      401
-42   j                   IDENTIFIER     
+42   auto                KEYWORD        134
+42   cex                 IDENTIFIER     
+42   =                   OPERATOR       505
+42   (1.23+4.56i)        CONSTANT       306
+42   +                   OPERATOR       501
+42   (7.89+666i)         CONSTANT       306
 42   ;                   DELIMITER      407
-42   )                   DELIMITER      402
-42   break               KEYWORD        105
-42   ;                   DELIMITER      407
-43   }                   DELIMITER      406
-45   break               KEYWORD        105
+43   string              KEYWORD        140
+43   english             IDENTIFIER     
+43   =                   OPERATOR       505
+43   "hello"             CONSTANT       307
+43   ;                   DELIMITER      407
+45   for                 KEYWORD        103
+45   (                   DELIMITER      401
+45   int                 KEYWORD        137
+45   i                   IDENTIFIER     
+45   =                   OPERATOR       505
+45   0                   CONSTANT       301
 45   ;                   DELIMITER      407
-46   }                   DELIMITER      406
+45   i                   IDENTIFIER     
+45   <=                  OPERATOR       510
+45   s                   IDENTIFIER     
+45   ;                   DELIMITER      407
+45   i                   IDENTIFIER     
+45   +=                  OPERATOR       511
+45   1                   CONSTANT       301
+45   ;                   DELIMITER      407
+45   )                   DELIMITER      402
+45   {                   DELIMITER      405
+46   if                  KEYWORD        101
+46   (                   DELIMITER      401
+46   i                   IDENTIFIER     
+46   <=                  OPERATOR       510
+46   k                   IDENTIFIER     
+46   ;                   DELIMITER      407
+46   )                   DELIMITER      402
 47   i                   IDENTIFIER     
 47   +=                  OPERATOR       511
-47   1                   CONSTANT       301
+47   k                   IDENTIFIER     
 47   ;                   DELIMITER      407
-48   }                   DELIMITER      406
+48   i                   IDENTIFIER     
+48   *=                  OPERATOR       513
+48   10086               CONSTANT       301
+48   ;                   DELIMITER      407
+49   while               KEYWORD        104
+49   (                   DELIMITER      401
+49   True                KEYWORD        122
+49   ;                   DELIMITER      407
+49   )                   DELIMITER      402
+49   {                   DELIMITER      405
+50   if                  KEYWORD        101
+50   (                   DELIMITER      401
+50   i                   IDENTIFIER     
+50   ==                  OPERATOR       506
+50   k                   IDENTIFIER     
+50   %                   OPERATOR       515
+50   2                   CONSTANT       301
+50   ;                   DELIMITER      407
+50   )                   DELIMITER      402
+51   i                   IDENTIFIER     
+51   =                   OPERATOR       505
+51   1                   CONSTANT       301
+51   +                   OPERATOR       501
+51   2                   CONSTANT       301
+51   &                   OPERATOR       518
+51   3                   CONSTANT       301
+51   ;                   DELIMITER      407
+52   j                   IDENTIFIER     
+52   =                   OPERATOR       505
+52   3                   CONSTANT       301
+52   *                   OPERATOR       503
+52   4                   CONSTANT       301
+52   /                   OPERATOR       504
+52   5                   CONSTANT       301
+52   ;                   DELIMITER      407
+53   if                  KEYWORD        101
+53   (                   DELIMITER      401
+53   !                   OPERATOR       520
+53   j                   IDENTIFIER     
+53   ;                   DELIMITER      407
+53   )                   DELIMITER      402
+53   {                   DELIMITER      405
+54   break               KEYWORD        105
+54   ;                   DELIMITER      407
+55   }                   DELIMITER      406
+55   else                KEYWORD        102
+55   {                   DELIMITER      405
+57   demo                IDENTIFIER     
+57   =                   OPERATOR       505
+57   3                   CONSTANT       301
+57   &                   OPERATOR       518
+57   4                   CONSTANT       301
+57   ;                   DELIMITER      407
+58   demo                IDENTIFIER     
+58   +=                  OPERATOR       511
+58   1                   CONSTANT       301
+58   +                   OPERATOR       501
+58   2.3                 CONSTANT       303
+58   -                   OPERATOR       502
+58   4.5e+77             CONSTANT       304
+58   *                   OPERATOR       503
+58   (2.34+4.3i)         CONSTANT       306
+58   |                   OPERATOR       519
+58   2                   CONSTANT       301
+58   ^                   OPERATOR       522
+58   3                   CONSTANT       301
+58   ;                   DELIMITER      407
+59   demo                IDENTIFIER     
+59   *=                  OPERATOR       513
+59   0xAfE               CONSTANT       302
+59   /                   OPERATOR       504
+59   0X2aed              CONSTANT       302
+59   ;                   DELIMITER      407
+60   }                   DELIMITER      406
+61   }                   DELIMITER      406
+62   break               KEYWORD        105
+62   ;                   DELIMITER      407
+63   }                   DELIMITER      406
+64   i                   IDENTIFIER     
+64   +=                  OPERATOR       511
+64   1                   CONSTANT       301
+64   ;                   DELIMITER      407
+65   }                   DELIMITER      406

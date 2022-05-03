@@ -31,17 +31,34 @@ def fun(arg1:string,arg2:int,arg3:double){
 
 # 语句示例
 while(True;){
+    # 常量示例
+    int a =123;
+    int hex1=0x1688;
+    int hex2=0XAeFf7;
+    double b= 123.456;
+    double c1=1.23E+45;
+    double c2=1.234567e-89;
+    auto complex=(1.23+4.56i);
+    auto cex=(1.23+4.56i)+(7.89+666i);
     string english="hello";
+
     for(int i=0;i<=s;i+=1;){
         if(i<=k;)
             i+=k;
         i*=10086;
         while(True;){
-            i=1+2+3;
+            if(i==k%2;)
+                i=1+2&3;
             j=3*4/5;
-            if(j;) break;
+            if(!j;){
+                break;
+            }else{
+                # 表达式示例
+                demo=3&4;
+                demo+=1+2.3-4.5e+77*(2.34+4.3i)|2^3;
+                demo*=0xAfE/0X2aed;
+            }
         }
-
         break;
     }
     i+=1;

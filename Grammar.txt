@@ -81,8 +81,8 @@
 
 
 # 语句
-# 表达式、返回语句、break语句、声明语句、if语句、while语句、for语句
-<Statement> ==> <S_Expression> $ <S_Return> $ <S_Break> $ <S_Define> $ <S_If> $ <S_While> $ <S_For>
+# 表达式、返回语句、break语句、声明语句、if语句、if-else语句、while语句、for语句
+<Statement> ==> <S_Expression> $ <S_Return> $ <S_Break> $ <S_Define> $ <S_If> $ <S_IfElse> $ <S_While> $ <S_For>
 # 多条语句
 <S_Multi> ==> <Statement><S_Multi> $ <Statement>
 # 语句块
@@ -108,6 +108,9 @@
 
 # if语句
 <S_If> ==> (KWD_IF)(DEL_L_PARENTHESIS)<S_Expression>(DEL_R_PARENTHESIS)<S_Multi>
+
+# if-else语句
+<S_IfElse> ==> (KWD_IF)(DEL_L_PARENTHESIS)<S_Expression>(DEL_R_PARENTHESIS)<S_Multi>(KWD_ELSE)<S_Multi>
 
 # while语句
 <S_While> ==> (KWD_WHILE)(DEL_L_PARENTHESIS)<S_Expression>(DEL_R_PARENTHESIS)<S_Multi>
